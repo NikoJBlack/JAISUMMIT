@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 135" width="560" height="540" role="img" aria-label="majai logo">
+  <title>LOGO majai</title>
+  <text x="50" y="70" text-anchor="middle" font-size="30" font-weight="900" fill="#cccccc" font-family="DM Sans, Helvetica, Arial, sans-serif" font-style="italic" letter-spacing="-1">majai</text>
+  <text x="108" y="55" font-size="28" text-anchor="middle">🌎</text>
+  <g>
+    <circle cx="60" cy="42" r="5" fill="#1d8fe1" opacity="0.8"></circle>
+  </g>
+  <g>
+    <circle cx="84" cy="60" r="6" fill="#7b2d8b" opacity="0.8"></circle>
+  </g>
+  <g>
+    <circle cx="60" cy="88" r="6" fill="#3ab54a" opacity="0.8"></circle>
+  </g>
+  <g>
+    <circle cx="26" cy="60" r="7" fill="#f26522" opacity="0.8"></circle>
+  </g>
+</svg>

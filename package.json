@@ -1,0 +1,16 @@
+{
+  "name": "jaipub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Publish the JAI Summit site to GitHub and Cloudflare Pages in one command.",
+  "type": "module",
+  "bin": {
+    "jaipub": "bin/jaipub.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

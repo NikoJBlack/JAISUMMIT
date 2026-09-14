@@ -15,16 +15,16 @@ path: publish
 ## Screen map
 | Source | Published |
 | --- | --- |
-| TBD | charter.html |
-| TBD | contact.html |
-| TBD | global-ai-community.html |
-| TBD | home.html |
-| TBD | index.html |
-| TBD | invitation.html |
-| TBD | issues-topics-posts.html |
-| TBD | meeting-of-the-minds.html |
-| TBD | open-letter.html |
-| TBD | patron-account.html |
-| TBD | sponsor-handout.html |
-| TBD | sponsors.html |
-| TBD | summit.html |
+| JanuaryAI Charter Overview.dc.html | charter.html |
+| JAI Contact.dc.html | contact.html |
+| JAI Global Community.dc.html | global-ai-community.html |
+| JAI Project website.dc.html | home.html |
+| Majaii Lander.dc.html | index.html |
+| MAJAI Lander.dc.html | invitation.html |
+| JAI Issues Topics Posts.dc.html | issues-topics-posts.html |
+| JAI Meeting of the Minds.dc.html | meeting-of-the-minds.html |
+| JAI Open Letter.dc.html | open-letter.html |
+| JAI Patron Account.dc.html | patron-account.html |
+| JAI Sponsor Handout.dc.html | sponsor-handout.html |
+| JAI Sponsors.dc.html | sponsors.html |
+| JAI Summit 2027.dc.html | summit.html |

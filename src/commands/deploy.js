@@ -32,8 +32,9 @@ export async function deploy(root, { log, dryRun = false, preview = false } = {}
   const args = [...baseArgs, 'pages', 'deploy', config.publishDir, '--project-name', projectName];
   if (preview) args.push('--branch', 'preview');
 
+  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID || config.cloudflare?.accountId;
   const env = {};
-  if (process.env.CLOUDFLARE_ACCOUNT_ID) env.CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+  if (accountId) env.CLOUDFLARE_ACCOUNT_ID = accountId;
 
   const result = run(wranglerCmd, args, { cwd: root, dryRun, log, env });
 

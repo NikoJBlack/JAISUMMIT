@@ -18,6 +18,11 @@
 <style>
   .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
   .majaii-navscroll::-webkit-scrollbar { display:none; }
+  /* Mouse/trackpad only: enlarge the hovered pill for readability. Touch devices keep the resting size. */
+  @media (hover: hover) and (pointer: fine) {
+    .majaii-navscroll > a { transition:transform 0.16s ease, font-size 0.16s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease; }
+    .majaii-navscroll > a:hover { font-size:14px !important; letter-spacing:0.04em !important; transform:translateY(-1px); box-shadow:0 4px 14px rgba(15,157,118,0.22) !important; z-index:2; }
+  }
   html { scroll-behavior: smooth; }
   body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
   a { color: #0f9d76; }
@@ -985,13 +990,13 @@
 class Component extends DCLogic {
   railHover = -1;
   railDefs = [
+    { label: 'Library+Letters', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
     { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
-    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
     { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
     { label: '', href: '', inert: true },
-    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
     { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
     { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
     { label: '', href: '', inert: true },

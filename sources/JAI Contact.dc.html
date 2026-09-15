@@ -16,9 +16,19 @@
 </template>
 
 <meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,900&display=swap" rel="stylesheet" />
 <style>
   .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  @keyframes orbitSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+  @keyframes orbitTrack { from { offset-distance:0%; } to { offset-distance:100%; } }
+  .majaii-orbit { position:absolute; inset:0; pointer-events:none; }
+  .majaii-orbit i { position:absolute; display:block; border-radius:50%; offset-path:ellipse(49% 44% at 50% 50%); offset-rotate:0deg; animation:orbitTrack linear infinite; }
   .majaii-navscroll::-webkit-scrollbar { display:none; }
+  /* Mouse/trackpad only: enlarge the hovered pill for readability. Touch devices keep the resting size. */
+  @media (hover: hover) and (pointer: fine) {
+    .majaii-navscroll > a { transition:transform 0.16s ease, font-size 0.16s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease; }
+    .majaii-navscroll > a:hover { font-size:14px !important; letter-spacing:0.04em !important; transform:translateY(-1px); box-shadow:0 4px 14px rgba(15,157,118,0.22) !important; z-index:2; }
+  }
   body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
   a { color: #0f9d76; }
   a:hover { color: #0b7a5c; }
@@ -91,8 +101,8 @@
   </div>
 
   <div style="width:min(640px,92vw); margin-top:clamp(56px,9vh,80px); text-align:center;">
-    <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(30px,7vw,52px); line-height:0.95; letter-spacing:-0.01em; color:#8fd6bd;">JanuaryAI Foundation</div>
-    <p style="font-size:clamp(16px,3vw,19px); line-height:1.6; color:#4a4a4a; margin:18px 0 0;">2026 Blue Mountain Skyway, Abundance, Colorado 80000</p>
+    <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(30px,7vw,52px); line-height:0.95; letter-spacing:-0.01em; color:#8fd6bd;">The JanuaryAI Project</div>
+    <p style="font-size:clamp(16px,3vw,19px); line-height:1.6; color:#4a4a4a; margin:18px 0 0;"><a href="https://www.majaii.com" style="color:#0f9d76; text-decoration:none;">www.majaii.com</a></p>
     <p style="font-size:clamp(16px,3vw,19px); line-height:1.6; color:#4a4a4a; margin:3em 0 0;">jan@jai.global &nbsp;&nbsp; (303) 720-0000</p>
     <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin:3em 0 0;">JAI is an American Innovation Since 2026</p>
   </div>
@@ -108,13 +118,13 @@
 class Component extends DCLogic {
   railHover = -1;
   railDefs = [
+    { label: 'Library+Letters', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
     { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
-    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
     { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
     { label: '', href: '', inert: true },
-    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
     { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
     { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
     { label: '', href: '', inert: true },

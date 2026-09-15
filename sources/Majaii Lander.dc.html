@@ -28,6 +28,11 @@
   @keyframes dissolveIn { 0%,100% { opacity:0; } 35%,72% { opacity:1; } }
   .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
   .majaii-navscroll::-webkit-scrollbar { display:none; }
+  /* Mouse/trackpad only: enlarge the hovered pill for readability. Touch devices keep the resting size. */
+  @media (hover: hover) and (pointer: fine) {
+    .majaii-navscroll > a { transition:transform 0.16s ease, font-size 0.16s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease; }
+    .majaii-navscroll > a:hover { font-size:14px !important; letter-spacing:0.04em !important; transform:translateY(-1px); box-shadow:0 4px 14px rgba(15,157,118,0.22) !important; z-index:2; }
+  }
 </style>
 <script type="module">
   import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
@@ -81,17 +86,7 @@
       <i style="width:clamp(14px,2.6vw,24px); height:clamp(14px,2.6vw,24px); background:#f26522; opacity:0.85; animation-duration:24s; animation-direction:reverse; animation-delay:-14s;"></i>
     </div>
     <a href="./JAI%20Issues%20Topics%20Posts.dc.html" style="display:block; text-decoration:none; position:relative;">
-    <div style="display:flex; flex-wrap:nowrap; align-items:center; justify-content:center; gap:clamp(4px,1vw,16px); animation:dissolveOut 18s ease-in-out 6s infinite;">
-      <span style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-weight:900; font-style:italic; font-size:clamp(52px,11.5vw,132px); letter-spacing:-0.04em; color:#c7c9c8; line-height:0.9; white-space:nowrap;">majaii</span>
-      <svg viewBox="0 0 120 120" aria-hidden="true" style="flex:none; width:clamp(78px,16vw,176px); height:clamp(78px,16vw,176px);">
-        <text x="60" y="80" text-anchor="middle" font-size="72">&#127758;</text>
-        <g style="transform-origin:60px 60px; animation:orbitSpin 4s linear infinite;"><circle cx="60" cy="12" r="7" fill="#1d8fe1" opacity="0.85"></circle></g>
-        <g style="transform-origin:60px 60px; animation:orbitSpin 7s linear infinite reverse;"><circle cx="108" cy="60" r="8" fill="#7b2d8b" opacity="0.85"></circle></g>
-        <g style="transform-origin:60px 60px; animation:orbitSpin 10s linear infinite;"><circle cx="60" cy="108" r="8" fill="#3ab54a" opacity="0.85"></circle></g>
-        <g style="transform-origin:60px 60px; animation:orbitSpin 13s linear infinite reverse;"><circle cx="12" cy="60" r="9" fill="#f26522" opacity="0.85"></circle></g>
-      </svg>
-    </div>
-    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(6px,1.4vw,14px); opacity:0; animation:dissolveIn 18s ease-in-out 6s infinite;">
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(6px,1.4vw,14px);">
       <div style="display:flex; flex-wrap:nowrap; align-items:center; justify-content:center; gap:clamp(4px,1vw,14px);">
         <span style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-weight:900; font-style:italic; font-size:clamp(42px,9vw,104px); letter-spacing:-0.04em; color:#c7c9c8; line-height:0.9; white-space:nowrap;">jai</span>
         <svg viewBox="0 0 120 120" aria-hidden="true" style="flex:none; width:clamp(62px,13vw,140px); height:clamp(62px,13vw,140px);">
@@ -113,17 +108,34 @@
   </div>
 
   <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:20px; width:min(980px,100%); margin-top:clamp(56px,9vh,96px);">
-    <a href="./JAI%20Summit%202027.dc.html" style="text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
-      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Jan 18&ndash;20, 2027</span>
-      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">Summit<br />2027</span>
-      <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.5; color:#6a6a6a;">Three days where the community reviews proposals and votes on what gets funded.</span>
-      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin-top:auto;">Hold my seat &rarr;</span>
-    </a>
     <a href="./JAI%20Open%20Letter.dc.html" style="text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
       <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Sign your name</span>
-      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">Open<br />Letters</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">Library+<br />Letters</span>
       <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.5; color:#6a6a6a;">The community&rsquo;s public library of Open Letters from the world&rsquo;s leading thought leaders.</span>
       <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin-top:auto;">Take a look &rarr;</span>
+    </a>
+    <a href="./JAI%20Summit%202027.dc.html" style="position:relative; text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
+      <div style="display:flex; flex-direction:column; gap:10px; flex:1; opacity:{{ summitTextOpacity }}; transition:opacity 0.9s ease;">
+        <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Jan 18&ndash;20, 2027</span>
+        <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">Summit<br />2027</span>
+        <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.5; color:#6a6a6a;">Three days where the community reviews proposals and votes on what gets funded.</span>
+        <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin-top:auto;">Hold my seat &rarr;</span>
+      </div>
+      <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:20px; opacity:{{ summitLogoOpacity }}; transition:opacity 0.9s ease; pointer-events:none;">
+        <div style="position:relative; padding:26px 22px;">
+          <div class="majaii-orbit">
+            <i style="width:11px; height:11px; background:#3ab54a; opacity:0.9; animation-duration:11s;"></i>
+            <i style="width:11px; height:11px; background:#1d8fe1; opacity:0.9; animation-duration:15s; animation-delay:-5s;"></i>
+            <i style="width:12px; height:12px; background:#7b2d8b; opacity:0.9; animation-duration:19s; animation-direction:reverse; animation-delay:-9s;"></i>
+            <i style="width:13px; height:13px; background:#f26522; opacity:0.9; animation-duration:24s; animation-direction:reverse; animation-delay:-15s;"></i>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; text-transform:uppercase; line-height:0.86; letter-spacing:-0.01em;">
+            <span style="font-size:clamp(16px,2.4vw,22px); color:#c7c9c8;">JanuaryAI</span>
+            <span style="font-size:clamp(20px,3vw,28px); color:#8fd6bd;">Summit</span>
+            <span style="font-size:clamp(18px,2.7vw,25px); color:#c7c9c8;">2027</span>
+          </div>
+        </div>
+      </div>
     </a>
     <a href="./JAI%20Issues%20Topics%20Posts.dc.html" style="text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
       <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Open to everyone</span>
@@ -140,7 +152,7 @@
       <div style="margin-top:18px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#0f9d76;">DL Thomas, Founder</div>
     </div>
     <div>
-      <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(20px,3.4vw,26px); line-height:1.2; text-transform:uppercase; color:#2f2f2f;">How it works</div>
+      <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(20px,3.4vw,26px); line-height:1.2; text-transform:uppercase; color:#2f2f2f;">Democratic Coordination</div>
       <div style="display:flex; flex-direction:column; gap:16px; margin-top:20px;">
         <div style="display:flex; gap:14px; align-items:baseline;">
           <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:13px; color:#8fd6bd;">01</span>
@@ -172,16 +184,37 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { contactValue: '', status: '', active: 0 };
+  state = { contactValue: '', status: '', active: -1 };
+
+  summitLogo = false;
+
+  componentDidMount() { this.scheduleSummitSwap(); }
+  componentWillUnmount() { if (this.summitTimer) clearTimeout(this.summitTimer); }
+
+  // Random cadence so the swap never feels metronomic: text holds 8-16s, logo 4-7s.
+  scheduleSummitSwap() {
+    const hold = this.summitLogo ? 4000 + Math.random() * 3000 : 8000 + Math.random() * 8000;
+    this.summitTimer = setTimeout(() => {
+      this.summitLogo = !this.summitLogo;
+      this.forceUpdate();
+      this.scheduleSummitSwap();
+    }, hold);
+  }
+
+  // -1 means "not chosen yet" — fall back to this page's own nav entry (href "#").
+  activeIndex() {
+    if (this.state.active >= 0) return this.state.active;
+    return this.navDefs.findIndex(d => d.href === '#');
+  }
   STORE = 'majai-signups';
 
   navDefs = [
+    { label: 'Library+Letters', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Majaii', href: '#' },
     { label: 'Invitation', href: './MAJAI%20Lander.dc.html' },
-    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html' },
     { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html' },
-    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html' },
     { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
     { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
     { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan' },
@@ -210,7 +243,7 @@ class Component extends DCLogic {
 
   buildNavItems() {
     return this.navDefs.map((d, i) => {
-      const on = this.state.active === i;
+      const on = this.activeIndex() === i;
       return {
         index: String(i),
         label: d.label,
@@ -279,6 +312,8 @@ class Component extends DCLogic {
   renderVals() {
     return {
       navItems: this.buildNavItems(),
+      summitTextOpacity: this.summitLogo ? 0 : 1,
+      summitLogoOpacity: this.summitLogo ? 1 : 0,
       navScrollRef: this.navScrollRef,
       contactValue: this.state.contactValue,
       onContactChange: this.onContactChange,

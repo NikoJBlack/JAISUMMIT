@@ -33,6 +33,11 @@
 <style>
   .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
   .majaii-navscroll::-webkit-scrollbar { display:none; }
+  /* Mouse/trackpad only: enlarge the hovered pill for readability. Touch devices keep the resting size. */
+  @media (hover: hover) and (pointer: fine) {
+    .majaii-navscroll > a { transition:transform 0.16s ease, font-size 0.16s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease; }
+    .majaii-navscroll > a:hover { font-size:14px !important; letter-spacing:0.04em !important; transform:translateY(-1px); box-shadow:0 4px 14px rgba(15,157,118,0.22) !important; z-index:2; }
+  }
   body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
   @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   a { color: #0f9d76; }
@@ -282,13 +287,13 @@ class Component extends DCLogic {
   railHover = -1;
   railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
   railDefs = [
+    { label: 'Library+Letters', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
     { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
-    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
     { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
     { label: '', href: '', inert: true },
-    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
     { label: 'Issues, Topics, Posts', href: '#' },
     { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
     { label: '', href: '', inert: true },
@@ -375,7 +380,7 @@ class Component extends DCLogic {
   styleFor = (topic) => this.topicStyle[topic] || { key: '', color: '#8a8a8a', tint: '#f4f4f4' };
 
   state = { sort: 'hot', topic: 'All', votes: {}, log: [], member: '', rulesOpen: false, logOpen: false, modalId: null, likes: {}, commentsShown: false,
-    composerOpen: false, draftMember: '', draftTopic: 'Workforce', draftTitle: '', draftBody: '', draftError: '', mine: [] };
+    composerOpen: false, draftMember: '', draftTopic: 'Workforce', draftTitle: '', draftBody: '', draftError: '', mine: [], remote: [] };
 
   MINE_STORE = 'jai-commons-mine';
 
@@ -425,6 +430,41 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
+  // Live read: every device sees every post in the shared collection.
+  subscribeRemote() {
+    if (!this.isConfigured()) return;
+    const inst = window.__instant;
+    try {
+      this.unsubRemote = inst.db.subscribeQuery({ commonsPosts: {} }, (res) => {
+        if (!res || res.error || !res.data || !res.data.commonsPosts) return;
+        const rows = res.data.commonsPosts.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        this.setState({ remote: rows.map(r => ({
+          id: 'remote-' + (r.localId || r.id),
+          anchor: 'remote-' + (r.localId || r.id),
+          topic: r.topic || 'Workforce',
+          title: r.title || '',
+          body: r.body || '',
+          author: r.author || 'a member',
+          when: this.agoFrom(r.createdAt),
+          createdAt: r.createdAt || 0,
+          localId: r.localId || '',
+          up: 1, down: 0, comments: 0, img: '', demo: false, thread: []
+        })) });
+      });
+    } catch (e) {}
+  }
+
+  agoFrom(ms) {
+    if (!ms) return 'just now';
+    const mins = Math.max(0, Math.round((Date.now() - ms) / 60000));
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + 'm ago';
+    const hrs = Math.round(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    const days = Math.round(hrs / 24);
+    return days === 1 ? '1 day ago' : days + ' days ago';
+  }
+
   openComposer = () => this.setState({ composerOpen: true, draftError: '', draftMember: this.state.draftMember || this.state.member });
   closeComposer = () => this.setState({ composerOpen: false, draftError: '' });
   onDraftMember = (e) => this.setState({ draftMember: e.target.value });
@@ -471,6 +511,7 @@ class Component extends DCLogic {
 
   componentDidMount() {
     this.loadMine();
+    this.subscribeRemote();
     this.watchRailWidth();
     try {
       const raw = window.localStorage.getItem('jai-commons-votes');
@@ -486,7 +527,8 @@ class Component extends DCLogic {
     }, 80);
   }
 
-  componentWillUnmount() { window.removeEventListener('resize', this.onRailResize); }
+  componentWillUnmount() {
+    if (this.unsubRemote) { try { this.unsubRemote(); } catch (e) {} } window.removeEventListener('resize', this.onRailResize); }
 
   persist(next) {
     try {
@@ -575,7 +617,11 @@ class Component extends DCLogic {
     const s = this.state;
     const that = this;
     const topics = ['All'].concat(this.basePosts.map(p => p.topic).filter((t, i, a) => a.indexOf(t) === i));
-    const all = (s.mine || []).concat(this.basePosts);
+    // Remote rows win over the local echo of the same post (matched on localId).
+    const mineIds = {};
+    (s.mine || []).forEach(m => { mineIds[m.id] = true; });
+    const remote = (s.remote || []).filter(r => !mineIds[r.localId]);
+    const all = (s.mine || []).concat(remote, this.basePosts);
     let list = all.map(p => {
       const v = s.votes[p.id] || 0;
       return Object.assign({}, p, { score: p.base + v, v: v });

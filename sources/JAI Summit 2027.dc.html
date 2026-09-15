@@ -46,6 +46,11 @@
 <style>
   .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
   .majaii-navscroll::-webkit-scrollbar { display:none; }
+  /* Mouse/trackpad only: enlarge the hovered pill for readability. Touch devices keep the resting size. */
+  @media (hover: hover) and (pointer: fine) {
+    .majaii-navscroll > a { transition:transform 0.16s ease, font-size 0.16s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease; }
+    .majaii-navscroll > a:hover { font-size:14px !important; letter-spacing:0.04em !important; transform:translateY(-1px); box-shadow:0 4px 14px rgba(15,157,118,0.22) !important; z-index:2; }
+  }
   body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
   a { color: #0f9d76; }
   a:hover { color: #0b7a5c; }
@@ -94,7 +99,7 @@
 
     <div style="position:relative; background:#a7ddc9; overflow:hidden; padding:clamp(30px,5vw,58px) clamp(22px,4vw,54px) clamp(46px,7vw,84px);">
       <div style="position:relative; z-index:2; max-width:620px;">
-        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:0.94; font-size:clamp(24px,4.4vw,44px); color:#ffffff;">Summit 2027 seats</p>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:0.94; font-size:clamp(24px,4.4vw,44px); color:#ffffff;">January 18&ndash;20, 2027</p>
         <p style="margin:18px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(16px,2vw,19px); line-height:1.6; color:#17352c;">Sign the Open Letter and you are on the list. Invitations, dates, and travel details go to that list first &mdash; nothing else to fill out, nothing to pay yet.</p>
         <p style="margin:14px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(16px,2vw,19px); line-height:1.6; color:#17352c;">Attendance in person will be capped. Participation in the vote will not be.</p>
         <button onClick="{{ openSeat }}" style="display:inline-block; margin-top:26px; cursor:pointer; border:none; background:#0d1512; color:#a7ddc9; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:0.12em; padding:15px 26px; border-radius:6px;" style-hover="background:#17352c;">Hold my seat</button>
@@ -367,13 +372,13 @@ class Component extends DCLogic {
   railHover = -1;
   railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
   railDefs = [
+    { label: 'Library+Letters', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
     { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
-    { label: 'JanuaryAI Summit 2027', href: '#', always: true },
     { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
     { label: '', href: '', inert: true },
-    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
     { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'JanuaryAI Summit 2027', href: '#', always: true },
     { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
     { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
     { label: '', href: '', inert: true },

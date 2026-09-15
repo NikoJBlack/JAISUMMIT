@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#a7ddc9">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#a7ddc9"></rect>
+    <rect x="360" y="200" width="480" height="400" fill="#ffffff"></rect>
+    <text x="600" y="430" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="120" fill="#0f9d76">JAI</text>
+  </svg>
+</template>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,900&display=swap" />
+<style>
+  body { margin:0; }
+  @media print { #jai-print-btn { display: none !important; } }
+</style>
+</helmet>
+<button id="jai-print-btn" onClick="{{ doPrint }}" style="position:fixed; right:20px; top:20px; z-index:999; cursor:pointer; border:none; background:#0d1512; color:#a7ddc9; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.12em; padding:14px 22px; border-radius:6px; box-shadow:0 6px 20px rgba(0,0,0,0.22);" style-hover="background:#0f9d76; color:#ffffff;">Print / Save as PDF</button>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" hint-size="100%,100%">
+  <section class="page" style="box-sizing:border-box; width:100%; height:100%; padding:0.5in 0.55in; display:flex; flex-direction:column; font-family:Georgia, 'Times New Roman', serif; color:#2f2f2f; background:#ffffff;">
+
+    <div style="width:128px; margin:0 auto 2px;">
+      <img src="./icons/jai-globe-logo.png" alt="JAI" style="display:block; width:100%; height:auto;" />
+      <span style="display:block; margin:-5px 0 0 3px; font-family:'DM Sans', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-style:italic; font-size:22px; letter-spacing:-0.02em; color:#c7c9c8; line-height:1;">summit</span>
+    </div>
+
+    <div style="position:relative; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; border-bottom:2px solid #0f9d76; padding-bottom:10px;">
+      <div style="position:relative; z-index:2; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.9; letter-spacing:-0.015em; font-size:40px;">
+        <div style="color:#c7c9c8;">Become</div>
+        <div style="color:#8fd6bd;">A</div>
+        <div style="color:#c7c9c8;">Sponsor</div>
+      </div>
+      <div style="position:relative; z-index:2; text-align:right; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:9.5px; letter-spacing:0.1em; color:#0f9d76; line-height:1.9;">
+        <div>JanuaryAI Project Summit</div>
+        <div>Boulder / Denver &middot; January 18&ndash;20, 2027</div>
+      </div>
+    </div>
+
+    <p style="margin:12px 0 0; font-size:11.5px; line-height:1.5; color:#4a4a4a; text-wrap:pretty;">Sponsorship pays for the room, the record, and the seats of people who could not otherwise be there. It does not buy a vote, a seat on the board, or a line in the Charter &mdash; the Commons decides what proceeds, and that stays true no matter who writes the check.</p>
+
+    <div style="margin-top:14px; border-top:1px solid #e2e2e2; padding-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">Sponsor options</div>
+
+    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;">
+
+      <div style="border:1px solid #ececec; border-radius:10px; padding:12px 13px; display:flex; flex-direction:column; gap:6px;">
+        <div style="height:5px; width:44px; border-radius:999px; background:#7b2d8b;"></div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:14px; line-height:1.05; color:#2f2f2f;">Founding Partner</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; color:#0f9d76;">$100,000</p>
+        <p style="margin:0; font-size:10.5px; line-height:1.45; color:#5a5a5a; text-wrap:pretty;">Corporation or Individual who underwrites the hall, the record, the livestream, and the travel fund that fills a third of the room.</p>
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:2px; font-family:Helvetica, Arial, sans-serif; font-size:9.5px; line-height:1.4; color:#4a4a4a;">
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#7b2d8b;"></span><span>Named as a founding partner of the first Summit</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#7b2d8b;"></span><span>Two seats at every working group session</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#7b2d8b;"></span><span>A written account of the full budget, published</span></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #ececec; border-radius:10px; padding:12px 13px; display:flex; flex-direction:column; gap:6px;">
+        <div style="height:5px; width:44px; border-radius:999px; background:#1d8fe1;"></div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:14px; line-height:1.05; color:#2f2f2f;">Founding Sponsor</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; color:#0f9d76;">$50,000</p>
+        <p style="margin:0; font-size:10.5px; line-height:1.45; color:#5a5a5a; text-wrap:pretty;">Pays for the Charter work itself &mdash; drafting, plain-language review, legal read, and the printed edition every attendee takes home.</p>
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:2px; font-family:Helvetica, Arial, sans-serif; font-size:9.5px; line-height:1.4; color:#4a4a4a;">
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#1d8fe1;"></span><span>Name on the printed Charter edition</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#1d8fe1;"></span><span>Four Summit passes</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#1d8fe1;"></span><span>Invitation to the drafting review</span></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #ececec; border-radius:10px; padding:12px 13px; display:flex; flex-direction:column; gap:6px;">
+        <div style="height:5px; width:44px; border-radius:999px; background:#0f9d76;"></div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:14px; line-height:1.05; color:#2f2f2f;">Impact Sponsor</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; color:#0f9d76;">$25,000</p>
+        <p style="margin:0; font-size:10.5px; line-height:1.45; color:#5a5a5a; text-wrap:pretty;">Adopts 1 of 12 Meeting of the Minds Impact categories for the year, its meeting, its research support and the report it shares with the community.</p>
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:2px; font-family:Helvetica, Arial, sans-serif; font-size:9.5px; line-height:1.4; color:#4a4a4a;">
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#0f9d76;"></span><span>Named with the team in its published report</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#0f9d76;"></span><span>Two Summit passes</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#0f9d76;"></span><span>Quarterly briefing from the team lead</span></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #ececec; border-radius:10px; padding:12px 13px; display:flex; flex-direction:column; gap:6px;">
+        <div style="height:5px; width:44px; border-radius:999px; background:#f7931e;"></div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:14px; line-height:1.05; color:#2f2f2f;">Event Table Sponsor</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; color:#0f9d76;">$10,000</p>
+        <p style="margin:0; font-size:10.5px; line-height:1.45; color:#5a5a5a; text-wrap:pretty;">Buys a table of ten for people from one town, one clinic, one district, or one trade &mdash; chosen by the Commons, not by the sponsor.</p>
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:2px; font-family:Helvetica, Arial, sans-serif; font-size:9.5px; line-height:1.4; color:#4a4a4a;">
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#f7931e;"></span><span>Ten seats, assigned by open application</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#f7931e;"></span><span>Named in the attendance record</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#f7931e;"></span><span>One Summit pass for your own team</span></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #ececec; border-radius:10px; padding:12px 13px; display:flex; flex-direction:column; gap:6px;">
+        <div style="height:5px; width:44px; border-radius:999px; background:#8e6bd4;"></div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:14px; line-height:1.05; color:#2f2f2f;">Event Essentials Sponsor</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; color:#0f9d76;">$10,000 / $1,000</p>
+        <p style="margin:0; font-size:10.5px; line-height:1.45; color:#5a5a5a; text-wrap:pretty;">Covers one of the things the Summit cannot run without &mdash; badges, water stations, charging, the shuttle, the gift bag itself.</p>
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:2px; font-family:Helvetica, Arial, sans-serif; font-size:9.5px; line-height:1.4; color:#4a4a4a;">
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#8e6bd4;"></span><span>$10,000: exclusive logo on the essential you fund</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#8e6bd4;"></span><span>$1,000: one item of your own in every gift bag</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#8e6bd4;"></span><span>Named in the Summit program</span></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #ececec; border-radius:10px; padding:12px 13px; display:flex; flex-direction:column; gap:6px;">
+        <div style="height:5px; width:44px; border-radius:999px; background:#f4511e;"></div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:14px; line-height:1.05; color:#2f2f2f;">Mentor VIP Seating</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; color:#0f9d76;">$1,000</p>
+        <p style="margin:0; font-size:10.5px; line-height:1.45; color:#5a5a5a; text-wrap:pretty;">Reserves one seat in the Mentor VIP Seating.</p>
+        <div style="display:flex; flex-direction:column; gap:4px; margin-top:2px; font-family:Helvetica, Arial, sans-serif; font-size:9.5px; line-height:1.4; color:#4a4a4a;">
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#f4511e;"></span><span>One seat in the Mentors seating area during keynotes and stage programs</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#f4511e;"></span><span>Full Event Pass ticket holder upgrade</span></div>
+          <div style="display:flex; gap:7px;"><span style="flex:none; width:5px; height:5px; border-radius:50%; margin-top:5px; background:#f4511e;"></span><span>Mentor name badge</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:12px; border-top:1px solid #e2e2e2; padding-top:10px; display:flex; align-items:flex-start; justify-content:space-between; gap:20px;">
+      <div style="max-width:52%;">
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; color:#0d1512;">What no sponsor gets</p>
+        <p style="margin:4px 0 0; font-size:10px; line-height:1.45; color:#5a5a5a;">Agenda control, a vote, veto over a working group, or a private edit to the Charter. Every dollar is disclosed; influence is not for sale.</p>
+      </div>
+      <div style="text-align:right;">
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; color:#0d1512;">Not sure which one fits?</p>
+        <p style="margin:4px 0 0; font-size:10px; line-height:1.45; color:#5a5a5a;">DL Thomas &middot; (303) 720-6633 &middot; jan@jai.global<br />jai.global/sponsors</p>
+      </div>
+    </div>
+
+    <div style="margin-top:4px; text-align:center; font-family:Georgia, serif; font-style:italic; font-size:9px; line-height:1.55; color:#a8a8a8;">
+      The JanuaryAI Summit is a project developed and produced by<br />BODEN Summit LLC, a Colorado company. (303) 720-6633<br />&copy; 2026 DL Thomas. All Rights Reserved.
+    </div>
+
+  </section>
+
+  <section class="page" style="box-sizing:border-box; width:100%; height:100%; padding:0.5in 0.55in; display:flex; flex-direction:column; font-family:Georgia, 'Times New Roman', serif; color:#2f2f2f; background:#ffffff;">
+
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; border-bottom:2px solid #0f9d76; padding-bottom:8px;">
+      <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.015em; font-size:26px;">
+        <div style="color:#c7c9c8;">Sponsorship</div>
+        <div style="color:#8fd6bd;">Agreement</div>
+      </div>
+      <div style="text-align:right; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:9px; letter-spacing:0.1em; color:#0f9d76; line-height:1.9;">
+        <div>JanuaryAI Project Summit &middot; January 18&ndash;20, 2027</div>
+        <div>BODEN Summit LLC &middot; 800 Beauprez Avenue, Lafayette, Colorado 80026</div>
+      </div>
+    </div>
+
+    <div style="margin-top:10px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">1 &middot; Select your sponsorship &mdash; check one and initial</div>
+
+    <div style="margin-top:7px; display:flex; flex-direction:column; border:1px solid #ececec; border-radius:8px; overflow:hidden;">
+
+      <div style="display:flex; align-items:center; gap:10px; padding:8px 11px; border-bottom:1px solid #f0f0f0;">
+        <span style="flex:none; width:15px; height:15px; border:1.4px solid #6a6a6a; border-radius:2px;"></span>
+        <span style="flex:none; width:5px; height:16px; border-radius:999px; background:#7b2d8b;"></span>
+        <span style="flex:1; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:10.5px; color:#2f2f2f;">Founding Partner</span>
+        <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:11.5px; color:#0f9d76; width:96px; text-align:right;">$100,000</span>
+        <span style="flex:none; width:150px; display:flex; align-items:flex-end; gap:6px;"><span style="font-family:Helvetica, Arial, sans-serif; font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#a8a8a8; padding-bottom:1px;">Initials</span><span style="flex:1; border-bottom:1px solid #9a9a9a; height:15px;"></span></span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:8px 11px; border-bottom:1px solid #f0f0f0;">
+        <span style="flex:none; width:15px; height:15px; border:1.4px solid #6a6a6a; border-radius:2px;"></span>
+        <span style="flex:none; width:5px; height:16px; border-radius:999px; background:#1d8fe1;"></span>
+        <span style="flex:1; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:10.5px; color:#2f2f2f;">Founding Sponsor</span>
+        <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:11.5px; color:#0f9d76; width:96px; text-align:right;">$50,000</span>
+        <span style="flex:none; width:150px; display:flex; align-items:flex-end; gap:6px;"><span style="font-family:Helvetica, Arial, sans-serif; font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#a8a8a8; padding-bottom:1px;">Initials</span><span style="flex:1; border-bottom:1px solid #9a9a9a; height:15px;"></span></span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:8px 11px; border-bottom:1px solid #f0f0f0;">
+        <span style="flex:none; width:15px; height:15px; border:1.4px solid #6a6a6a; border-radius:2px;"></span>
+        <span style="flex:none; width:5px; height:16px; border-radius:999px; background:#0f9d76;"></span>
+        <span style="flex:1; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:10.5px; color:#2f2f2f;">Impact Sponsor</span>
+        <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:11.5px; color:#0f9d76; width:96px; text-align:right;">$25,000</span>
+        <span style="flex:none; width:150px; display:flex; align-items:flex-end; gap:6px;"><span style="font-family:Helvetica, Arial, sans-serif; font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#a8a8a8; padding-bottom:1px;">Initials</span><span style="flex:1; border-bottom:1px solid #9a9a9a; height:15px;"></span></span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:8px 11px; border-bottom:1px solid #f0f0f0;">
+        <span style="flex:none; width:15px; height:15px; border:1.4px solid #6a6a6a; border-radius:2px;"></span>
+        <span style="flex:none; width:5px; height:16px; border-radius:999px; background:#f7931e;"></span>
+        <span style="flex:1; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:10.5px; color:#2f2f2f;">Event Table Sponsor</span>
+        <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:11.5px; color:#0f9d76; width:96px; text-align:right;">$10,000</span>
+        <span style="flex:none; width:150px; display:flex; align-items:flex-end; gap:6px;"><span style="font-family:Helvetica, Arial, sans-serif; font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#a8a8a8; padding-bottom:1px;">Initials</span><span style="flex:1; border-bottom:1px solid #9a9a9a; height:15px;"></span></span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:8px 11px; border-bottom:1px solid #f0f0f0;">
+        <span style="flex:none; width:15px; height:15px; border:1.4px solid #6a6a6a; border-radius:2px;"></span>
+        <span style="flex:none; width:5px; height:16px; border-radius:999px; background:#8e6bd4;"></span>
+        <span style="flex:1; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:10.5px; color:#2f2f2f;">Event Essentials Sponsor</span>
+        <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:11.5px; color:#0f9d76; width:96px; text-align:right;">$10,000 / $1,000</span>
+        <span style="flex:none; width:150px; display:flex; align-items:flex-end; gap:6px;"><span style="font-family:Helvetica, Arial, sans-serif; font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#a8a8a8; padding-bottom:1px;">Initials</span><span style="flex:1; border-bottom:1px solid #9a9a9a; height:15px;"></span></span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; padding:8px 11px;">
+        <span style="flex:none; width:15px; height:15px; border:1.4px solid #6a6a6a; border-radius:2px;"></span>
+        <span style="flex:none; width:5px; height:16px; border-radius:999px; background:#f4511e;"></span>
+        <span style="flex:1; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:10.5px; color:#2f2f2f;">Mentor VIP Seating</span>
+        <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:11.5px; color:#0f9d76; width:96px; text-align:right;">$1,000</span>
+        <span style="flex:none; width:150px; display:flex; align-items:flex-end; gap:6px;"><span style="font-family:Helvetica, Arial, sans-serif; font-size:8px; letter-spacing:0.08em; text-transform:uppercase; color:#a8a8a8; padding-bottom:1px;">Initials</span><span style="flex:1; border-bottom:1px solid #9a9a9a; height:15px;"></span></span>
+      </div>
+
+    </div>
+
+    <div style="margin-top:12px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">2 &middot; Terms</div>
+
+    <div style="flex:1; margin-top:7px; display:grid; grid-template-columns:1fr 1fr; column-gap:18px; row-gap:7px; font-size:8.6px; line-height:1.42; color:#4a4a4a;">
+      <p style="margin:0;"><strong style="color:#2f2f2f;">1. Parties.</strong> This agreement is between BODEN Summit LLC, a Colorado limited liability company, 800 Beauprez Avenue, Lafayette, Colorado 80026 (&ldquo;Producer&rdquo;), and the sponsor identified below (&ldquo;Sponsor&rdquo;), for the JanuaryAI Project Summit held January 18&ndash;20, 2027 in the Boulder / Denver area (the &ldquo;Event&rdquo;).</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">2. Payment.</strong> Sponsor agrees to pay the amount initialed above in full within thirty (30) days of execution, or on the schedule stated in an invoice signed by both parties. Benefits are activated on receipt of funds.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">3. Benefits.</strong> Producer will deliver the benefits described for the selected level on the reverse side of this page. Substitutions of comparable or greater value may be made where a venue, vendor, or schedule change requires it.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">4. No influence.</strong> Sponsorship confers no editorial, governance, or agenda authority. Sponsor receives no vote, no board seat, no veto over any working group, and no right to review or amend the Charter. Program content is determined solely by the Commons and Producer.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">5. Disclosure.</strong> Sponsor consents to public disclosure of its name and contribution amount in Event materials, the published budget, and the attendance record.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">6. Marks.</strong> Each party grants the other a limited, non-exclusive, non-transferable license to use its name and logo solely to fulfill this agreement. All other rights are reserved. Neither party may imply endorsement beyond the sponsorship described here.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">7. Cancellation.</strong> If Sponsor cancels more than ninety (90) days before the Event, fifty percent (50%) is refundable. Within ninety (90) days, amounts paid are non-refundable but may be credited to the following year&rsquo;s Summit at Producer&rsquo;s discretion.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">8. Force majeure.</strong> If the Event is canceled, postponed, or moved online for reasons beyond Producer&rsquo;s reasonable control, Producer will apply the sponsorship to the rescheduled or virtual Event. No further liability arises from such a change.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">9. Independent parties.</strong> Nothing here creates a partnership, joint venture, agency, or employment relationship. Neither party may bind the other.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">10. Indemnity &amp; limitation.</strong> Each party indemnifies the other against claims arising from its own negligence or willful misconduct. Producer&rsquo;s total liability under this agreement is limited to the amount actually paid by Sponsor. Neither party is liable for indirect or consequential damages.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">11. Governing law.</strong> This agreement is governed by the laws of the State of Colorado, without regard to conflict-of-laws rules. Venue for any dispute lies in the state courts of Boulder County, Colorado.</p>
+      <p style="margin:0;"><strong style="color:#2f2f2f;">12. Entire agreement.</strong> This page and its reverse are the entire agreement between the parties and supersede prior discussions. Amendments must be in writing and signed by both parties. Signatures delivered electronically or by scan are binding.</p>
+    </div>
+
+    <div style="margin-top:11px; border-top:1px solid #e2e2e2; padding-top:9px;">
+      <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">3 &middot; Signatures</div>
+      <div style="margin-top:9px; display:grid; grid-template-columns:1fr 1fr; column-gap:26px; row-gap:13px;">
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Sponsor / organization name</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Billing address</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Authorized signature</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Print name &amp; title</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Email &amp; phone</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Date</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">DL Thomas, Founder &mdash; BODEN Summit LLC</span></div>
+        <div style="display:flex; flex-direction:column; gap:2px;"><span style="border-bottom:1px solid #9a9a9a; height:17px;"></span><span style="font-family:Helvetica, Arial, sans-serif; font-size:7.6px; letter-spacing:0.09em; text-transform:uppercase; color:#a8a8a8;">Date</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:8px; text-align:center; font-family:Georgia, serif; font-style:italic; font-size:8px; line-height:1.5; color:#a8a8a8;">
+      Return the signed page to jan@jai.global or DL Thomas &middot; (303) 720-6633.<br />&copy; 2026 DL Thomas. All Rights Reserved.
+    </div>
+
+  </section>
+</x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    try {
+      if (new URLSearchParams(window.location.search).get('print') === '1') {
+        setTimeout(() => window.print(), 1000);
+      }
+    } catch (e) {}
+  }
+  renderVals() {
+    return { doPrint: () => window.print() };
+  }
+}
+</script>
+</body>
+</html>

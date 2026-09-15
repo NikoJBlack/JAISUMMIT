@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#a7ddc9"/>
+    <text x="100" y="118" font-family="Arial, sans-serif" font-style="italic" font-weight="900" font-size="40" fill="#ffffff" text-anchor="middle">majaii</text>
+  </svg>
+</template>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@1,900&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; -webkit-text-size-adjust:100%; overflow-x:hidden; text-wrap:pretty; padding-left:env(safe-area-inset-left); padding-right:env(safe-area-inset-right); }
+  input, button { font-size:16px; }
+  a { color:#0f9d76; }
+  a:hover { color:#0b7a5b; }
+  @keyframes orbitSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+  @keyframes orbitTrack { from { offset-distance:0%; } to { offset-distance:100%; } }
+  .majaii-orbit { position:absolute; inset:0; pointer-events:none; }
+  .majaii-orbit i { position:absolute; display:block; border-radius:50%; offset-path:ellipse(49% 47% at 50% 50%); offset-rotate:0deg; animation:orbitTrack linear infinite; }
+  @keyframes dissolveOut { 0%,100% { opacity:1; } 35%,72% { opacity:0; } }
+  @keyframes dissolveIn { 0%,100% { opacity:0; } 35%,72% { opacity:1; } }
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+</style>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+</helmet>
+<div style="background:#ffffff; width:100%; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:flex-start; padding:clamp(36px,8vh,88px) clamp(20px,6vw,72px) 64px;">
+  <div style="display:flex; align-items:center; gap:18px;">
+    <svg viewBox="0 0 140 135" aria-label="JAI" style="flex:none; width:clamp(104px,20vw,168px); height:auto;">
+      <text x="50" y="70" text-anchor="middle" font-size="42" font-weight="900" fill="#cccccc" font-family="DM Sans" font-style="italic" letter-spacing="-1">jai</text>
+      <text x="108" y="55" font-size="28" text-anchor="middle">&#127758;</text>
+      <g style="transform-origin:60px 60px; animation:orbitSpin 4s linear infinite;"><circle cx="60" cy="42" r="5" fill="#1d8fe1" opacity="0.8"></circle></g>
+      <g style="transform-origin:60px 60px; animation:orbitSpin 7s linear infinite reverse;"><circle cx="84" cy="60" r="6" fill="#7b2d8b" opacity="0.8"></circle></g>
+      <g style="transform-origin:60px 60px; animation:orbitSpin 10s linear infinite;"><circle cx="60" cy="88" r="6" fill="#3ab54a" opacity="0.8"></circle></g>
+      <g style="transform-origin:60px 60px; animation:orbitSpin 13s linear infinite reverse;"><circle cx="26" cy="60" r="7" fill="#f26522" opacity="0.8"></circle></g>
+    </svg>
+    <span style="font-family:Georgia,'Times New Roman',serif; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:#a8a8a8;">JanuaryAI Foundation</span>
+  </div>
+
+  <nav style="position:sticky; top:0; z-index:60; align-self:stretch; margin:clamp(20px,4vh,30px) calc(-1 * clamp(20px,6vw,72px)) 0; background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+    <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+        <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+      </sc-for>
+    </div>
+  </nav>
+
+  <div style="display:flex; flex-direction:column; margin-top:clamp(28px,6vh,56px); font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; text-transform:uppercase; line-height:0.9; letter-spacing:-0.015em;">
+    <span style="font-size:clamp(42px,10vw,88px); color:#2f2f2f;">AI for</span>
+    <span style="font-size:clamp(42px,10vw,88px); color:#2f2f2f; margin-top:clamp(-10px,-2vw,-18px);">Everyday</span>
+    <span style="font-size:clamp(42px,10vw,88px); color:#8fd6bd; margin-top:clamp(-10px,-2vw,-18px);">Americans</span>
+  </div>
+
+  <p style="max-width:620px; margin:clamp(24px,4vh,36px) 0 0; font-family:Georgia,'Times New Roman',serif; font-size:clamp(19px,3.6vw,25px); line-height:1.5; color:#4a4a4a;">A civic institution where the people affected by artificial intelligence help decide what gets built &mdash; and the evidence decides what continues.</p>
+
+  <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:clamp(28px,5vh,44px); width:min(620px,100%);">
+    <input type="text" value="{{ contactValue }}" onChange="{{ onContactChange }}" placeholder="Email or text number" style="flex:1 1 240px; min-width:0; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:8px; padding:16px 20px; font-family:Helvetica,Arial,sans-serif; color:#3a3a3a; outline:none;" />
+    <button onClick="{{ onSubmit }}" style="flex:none; border:none; cursor:pointer; min-height:52px; background:rgba(244,143,177,0.75); color:#000; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:16px; letter-spacing:0.04em; padding:0 30px; border-radius:26px;" style-hover="background:rgba(244,143,177,0.95);">YES !</button>
+  </div>
+  <span style="font-family:Georgia,'Times New Roman',serif; font-size:14px; color:#8a8a8a; margin-top:10px;">One <strong style="color:#0f9d76;">YES</strong> puts you on the list &mdash; anonymously. Nothing else is asked.</span>
+  <sc-if value="{{ status }}" hint-placeholder-val="{{ false }}">
+    <div style="width:min(620px,100%); margin-top:18px; box-sizing:border-box; border-left:3px solid #a7ddc9; padding:12px 16px; background:rgba(167,221,201,0.16); border-radius:0 10px 10px 0; font-family:Georgia,'Times New Roman',serif; font-size:18px; line-height:1.45; color:#2f2f2f;">{{ status }}</div>
+  </sc-if>
+
+  <div style="position:relative; width:min(980px,100%); margin-top:clamp(48px,8vh,80px); padding:clamp(26px,5vw,56px) clamp(20px,4vw,44px); box-sizing:border-box;">
+    <div class="majaii-orbit">
+      <i style="width:clamp(11px,2vw,18px); height:clamp(11px,2vw,18px); background:#1d8fe1; opacity:0.85; animation-duration:9s;"></i>
+      <i style="width:clamp(12px,2.2vw,20px); height:clamp(12px,2.2vw,20px); background:#7b2d8b; opacity:0.85; animation-duration:14s; animation-direction:reverse; animation-delay:-4s;"></i>
+      <i style="width:clamp(12px,2.2vw,20px); height:clamp(12px,2.2vw,20px); background:#3ab54a; opacity:0.85; animation-duration:19s; animation-delay:-9s;"></i>
+      <i style="width:clamp(14px,2.6vw,24px); height:clamp(14px,2.6vw,24px); background:#f26522; opacity:0.85; animation-duration:24s; animation-direction:reverse; animation-delay:-14s;"></i>
+    </div>
+    <a href="./JAI%20Issues%20Topics%20Posts.dc.html" style="display:block; text-decoration:none; position:relative;">
+    <div style="display:flex; flex-wrap:nowrap; align-items:center; justify-content:center; gap:clamp(4px,1vw,16px); animation:dissolveOut 18s ease-in-out 6s infinite;">
+      <span style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-weight:900; font-style:italic; font-size:clamp(52px,11.5vw,132px); letter-spacing:-0.04em; color:#c7c9c8; line-height:0.9; white-space:nowrap;">majaii</span>
+      <svg viewBox="0 0 120 120" aria-hidden="true" style="flex:none; width:clamp(78px,16vw,176px); height:clamp(78px,16vw,176px);">
+        <text x="60" y="80" text-anchor="middle" font-size="72">&#127758;</text>
+        <g style="transform-origin:60px 60px; animation:orbitSpin 4s linear infinite;"><circle cx="60" cy="12" r="7" fill="#1d8fe1" opacity="0.85"></circle></g>
+        <g style="transform-origin:60px 60px; animation:orbitSpin 7s linear infinite reverse;"><circle cx="108" cy="60" r="8" fill="#7b2d8b" opacity="0.85"></circle></g>
+        <g style="transform-origin:60px 60px; animation:orbitSpin 10s linear infinite;"><circle cx="60" cy="108" r="8" fill="#3ab54a" opacity="0.85"></circle></g>
+        <g style="transform-origin:60px 60px; animation:orbitSpin 13s linear infinite reverse;"><circle cx="12" cy="60" r="9" fill="#f26522" opacity="0.85"></circle></g>
+      </svg>
+    </div>
+    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(6px,1.4vw,14px); opacity:0; animation:dissolveIn 18s ease-in-out 6s infinite;">
+      <div style="display:flex; flex-wrap:nowrap; align-items:center; justify-content:center; gap:clamp(4px,1vw,14px);">
+        <span style="font-family:'DM Sans',Helvetica,Arial,sans-serif; font-weight:900; font-style:italic; font-size:clamp(42px,9vw,104px); letter-spacing:-0.04em; color:#c7c9c8; line-height:0.9; white-space:nowrap;">jai</span>
+        <svg viewBox="0 0 120 120" aria-hidden="true" style="flex:none; width:clamp(62px,13vw,140px); height:clamp(62px,13vw,140px);">
+          <text x="60" y="80" text-anchor="middle" font-size="66">&#127758;</text>
+          <g style="transform-origin:60px 60px; animation:orbitSpin 4s linear infinite;"><circle cx="60" cy="14" r="7" fill="#1d8fe1" opacity="0.85"></circle></g>
+          <g style="transform-origin:60px 60px; animation:orbitSpin 7s linear infinite reverse;"><circle cx="106" cy="60" r="8" fill="#7b2d8b" opacity="0.85"></circle></g>
+          <g style="transform-origin:60px 60px; animation:orbitSpin 10s linear infinite;"><circle cx="60" cy="106" r="8" fill="#3ab54a" opacity="0.85"></circle></g>
+          <g style="transform-origin:60px 60px; animation:orbitSpin 13s linear infinite reverse;"><circle cx="14" cy="60" r="9" fill="#f26522" opacity="0.85"></circle></g>
+        </svg>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; text-transform:uppercase; line-height:0.86; letter-spacing:-0.01em;">
+        <span style="font-size:clamp(24px,5.4vw,60px); color:#c7c9c8;">Issues</span>
+        <span style="font-size:clamp(24px,5.4vw,60px); color:#c7c9c8;">Topics</span>
+        <span style="font-size:clamp(24px,5.4vw,60px); color:#8fd6bd;">Posts</span>
+      </div>
+      <div style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:clamp(13px,2.2vw,18px); line-height:1.45; color:#6a6a6a; text-align:center; max-width:min(440px,86%);">The Commons in the open &mdash; what the community is discussing, ranked by the community.</div>
+    </div>
+    </a>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:20px; width:min(980px,100%); margin-top:clamp(56px,9vh,96px);">
+    <a href="./JAI%20Summit%202027.dc.html" style="text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Jan 18&ndash;20, 2027</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">Summit<br />2027</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.5; color:#6a6a6a;">Three days where the community reviews proposals and votes on what gets funded.</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin-top:auto;">Hold my seat &rarr;</span>
+    </a>
+    <a href="./JAI%20Open%20Letter.dc.html" style="text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Sign your name</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">Open<br />Letters</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.5; color:#6a6a6a;">The community&rsquo;s public library of Open Letters from the world&rsquo;s leading thought leaders.</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin-top:auto;">Take a look &rarr;</span>
+    </a>
+    <a href="./JAI%20Issues%20Topics%20Posts.dc.html" style="text-decoration:none; border:1px solid #e2e2e2; border-radius:14px; padding:26px 24px 22px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s ease, background 0.2s ease;" style-hover="border-color:#a7ddc9; background:#f6fbf9;">
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#0f9d76;">Open to everyone</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(22px,3.4vw,28px); line-height:1.05; text-transform:uppercase; color:#2f2f2f;">The<br />Commons</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-size:17px; line-height:1.5; color:#6a6a6a;">Raise a problem, share what you know, vote on what matters. No credentials required.</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin-top:auto;">Join the discussion &rarr;</span>
+    </a>
+  </div>
+
+  <div style="width:min(980px,100%); margin-top:clamp(56px,9vh,96px); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:clamp(24px,5vw,56px); align-items:start;">
+    <div>
+      <div style="font-family:Georgia,'Times New Roman',serif; font-size:64px; line-height:0.8; color:#c7c9c8;">&ldquo;</div>
+      <p style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:clamp(19px,3.4vw,24px); line-height:1.5; color:#4a4a4a; margin:10px 0 0;">JanuaryAI gives virtuous citizens and thought leaders a way to thread ideas and solutions into a community fabric that can be woven and shared.</p>
+      <div style="margin-top:18px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:#0f9d76;">DL Thomas, Founder</div>
+    </div>
+    <div>
+      <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(20px,3.4vw,26px); line-height:1.2; text-transform:uppercase; color:#2f2f2f;">How it works</div>
+      <div style="display:flex; flex-direction:column; gap:16px; margin-top:20px;">
+        <div style="display:flex; gap:14px; align-items:baseline;">
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:13px; color:#8fd6bd;">01</span>
+          <span style="font-family:Georgia,'Times New Roman',serif; font-size:18px; line-height:1.5; color:#4a4a4a;"><strong>The Commons.</strong> Anyone raises a problem or offers an idea.</span>
+        </div>
+        <div style="display:flex; gap:14px; align-items:baseline;">
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:13px; color:#8fd6bd;">02</span>
+          <span style="font-family:Georgia,'Times New Roman',serif; font-size:18px; line-height:1.5; color:#4a4a4a;"><strong>Meeting of the Minds.</strong> A working group turns it into a funded, measurable proposal.</span>
+        </div>
+        <div style="display:flex; gap:14px; align-items:baseline;">
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:13px; color:#8fd6bd;">03</span>
+          <span style="font-family:Georgia,'Times New Roman',serif; font-size:18px; line-height:1.5; color:#4a4a4a;"><strong>The Summit.</strong> Each January the community votes on what gets built.</span>
+        </div>
+      </div>
+      <a href="./JanuaryAI%20Charter%20Overview.dc.html#plan" style="display:inline-flex; align-items:center; min-height:44px; margin-top:22px; text-decoration:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">Read the charter &rarr;</a>
+    </div>
+  </div>
+
+  <div style="width:min(980px,100%); margin-top:clamp(56px,9vh,96px); border-top:1px solid #e2e2e2; padding-top:28px; display:flex; flex-wrap:wrap; gap:20px 28px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./MAJAI%20Lander.dc.html" style="color:#0f9d76; text-decoration:none;">Invitation</a>
+    <a href="./JAI%20Sponsors.dc.html" style="color:#0f9d76; text-decoration:none;">Partners, Donors, Sponsors</a>
+    <a href="./JAI%20Meeting%20of%20the%20Minds.dc.html" style="color:#0f9d76; text-decoration:none;">Meeting of the Minds</a>
+    <a href="./JAI%20Global%20Community.dc.html" style="color:#0f9d76; text-decoration:none;">Global AI Community</a>
+    <a href="./JAI%20Patron%20Account.dc.html" style="color:#0f9d76; text-decoration:none;">Patron Account</a>
+    <a href="./JAI%20Contact.dc.html" style="color:#0f9d76; text-decoration:none;">Contact</a>
+  </div>
+  <div style="font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#a8a8a8; margin-top:32px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { contactValue: '', status: '', active: 0 };
+  STORE = 'majai-signups';
+
+  navDefs = [
+    { label: 'Majaii', href: '#' },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html' },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html' },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html' },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan' },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  navScrollRef = React.createRef();
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    const target = el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2;
+    box.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+  }
+
+  navigate(href) {
+    if (!href || href.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const u = new URL(href, window.location.href);
+    const hash = u.hash;
+    u.hash = '';
+    u.search = window.location.search;
+    window.location.href = u.toString() + hash;
+  }
+
+  buildNavItems() {
+    return this.navDefs.map((d, i) => {
+      const on = this.state.active === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href,
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.setState({ active: i });
+          this.centerNavItem(i);
+          setTimeout(() => this.navigate(d.href), 260);
+        }
+      };
+    });
+  }
+
+  classify(value) {
+    const v = (value || '').trim();
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    const digits = v.replace(/[^0-9]/g, '');
+    const isPhone = !isEmail && digits.length >= 10 && digits.length <= 15;
+    return { email: isEmail ? v.toLowerCase() : '', phone: isPhone ? digits : '', raw: v, valid: isEmail || isPhone };
+  }
+
+  readStore() { try { return JSON.parse(window.localStorage.getItem(this.STORE) || '[]'); } catch (e) { return []; } }
+  writeStore(rows) { try { window.localStorage.setItem(this.STORE, JSON.stringify(rows)); } catch (e) {} }
+
+  isConfigured() {
+    const inst = window.__instant;
+    return !!(inst && inst.appId && String(inst.appId).indexOf('REPLACE_WITH') === -1);
+  }
+
+  markSynced(key, synced) {
+    this.writeStore(this.readStore().map(r => r.key === key ? Object.assign({}, r, { synced: synced }) : r));
+  }
+
+  record(parsed) {
+    const key = String(Date.now()) + '-' + Math.random().toString(36).slice(2, 8);
+    const rows = this.readStore();
+    rows.push({ key: key, list: 'signups', email: parsed.email, phone: parsed.phone, raw: parsed.raw, at: new Date().toISOString(), synced: false });
+    this.writeStore(rows);
+    if (!this.isConfigured()) return null;
+    const inst = window.__instant;
+    try {
+      return Promise.resolve(inst.db.transact(inst.tx.signups[inst.id()].update({
+        email: parsed.email, phone: parsed.phone, contact: parsed.raw, createdAt: Date.now()
+      }))).then(() => { this.markSynced(key, true); return true; })
+        .catch(() => { this.markSynced(key, false); return false; });
+    } catch (err) { return null; }
+  }
+
+  onContactChange = (e) => this.setState({ contactValue: e.target.value });
+
+  onSubmit = () => {
+    const parsed = this.classify(this.state.contactValue);
+    if (!parsed.raw) { this.setState({ status: 'Add your email or text number first.' }); return; }
+    if (!parsed.valid) { this.setState({ status: 'Enter a full email address or a 10-digit phone number.' }); return; }
+    const pending = this.record(parsed);
+    this.setState({ contactValue: '', status: pending ? 'Saving\u2026' : 'You\u2019re on the list \u2014 anonymously. (saved on this device only)' });
+    if (pending) pending.then(ok => this.setState({
+      status: ok ? 'You\u2019re on the list \u2014 anonymously. Nothing else is required of you.' : 'You\u2019re on the list \u2014 anonymously. (saved on this device only)'
+    }));
+  };
+
+  renderVals() {
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      contactValue: this.state.contactValue,
+      onContactChange: this.onContactChange,
+      onSubmit: this.onSubmit,
+      status: this.state.status
+    };
+  }
+}
+</script>
+</body>
+</html>

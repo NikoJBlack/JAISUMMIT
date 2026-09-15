@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+<meta name="ext-resource-dependency" content="./icons/topic-civic.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-climate.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-discovery.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-education.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-governance.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-healthcare.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-opportunity.svg" />
+<meta name="ext-resource-dependency" content="./icons/topic-workforce.svg" />
+<template id="__bundler_thumbnail" data-bg-color="#8fd6bd">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#8fd6bd"/>
+    <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="220" fill="#ffffff">ITP</text>
+  </svg>
+</template>
+
+<meta charset="utf-8">
+<script src="./image-slot.js"></script>
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  a { color: #0f9d76; }
+  a:hover { color: #0b7a5c; }
+</style>
+</helmet>
+<div style="background:#ffffff; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(56px,12vh,120px) clamp(24px,7vw,80px) 80px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+
+<svg viewBox="0 0 140 135" style="width:clamp(300px,50vw,440px); max-width:100%; margin-bottom:clamp(-120px,-13vw,-45px);">
+    <text x="50" y="70" text-anchor="middle" font-size="42" font-weight="900" fill="#cccccc" font-family="DM Sans" font-style="italic" letter-spacing="-1">jai</text>
+    <text x="108" y="55" font-size="28" text-anchor="middle">&#127758;</text>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 4s linear infinite;">
+      <circle cx="60" cy="42" r="5" fill="#1d8fe1" opacity="0.8"></circle>
+    </g>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 7s linear infinite reverse;">
+      <circle cx="84" cy="60" r="6" fill="#7b2d8b" opacity="0.8"></circle>
+    </g>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 10s linear infinite;">
+      <circle cx="60" cy="88" r="6" fill="#3ab54a" opacity="0.8"></circle>
+    </g>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 13s linear infinite reverse;">
+      <circle cx="26" cy="60" r="7" fill="#f26522" opacity="0.8"></circle>
+    </g>
+  </svg>
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em;">
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8;">Issues</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">Topics</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#8fd6bd; margin-top:clamp(-8px,-2vw,-14px);">Posts</span>
+  </div>
+  <p style="max-width:600px; margin:clamp(28px,5vh,40px) 0 0; text-align:center; font-style:italic; font-size:clamp(18px,3.4vw,22px); line-height:1.55; color:#6a6a6a;">The Commons in the open — what the community is discussing, ranked by the community.</p>
+
+
+  <div style="width:min(820px,100%); margin-top:clamp(40px,7vh,64px); display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center;">
+    <div style="display:flex; gap:8px;">
+      <sc-for list="{{ sorts }}" as="s" hint-placeholder-count="3">
+        <button onClick="{{ s.onClick }}" style="cursor:pointer; border:none; border-radius:999px; padding:9px 18px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; background:{{ s.bg }}; color:{{ s.color }};">{{ s.label }}</button>
+      </sc-for>
+    </div>
+    <button onClick="{{ openComposer }}" style="margin-left:auto; flex:none; cursor:pointer; border:none; border-radius:999px; padding:11px 24px; min-height:44px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(15px,2.6vw,18px); letter-spacing:0.06em; text-transform:uppercase; background:#f4511e; color:#ffffff;" style-hover="background:#d93f10;">My Idea !</button>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; flex-basis:100%;">
+      <sc-for list="{{ topicFilters }}" as="t" hint-placeholder-count="4">
+        <button onClick="{{ t.onClick }}" style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; border:1px solid {{ t.border }}; border-radius:999px; padding:7px 14px 7px 8px; font-family:Helvetica, Arial, sans-serif; font-size:12px; background:{{ t.bg }}; color:{{ t.color }};">
+          <span style="width:16px; height:16px; display:block; flex:none; background-image:{{ t.iconCss }}; background-size:contain; background-repeat:no-repeat; background-position:center;"></span>
+          <span>{{ t.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="width:min(820px,100%); margin-top:22px; display:flex; flex-direction:column; gap:12px;">
+    <sc-for list="{{ posts }}" as="post" hint-placeholder-count="6">
+      <div id="{{ post.anchor }}" style="display:flex; gap:16px; align-items:flex-start; border:1px solid #ececec; border-radius:14px; padding:16px 18px; background:#ffffff;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px; flex:none; width:44px;">
+          <button onClick="{{ post.onUp }}" title="Upvote" style="cursor:pointer; background:none; border:none; padding:0; line-height:1; font-size:22px; min-width:44px; min-height:34px; color:{{ post.upColor }};">&#9650;</button>
+          <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:15px; color:#2f2f2f;">{{ post.score }}</div>
+          <button onClick="{{ post.onDown }}" title="Downvote" style="cursor:pointer; background:none; border:none; padding:0; line-height:1; font-size:22px; min-width:44px; min-height:34px; color:{{ post.downColor }};">&#9660;</button>
+        </div>
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:6px;">
+            <span style="display:inline-flex; align-items:center; gap:6px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.09em; text-transform:uppercase; color:{{ post.topicColor }}; background:{{ post.topicTint }}; padding:4px 10px 4px 4px; border-radius:999px;">
+              <span style="width:18px; height:18px; display:block; flex:none; background-image:{{ post.topicIconCss }}; background-size:contain; background-repeat:no-repeat; background-position:center;"></span>
+              <span>{{ post.topic }}</span>
+            </span>
+            <sc-if value="{{ post.isDemo }}" hint-placeholder-val="{{ true }}">
+              <span style="display:inline-flex; align-items:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#f4511e; border:1px solid rgba(244,81,30,0.35); border-radius:999px; padding:4px 9px;">Demo</span>
+            </sc-if>
+            <span style="font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#9a9a9a;">{{ post.meta }}</span>
+          </div>
+          <button onClick="{{ post.onOpen }}" style="display:block; width:100%; text-align:left; background:none; border:none; padding:0; cursor:pointer; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(16px,2.6vw,19px); line-height:1.3; color:#2f2f2f; margin-bottom:8px;" style-hover="color:#0f9d76;">{{ post.title }}</button>
+          <p style="font-size:clamp(15px,2.6vw,17px); line-height:1.55; color:#5a5a5a; margin:0;">{{ post.body }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="width:min(820px,100%); margin-top:clamp(48px,8vh,72px); border-top:1px solid #e2e2e2; padding-top:32px;">
+    <button onClick="{{ toggleRules }}" style="display:flex; align-items:center; gap:16px; width:100%; background:none; border:none; cursor:pointer; padding:0; text-align:left; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); line-height:1.2; color:#2f2f2f; text-transform:uppercase; letter-spacing:0.01em;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ rulesArrow }};">&#9654;</span>
+      <span>Community Rules</span>
+    </button>
+    <sc-if value="{{ rulesOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:22px;">
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Voting is how the Commons sets its own agenda, so voting is a matter of record. Every vote is attributed, logged, and auditable by the community.</p>
+        <div style="display:flex; flex-direction:column; gap:14px; margin:0 0 22px;">
+          <div style="font-size:clamp(16px,3vw,18px); line-height:1.55; color:#4a4a4a;"><strong>One member, one vote per post.</strong> You may change your vote; the change is logged, the original is not erased.</div>
+          <div style="font-size:clamp(16px,3vw,18px); line-height:1.55; color:#4a4a4a;"><strong>Votes are attributed.</strong> The log records the member, the topic, the post, the direction of the vote, and the time it was cast.</div>
+          <div style="font-size:clamp(16px,3vw,18px); line-height:1.55; color:#4a4a4a;"><strong>Vote the substance, not the person.</strong> Downvotes signal &ldquo;this is not ready or not accurate,&rdquo; never &ldquo;I dislike who said it.&rdquo;</div>
+          <div style="font-size:clamp(16px,3vw,18px); line-height:1.55; color:#4a4a4a;"><strong>Evidence outranks volume.</strong> Ranking informs the working groups; it does not replace their review.</div>
+          <div style="font-size:clamp(16px,3vw,18px); line-height:1.55; color:#4a4a4a;"><strong>No brigading or vote trading.</strong> Coordinated voting is visible in the log and forfeits standing in the cycle.</div>
+          <div style="font-size:clamp(16px,3vw,18px); line-height:1.55; color:#4a4a4a;"><strong>The log is public.</strong> JAN, our Fair Witness, keeps the record so results can be verified rather than trusted.</div>
+        </div>
+        <button onClick="{{ toggleRules }}" style="display:flex; align-items:center; justify-content:center; width:100%; background:none; border:none; cursor:pointer; padding:20px 0 4px;">
+          <img src="./icons/close-x.svg" alt="Close section" style="width:32px; height:32px; display:block;" />
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="width:min(820px,100%); margin-top:clamp(40px,6vh,56px); border-top:1px solid #e2e2e2; padding-top:32px;">
+    <button onClick="{{ toggleLog }}" style="display:flex; align-items:center; gap:16px; width:100%; background:none; border:none; cursor:pointer; padding:0; text-align:left; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); line-height:1.2; color:#2f2f2f; text-transform:uppercase; letter-spacing:0.01em;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ logArrow }};">&#9654;</span>
+      <span>Your Vote Log</span>
+    </button>
+    <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
+          <span style="font-family:Helvetica, Arial, sans-serif; font-size:13px; color:#9a9a9a;">Member</span>
+          <input type="text" value="{{ member }}" onChange="{{ onMember }}" placeholder="your member name" style="flex:1; max-width:280px; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:6px; padding:10px 14px; font-family:Helvetica, Arial, sans-serif; font-size:14px; color:#3a3a3a; outline:none;" />
+        </div>
+        <sc-if value="{{ hasLog }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; flex-direction:column; gap:0;">
+            <div style="display:grid; grid-template-columns:{{ logGrid }}; gap:12px; padding:0 0 10px; border-bottom:1px solid #ececec; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#9a9a9a;">
+              <div>Member</div>
+              <div>Topic</div>
+              <div>Post</div>
+              <div>Vote</div>
+              <div>Logged</div>
+            </div>
+            <sc-for list="{{ voteLog }}" as="row" hint-placeholder-count="3">
+              <div style="display:grid; grid-template-columns:{{ logGrid }}; gap:6px 12px; padding:12px 0; border-bottom:1px solid #f4f4f4; font-family:Helvetica, Arial, sans-serif; font-size:13px; line-height:1.4; color:#4a4a4a;">
+                <div>{{ row.member }}</div>
+                <div>{{ row.topic }}</div>
+                <div>{{ row.title }}</div>
+                <div style="font-weight:700; color:{{ row.voteColor }};">{{ row.vote }}</div>
+                <div style="color:#9a9a9a;">{{ row.when }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noLog }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size:16px; line-height:1.6; color:#9a9a9a; margin:0;">No votes recorded yet. Every up or down vote you cast above is written here with the topic, the post, and the time.</p>
+        </sc-if>
+        <button onClick="{{ toggleLog }}" style="display:flex; align-items:center; justify-content:center; width:100%; background:none; border:none; cursor:pointer; padding:24px 0 4px;">
+          <img src="./icons/close-x.svg" alt="Close section" style="width:32px; height:32px; display:block;" />
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+
+  <sc-if value="{{ composerOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; z-index:210; background:rgba(20,20,20,0.55); display:flex; align-items:center; justify-content:center; padding:clamp(12px,3vw,40px);">
+      <div style="width:min(620px,100%); max-height:88vh; overflow-y:auto; background:#ffffff; border-radius:18px; box-shadow:0 24px 60px rgba(0,0,0,0.28);">
+        <div style="display:flex; align-items:flex-start; gap:14px; padding:22px 24px 14px; border-bottom:1px solid #f0f0f0;">
+          <div style="flex:1; min-width:0;">
+            <div style="display:inline-flex; align-items:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#ffffff; background:#f4511e; border-radius:999px; padding:5px 11px;">My Idea</div>
+            <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(18px,3vw,23px); line-height:1.25; color:#2f2f2f; margin-top:10px;">Post to the Commons</div>
+            <div style="font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.5; color:#8a8a8a; margin-top:6px;">Your post goes to the top of the list. The community ranks it from there.</div>
+          </div>
+          <button onClick="{{ closeComposer }}" title="Close" style="flex:none; background:none; border:none; cursor:pointer; padding:0; line-height:1;">
+            <img src="./icons/close-x.svg" alt="Close" style="width:26px; height:26px; display:block;" />
+          </button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px; padding:20px 24px 8px;">
+          <input type="text" value="{{ draftMember }}" onChange="{{ onDraftMember }}" placeholder="Your name" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.45); border:none; border-radius:6px; padding:14px 16px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#3a3a3a; outline:none;" />
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <sc-for list="{{ draftTopics }}" as="d" hint-placeholder-count="8">
+              <button onClick="{{ d.onClick }}" style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; border:1px solid {{ d.border }}; border-radius:999px; padding:7px 14px 7px 8px; font-family:Helvetica, Arial, sans-serif; font-size:12px; background:{{ d.bg }}; color:{{ d.color }};">
+                <span style="width:16px; height:16px; display:block; flex:none; background-image:{{ d.iconCss }}; background-size:contain; background-repeat:no-repeat; background-position:center;"></span>
+                <span>{{ d.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <input type="text" value="{{ draftTitle }}" onChange="{{ onDraftTitle }}" placeholder="Title — state the idea in one line" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.45); border:none; border-radius:6px; padding:14px 16px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#3a3a3a; outline:none;" />
+          <textarea value="{{ draftBody }}" onChange="{{ onDraftBody }}" rows="6" placeholder="What is the problem, what have you seen, and what would you have the community do?" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.45); border:none; border-radius:6px; padding:14px 16px; font-family:Helvetica, Arial, sans-serif; font-size:16px; line-height:1.55; color:#3a3a3a; outline:none; resize:vertical;"></textarea>
+          <sc-if value="{{ draftError }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:Helvetica, Arial, sans-serif; font-size:14px; color:#f4511e;">{{ draftError }}</div>
+          </sc-if>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:14px 24px 22px;">
+          <button onClick="{{ submitDraft }}" style="cursor:pointer; border:none; border-radius:999px; min-height:44px; padding:0 24px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; background:#f4511e; color:#ffffff;" style-hover="background:#d93f10;">Post it</button>
+          <button onClick="{{ closeComposer }}" style="cursor:pointer; background:none; border:none; min-height:44px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8a8a;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; inset:0; z-index:200; background:rgba(20,20,20,0.55); display:flex; align-items:center; justify-content:center; padding:clamp(12px,3vw,40px);">
+      <div style="position:relative; width:min(680px,100%); max-height:88vh; overflow:hidden; background:#ffffff; border-radius:18px; box-shadow:0 24px 60px rgba(0,0,0,0.28); display:flex; flex-direction:column;">
+        <div style="display:flex; align-items:flex-start; gap:12px; padding:22px 24px 14px;">
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+              <span style="display:inline-flex; align-items:center; gap:6px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.09em; text-transform:uppercase; color:{{ modal.topicColor }}; background:{{ modal.topicTint }}; padding:4px 10px 4px 4px; border-radius:999px;">
+                <span style="width:18px; height:18px; display:block; flex:none; background-image:{{ modal.topicIconCss }}; background-size:contain; background-repeat:no-repeat; background-position:center;"></span>
+                <span>{{ modal.topic }}</span>
+              </span>
+              <sc-if value="{{ modal.isDemo }}" hint-placeholder-val="{{ false }}">
+                <span style="display:inline-flex; align-items:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#f4511e; border:1px solid rgba(244,81,30,0.35); border-radius:999px; padding:4px 9px;">Demo</span>
+              </sc-if>
+              <span style="font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#9a9a9a;">{{ modal.meta }}</span>
+            </div>
+            <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(18px,3vw,23px); line-height:1.25; color:#2f2f2f;">{{ modal.title }}</div>
+          </div>
+          <button onClick="{{ closeModal }}" title="Close" style="flex:none; background:none; border:none; cursor:pointer; padding:0; line-height:1;">
+            <img src="./icons/close-x.svg" alt="Close" style="width:26px; height:26px; display:block;" />
+          </button>
+        </div>
+
+        <div style="padding:0 24px 4px;">
+          <image-slot id="{{ modal.slotId }}" style="width:100%; height:clamp(150px,26vh,220px);" shape="rounded" radius="12" placeholder="{{ modal.slotHint }}"></image-slot>
+        </div>
+
+        <sc-if value="{{ modalBodyShown }}" hint-placeholder-val="{{ true }}">
+          <div style="overflow-y:auto; max-height:266px; padding:16px 24px 8px;">
+            <p style="font-size:17px; line-height:1.62; color:#4a4a4a; margin:0;">{{ modal.full }}</p>
+          </div>
+        </sc-if>
+
+        <div style="display:flex; align-items:center; gap:10px; padding:12px 24px; border-top:1px solid #f0f0f0;">
+          <button onClick="{{ toggleLike }}" style="cursor:pointer; border:1px solid {{ likeBorder }}; background:{{ likeBg }}; color:{{ likeColor }}; border-radius:999px; padding:9px 18px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.09em; text-transform:uppercase;">{{ likeLabel }}</button>
+          <button onClick="{{ toggleComments }}" style="cursor:pointer; border:1px solid {{ commentBorder }}; background:{{ commentBg }}; color:{{ commentColor }}; border-radius:999px; padding:9px 18px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.09em; text-transform:uppercase;">{{ commentLabel }}</button>
+        </div>
+
+        <sc-if value="{{ commentsShown }}" hint-placeholder-val="{{ false }}">
+          <div style="overflow-y:auto; max-height:300px; padding:4px 24px 22px; border-top:1px solid #f0f0f0;">
+            <sc-for list="{{ modalComments }}" as="c" hint-placeholder-count="4">
+              <div style="padding:14px 0; border-bottom:1px solid #f4f4f4;">
+                <div style="display:flex; gap:10px; align-items:center; margin-bottom:6px;">
+                  <span style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; color:#2f2f2f;">{{ c.author }}</span>
+                  <span style="font-family:Helvetica, Arial, sans-serif; font-size:11px; color:#9a9a9a;">{{ c.when }}</span>
+                </div>
+                <p style="font-size:15px; line-height:1.55; color:#5a5a5a; margin:0;">{{ c.text }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+  <div style="display:flex; gap:24px; margin-top:clamp(48px,8vh,72px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./JAI%20Meeting%20of%20the%20Minds.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Meeting of the Minds</a>
+    <a href="./JAI%20Project%20website.dc.html" style="color:#0f9d76; text-decoration:none;">Home</a>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:56px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: '#' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  watchRailWidth() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+    this.onRailResize();
+  }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  basePosts = [
+    { id: 'p1', anchor: 'workforce', topic: 'Workforce', title: 'Retraining that actually places people in jobs — what worked in our county', body: 'A community college pilot moved 61 displaced logistics workers into maintenance and robotics support roles in nine months. Sharing the curriculum and the placement data.', author: 'r.alvarez', comments: 148, base: 412, hours: 6, full: "A community college pilot moved 61 displaced logistics workers into maintenance and robotics support roles in nine months. Here is the whole picture, including the parts that did not work. We started with 94 enrollees; 18 left in the first six weeks, almost all for scheduling reasons rather than difficulty — evening cohorts cut that attrition by more than half in the second round. Instruction was two days of shop floor for every day of classroom, and the AI tutor was used for diagnostics and drills only, never as the primary instructor. Employers committed to interviews before the cohort began, which turned out to be the single most important variable: every placement traced back to an employer who had skin in the game from week one. Median wage after placement was $27.40 an hour against $19.10 before. Two employers later reported that graduates were troubleshooting faster than incumbent staff on the same equipment. The curriculum, the intake screen, the employer agreement template, and the twelve-month placement data are all attached, unedited. What we still do not know is durability — whether these roles exist in the same form in five years — and that is exactly the kind of question a working group should take up before we recommend replication anywhere else.", thread: [{ author: 'm.tanaka', when: '4h', text: "The employer-interview-first detail is the whole finding. Everything else is implementation." }, { author: 's.reyes', when: '3h', text: "Did the 18 who left get any follow-up? Curious whether evening cohorts recovered them specifically." }, { author: 'r.alvarez', when: '3h', text: "Nine of the 18 re-enrolled in the evening cohort. Seven of those nine placed." }, { author: 'k.osei', when: '2h', text: "Requesting the intake screen for a district workforce program. Will report back with results." }, { author: 'd.bell', when: '1h', text: "Wage delta is the number that will move our county commission. Thank you for publishing it plainly." }] },
+    { id: 'p2', anchor: 'education', topic: 'Education', title: 'Proposal: every district publishes its AI tutoring outcomes', body: 'Districts are adopting tutors fast and reporting nothing. A one-page standard disclosure would let parents compare and let the working group evaluate honestly.', author: 'k.osei', comments: 96, base: 388, hours: 11, full: "Districts are adopting AI tutoring at speed and reporting almost nothing about outcomes. Parents cannot compare, school boards cannot evaluate, and vendors are left grading their own homework. The proposal is deliberately small: a one-page standard disclosure, published annually by every district that deploys an AI tutoring product. Six fields — which product, which grades and subjects, hours of use per student, the assessment used, results against a comparison group, and cost per student. No district is required to prove effectiveness; they are only required to say what they know. Districts that decline to publish should say that too. The point is not to shame anyone. It is that a working group cannot design a good recommendation from vendor case studies, and a community cannot govern what it cannot see. If a hundred districts publish this page, the Commons has a real dataset by the second Summit and the beginnings of an evidence base by the third.", thread: [{ author: 'j.whitcomb', when: '8h', text: "Six fields is the right size. Twelve and nobody files it." }, { author: 'a.nkemdi', when: '6h', text: "Add a field for who paid for the product. Some deployments are vendor-funded pilots." }, { author: 'k.osei', when: '5h', text: "Fair. That is a seventh field and probably worth the cost." }, { author: 'l.fournier', when: '3h', text: "Our district would publish this tomorrow. The obstacle is not willingness, it is that nobody asked." }] },
+    { id: 'p3', anchor: 'healthcare', topic: 'Healthcare', title: 'Rural clinics: who is liable when the model reads the scan first?', body: 'Two clinics in our network want AI triage but cannot get clear answers on liability or override authority. Requesting a governance brief before the Summit.', author: 'j.whitcomb', comments: 203, base: 351, hours: 4, full: "Two rural clinics in our network want AI triage for imaging and cannot get a straight answer on two questions: who carries liability when the model reads a scan first, and who holds override authority when a clinician disagrees. Both clinics operate with one radiologist covering three counties, so triage is not a convenience — it is the difference between a same-day read and a four-day wait. Vendors offer indemnity language that our counsel considers unusable. The state has no guidance. Our malpractice carrier will not commit in writing. Meanwhile the clinics are making the decision by default: they are not adopting, and patients are waiting. This is precisely the coordination gap January AI exists to close. Requesting a governance brief before the Summit that covers liability allocation, override documentation, patient disclosure, and the minimum audit trail a small clinic can realistically maintain. If the brief concludes that adoption is premature for facilities this size, that is a useful answer too — but the absence of any answer is what is failing patients right now.", thread: [{ author: 'm.tanaka', when: '3h', text: "This is a governance brief, not a technology question. Agreed it belongs before the Summit." }, { author: 's.reyes', when: '2h', text: "Same situation in two clinics here. Happy to co-sign and share our counsel's memo." }, { author: 'j.whitcomb', when: '2h', text: "Please do. Two clinics is an anecdote, ten is a case." }, { author: 'a.nkemdi', when: '1h', text: "Worth asking what the override documentation burden looks like for a two-person imaging team." }] },
+    { id: 'p4', anchor: 'governance', topic: 'AI Governance', title: 'Publish the vote log with every authorized project', body: 'If the community authorizes funding, the record of how the community voted should ship alongside the budget. Trust is built by receipts.', author: 'm.tanaka', comments: 74, base: 297, hours: 21, full: "If the community authorizes funding, the record of how the community voted should ship alongside the budget. Not a summary, not a headline vote count — the log: who voted, on what, in which direction, and when. We already accept this in civic life. Legislatures publish roll calls. Boards publish minutes. An institution asking for public trust while keeping its voting record private is asking to be taken on faith, and faith is exactly the thing January AI proposed to replace with evidence. The objection is privacy, and it is a serious one. My answer is that members who cast votes that direct money are acting in a public capacity, and the log should be attributed by member name, with a documented process for a member to request shielding in genuine cases of risk. The second objection is that transparency invites pressure campaigns. Also true — and visible pressure campaigns are easier to govern than invisible ones. Trust is built by receipts.", thread: [{ author: 'a.nkemdi', when: '18h', text: "Support, with the shielding process defined before the first vote, not after." }, { author: 'd.bell', when: '14h', text: "Roll calls are the right precedent. This is not a novel ask." }, { author: 'l.fournier', when: '9h', text: "Concerned about pressure campaigns, but I take the point that visible ones are governable." }] },
+    { id: 'p5', anchor: 'opportunity', topic: 'Economic Opportunity', title: 'Small-town main street is the best AI test bed nobody is funding', body: 'Twelve businesses, one shared implementation grant, measured revenue and hours saved. Draft budget attached — looking for a working group sponsor.', author: 'd.bell', comments: 61, base: 264, hours: 30, full: "Twelve businesses on one main street, one shared implementation grant, and a measurement plan that tracks revenue, hours saved, and owner-reported stress. Small-town commercial districts are the best AI test bed nobody is funding, because everything is legible at that scale: you can see the whole system, talk to every owner, and measure what changed within a quarter. Our draft budget is modest — a shared implementer for six months, tooling costs, and a stipend for owners to attend a monthly working session, because their time is the real cost. What makes this worth a working group rather than a grant application is that the interesting result is not whether AI helps one bakery. It is whether a shared implementer across twelve unrelated small businesses is more effective per dollar than twelve separate adoptions, which is a question about coordination, not technology. If it holds, the model replicates to every main street in the country. If it fails, we will know why within a year and the finding is worth publishing either way.", thread: [{ author: 'r.alvarez', when: '1d', text: "The shared-implementer question is the actual research question. Sharpen the proposal around it." }, { author: 's.reyes', when: '22h', text: "Owner stipend is right. Their time is the binding constraint every time." }, { author: 'k.osei', when: '20h', text: "Would want the twelve businesses to be genuinely unrelated. Easy to accidentally pick a friendly cluster." }] },
+    { id: 'p6', anchor: 'climate', topic: 'Climate Resilience', title: 'Wildfire early-warning: the data exists, the coordination does not', body: 'Three agencies collect overlapping sensor data and none of it reaches the county in time. This is a coordination problem, which makes it ours.', author: 's.reyes', comments: 118, base: 231, hours: 44, full: "Three agencies collect overlapping sensor and satellite data relevant to wildfire ignition in our region, and none of it reaches the county emergency manager in a usable window. The technical problem is largely solved; the coordination problem is untouched. Each agency has its own retention rules, its own format, and its own reason not to share raw feeds. The county has a spreadsheet and a phone tree. In last season’s two near-misses, the useful signal existed in one agency’s data roughly four hours before the county learned anything. Nobody withheld anything maliciously — the pipe simply does not exist. What we need is a data-sharing agreement, a common format, and one person accountable for the handoff, which is unglamorous work that no vendor will do for free and no agency will lead alone. That makes it ours. The proposal is a twelve-month pilot in one county with published latency metrics: time from signal to county notification, before and after.", thread: [{ author: 'm.tanaka', when: '1d', text: "Four hours is the entire story. Lead with the latency number." }, { author: 'j.whitcomb', when: '1d', text: "Who would hold the accountable-handoff role in the pilot? That person is the pilot." }, { author: 's.reyes', when: '20h', text: "County emergency manager, with a working-group liaison for the first six months." }] },
+    { id: 'p7', anchor: 'civic', topic: 'Civic Participation', title: 'How do we keep the loudest 2% from setting the agenda?', body: 'Ranking is useful and gameable. Proposing participation weighting by contribution history, fully published, reviewed each cycle.', author: 'a.nkemdi', comments: 172, base: 189, hours: 52, full: "Ranking is useful and gameable, and any honest design has to start there. In every online community I have participated in, a small and highly engaged minority sets the agenda long before the majority notices there is one. We should assume the same will happen here, and design for it in the open rather than being surprised by it in year three. My proposal is participation weighting by contribution history — not by seniority, not by donation, and not by reputation score in any hidden sense. A member who has shown up across cycles, whose proposals have been reviewed, and whose voting record is consistent carries somewhat more weight in ranking than a brand-new account. Every parameter is published, the weighting is recalculated in public, and the whole scheme is reviewed at each Summit with a standing option to abolish it. The alternative is not neutrality; the alternative is unweighted voting that quietly advantages whoever has the most free time.", thread: [{ author: 'l.fournier', when: '2d', text: "The standing option to abolish is what makes this acceptable to me." }, { author: 'd.bell', when: '2d', text: "Skeptical. Weighting by history entrenches the early cohort, which is us." }, { author: 'a.nkemdi', when: '1d', text: "That is the strongest objection and I do not have a full answer. Hence publishing the parameters." }, { author: 'r.alvarez', when: '1d', text: "Try it for one cycle with a hard sunset. Measure whether new accounts disengage." }] },
+    { id: 'p8', anchor: 'discovery', topic: 'Scientific Discovery', title: 'Open the failed experiments too', body: 'Funded pilots that did not work are the most valuable thing the Commons could publish. Proposing a standing negative-results archive kept by JAN.', author: 'l.fournier', comments: 44, base: 156, hours: 66, full: "Funded pilots that did not work are the most valuable thing this community could publish, and they are the first thing every institution buries. Proposing a standing negative-results archive kept by JAN: every authorized project files a closeout, successful or not, with the same structure — what we expected, what we did, what happened, what we would do differently, and what we would tell someone attempting this next. No spin, no reframing failure as learning, just the record. Two conditions make it work. First, filing a negative result must carry no penalty in future authorization; the moment it does, everything becomes a partial success. Second, the archive has to be searchable by problem rather than by project name, or nobody will find the thing that would have saved them a year. Science has known for decades that suppressed negative results distort entire fields. We have the rare chance to start an institution that never acquires the habit.", thread: [{ author: 'k.osei', when: '2d', text: "No penalty for filing is the load-bearing condition. Everything else is format." }, { author: 'm.tanaka', when: '2d', text: "Searchable by problem, not project. This is the detail that gets ignored and then costs a year." }, { author: 'j.whitcomb', when: '1d', text: "Would read this archive before every proposal I write." }] }
+  ];
+
+  topicStyle = {
+    'Workforce':             { key: 'workforce',   color: '#f4511e', tint: '#fdece6' },
+    'Education':             { key: 'education',   color: '#1a86ab', tint: '#e6f5fb' },
+    'Healthcare':            { key: 'healthcare',  color: '#0f9d76', tint: '#f0faf6' },
+    'AI Governance':         { key: 'governance',  color: '#7b2d8b', tint: '#f5eaf7' },
+    'Economic Opportunity':  { key: 'opportunity', color: '#c9720c', tint: '#fdf1e2' },
+    'Climate Resilience':    { key: 'climate',     color: '#2a8f36', tint: '#eaf7ec' },
+    'Civic Participation':   { key: 'civic',       color: '#1d8fe1', tint: '#e8f4fd' },
+    'Scientific Discovery':  { key: 'discovery',   color: '#c2185b', tint: '#fce8ef' }
+  };
+
+  styleFor = (topic) => this.topicStyle[topic] || { key: '', color: '#8a8a8a', tint: '#f4f4f4' };
+
+  state = { sort: 'hot', topic: 'All', votes: {}, log: [], member: '', rulesOpen: false, logOpen: false, modalId: null, likes: {}, commentsShown: false,
+    composerOpen: false, draftMember: '', draftTopic: 'Workforce', draftTitle: '', draftBody: '', draftError: '', mine: [] };
+
+  MINE_STORE = 'jai-commons-mine';
+
+  TOPIC_ICONS = {
+    civic: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5NmQ4ZmQxNS1kMmZiLTQ2NjgtYmU0Yi05MTNlYmQ3ZmIxM2UAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaJNpi6FozKjkTkGjnXiyYGgAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpkM2Q2ZTc4Mi01OWU5LTQxOGItYmUwYi0yMzllYWNmYmRhMDVscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNogZjjquSynbzCdpi6ilFrEAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggBj34MQKoJJ3IzBW89%2BM4pg8L0F%2BxrqyOcFY5cTKzNU2kZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJ5zwIErYjxg%2BdkCmowweVcAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCBoe6mzBjJrqxV1zc3yqZkUfXdEs4o4%2Bnn2avkrgDqDSmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjk2ZDhmZDE1LWQyZmItNDY2OC1iZTRiLTkxM2ViZDdmYjEzZS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmEzZGU1OTY5LTJlZjktNDMzOC05ODVlLTdkYmZlNTFhOGU1OXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAGPfgxAqgkncjMFbz34zimDwvQX7GurI5wVjlxMrM1TaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggZ7wdyVivI0VMMlrqoB5G5w3DYPCE86OUlbffu3Oy0LiiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggOQnwvSCdMVq2%2BWa7ai%2FeRluF%2BOiq7VQfMUc0lJIuDAF0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQBrECs%2BZ1LG83TiB6Ggtxp%2FnEZ%2FHFxuigqC2KEPcN2FZai7q98hcWVXE73o6jlAN9swjzLgoZbM73z044GghShY%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%231d8fe1%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Crect%20x%3D%224.6%22%20y%3D%226%22%20width%3D%2216.8%22%20height%3D%2214%22%20rx%3D%222.2%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.2%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M9%2013.2%2012.1%2016.2%2017.4%2010.4%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    climate: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo0YTVlNGE5ZC1kMzI2LTQwOGItYTgyYi1lYjg2ZTg4MjMzY2MAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaBB%2BcLxSODatTJnftGCMS0YAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDplOThkNDY4OS03M2NhLTQ1MzUtOTI0MS1mN2EzY2MzMWViNzZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNogQMsmncT1xDRMH1S2tC3bAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg%2BHHT3ufMDyMnfyM6VWoOEyfsdUvqEOQH8UI74cLzA%2FOkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAx2syiBX6ZGZVwHFov4DUMAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCCAJcgt4uMAanaw2v0xn74t%2Fk4jzI3%2FsWsIDImv0HNDeWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjRhNWU0YTlkLWQzMjYtNDA4Yi1hODJiLWViODZlODgyMzNjYy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmY1MjM1NDY4LWQ3ZWYtNGMwNS1hYWVjLWFiZTkzNzU0N2QzY3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCD4cdPe58wPIyd%2FIzpVag4TJ%2Bx1S%2BoQ5AfxQjvhwvMD86JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggXC%2BMh7UcNtU%2Bm451dOM1R2OURAVY9NjOiQ3XdVGNLqeiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggSfU5QyVhHngWutef4Ewul%2FAav%2Bnbvzhi7b5ubrNi0m90Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQM2txKsYS0DYj0R77I0cU2b%2BCgagpzJYj%2FX9NVsM1xb7tqj68r3lIbP7b9jwM49JXGRKe6ErFayfgZMA3fnhtTM%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%233ab54a%22%3E%3C%2Fcircle%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%229%22%20r%3D%223.4%22%20fill%3D%22%23ffffff%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222.1%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M4.8%2016.4c1.7-1.5%203.4-1.5%205.1%200s3.4%201.5%205.1%200%203.4-1.5%205.1%200%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M4.8%2020.2c1.7-1.5%203.4-1.5%205.1%200s3.4%201.5%205.1%200%203.4-1.5%205.1%200%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    discovery: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpjODkzOTc5YS1iNmY2LTQ1NDktOTI3YS01ODRiYmE0MTMyY2QAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaA5Pv949DvlG6uLRnaABEjwAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDozOTQ0MTlkZi01MDQ0LTQyMjMtYjgyZS04ZDI2NzM0YWUxNjhscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo1QN2tc5rdUbrh%2BOt03McdgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg7Xfnj7NFi73DtTcMQXaLOYj7kJ2Ndn1RFyxcS1k9Wy6kZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJBMtOZ9W74OwxS%2BVzMeUzEAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCBao9df%2BAY1MYcCJEbOe4RVfgcTAwXusLiqO1IbNPJPnWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmM4OTM5NzlhLWI2ZjYtNDU0OS05MjdhLTU4NGJiYTQxMzJjZC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjU4YzBmYjU0LTUxYzgtNDIxNy04NWRmLWJkM2JjY2Y0YzM2M3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDtd%2BePs0WLvcO1NwxBdos5iPuQnY12fVEXLFxLWT1bLqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggUnReWrsHuwdsTuri9xd1Xr6vrgfkj9zi1cuc2hcJT7aiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggkI8ElIAocdUmCWDRWNAtEAaUSe7t8p5CaU%2BHSkIPJEl0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQP9c5vhPbIedb6vypVS%2FYA6oJJlUFoycfStzumBSOCiFZYgeNXkloi35PyStaKOIFfZtxbTKCiIonHaX%2B2uLxGQ%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%23d81b60%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Ccircle%20cx%3D%2211.6%22%20cy%3D%2211.6%22%20r%3D%225.6%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.3%22%3E%3C%2Fcircle%3E%3Cpath%20d%3D%22M15.8%2015.8%2021%2021%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    education: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToyNTIyOGViZi1mZjVjLTRiZWEtYjUyNS01ZWFjMTgyMzllYWEAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaIIPrvpf9HV0oFbzlnYZbAAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpjZThiODc1OC1jNWJmLTQwM2ItYWY1MS02ZmM5YjJjYjEwMGRscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoAlSN9EIemfMyApKvYRmopwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggNXpyJA%2BQ8LgmktwquRdwj4CNk63HMMof2RCWxOxfgQqkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaGcfy2Skx2uRzP%2BKEbKg8y8AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCD0ZTE1XTEkwsKGjrX17NpUyR%2FvfzK04M%2BI2BjmONzGjWRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjI1MjI4ZWJmLWZmNWMtNGJlYS1iNTI1LTVlYWMxODIzOWVhYS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjgwMzkzNmJmLWMyM2ItNDlhZi1iODIyLTZhZTUxZjVjMWJkYnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA1enIkD5DwuCaS3Cq5F3CPgI2Trccwyh%2FZEJbE7F%2BBCqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggCqP7GNPj4RsYETh%2BBTec2FCdISiJpGceT93Yn0aHf%2F6iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggLnk%2BqiUIuen%2FeIp2EGmr0ADmBBUFhRDa0Mgui7xCqeV0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQMYOvTEcm05H9W%2BpAODTJFxJpHAYD9fALiR29MXgb4gL7ZpxbKgAODNsfS3E60dkZ3gSbb3d5%2FogRqAtlgfleRs%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%232eaee0%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Cpath%20d%3D%22M13%205.4%2022.4%2010%2013%2014.6%203.6%2010z%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M7.4%2013v4.4c0%201.6%202.5%202.9%205.6%202.9s5.6-1.3%205.6-2.9V13l-5.6%202.7z%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    governance: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpjZTRmZmNmYS0xYjI1LTQ1NTctODMwZS00ZDVhYWViMjNiOTMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaHr5%2Bn0svny%2Bt7hOGbRaPaAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDowNzVhZTNlYi1mYTVjLTRjZWYtODczNi0zNGZkMjMyOGMwNzdscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNowOzbO8dnWTq%2B3J5aeMDYqwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggmThZLpSV5UmIKeMxdSBvR5PTIYxh06hVBjpUhF64H0akZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaCy5Vp86H8ztoPMqdc9wEL4AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAdMVfa8VzeblIjDKoEQsj%2Bl9M94W1HpHibAIwW98Zq0WRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmNlNGZmY2ZhLTFiMjUtNDU1Ny04MzBlLTRkNWFhZWIyM2I5My9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjkwOWNiMTQ3LWQ3MjAtNGJlNC1hYWEyLThhYjYyYTIxZDQzM3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCCZOFkulJXlSYgp4zF1IG9Hk9MhjGHTqFUGOlSEXrgfRqJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggjeIsLz2Nc1VVTKR4YSh0QMJfuxcKVUPkeFZTq6ERhtqiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg24Qj6dL5n4UKiGuUGnoF1qKC1yNryj4n%2FdFvoh25vIh0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQJyOPvMJ5zaaeJk5WGh4rPPD31MQZ76DbIzLqusnITEUSpnj5fe0H8b0b9QtN2EFOCVRwI4awsL06enfdVNnOG8%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%237b2d8b%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Crect%20x%3D%224.4%22%20y%3D%2219.2%22%20width%3D%2217.2%22%20height%3D%222.6%22%20rx%3D%221%22%3E%3C%2Frect%3E%3Crect%20x%3D%226.6%22%20y%3D%2210.4%22%20width%3D%222.8%22%20height%3D%227.4%22%3E%3C%2Frect%3E%3Crect%20x%3D%2211.6%22%20y%3D%2210.4%22%20width%3D%222.8%22%20height%3D%227.4%22%3E%3C%2Frect%3E%3Crect%20x%3D%2216.6%22%20y%3D%2210.4%22%20width%3D%222.8%22%20height%3D%227.4%22%3E%3C%2Frect%3E%3Cpath%20d%3D%22M13%204.2%2022%209.2H4z%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    healthcare: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5NmE0YTIyYi0wOTI2LTQxYTItYjdkNC0xM2NiODg0ZmFjNjUAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaABxLxRtnSAPoHAHS4%2BHH3QAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDowMzQ2MmJhMC1kYjY0LTQzNWUtYjY3ZS03MzE5ZTViYzMwNWNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoVAMVJz2SknbOd6P%2BJQYyNQAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggRf%2Fi5ySeyMkokXKWwKBXcq5TPuaEndUNax8pc9o%2BC0CkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBoDocK4U9tm%2Fg4FnhFdrSgAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCCdPb0bx8PMI%2BUaoE3F20kpnTiu0FvrXY7J9AWwhuIKtmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjk2YTRhMjJiLTA5MjYtNDFhMi1iN2Q0LTEzY2I4ODRmYWM2NS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmY3Y2E3ZWFjLTJkNWEtNGI2OS1iNTcyLTgzZTFmNWZjNjlhZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBF%2F%2BLnJJ7IySiRcpbAoFdyrlM%2B5oSd1Q1rHylz2j4LQKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggjbIzRf%2FA2WDJpr4qRAwlw%2FUmOI4gUM9M3f2d5cz4ISGiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggDCS8HoQBod0dhpKhg4ltPKZRyptHu9R0bwGUMT17uvF0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQLbNT9iBK4Jk%2B78MXaA12mQoJKdOPz7%2F5%2B%2BGXWDdHeSDZbPqKLQsWZ7t6pu39fKfNn%2F10SjXymzhnYHcnmA%2FsTQ%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%230f9d76%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Cpath%20d%3D%22M10.6%204.8h4.8v5.2h5.2v4.8h-5.2v5.2h-4.8V14.8H5.4V10h5.2z%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    opportunity: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToyNmNkNzg5Yi03MzVhLTQxMTItYmJmOS1hZjUwMjE5NzUxZDgAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaNXCyXsiT9k9nyarb2stm4UAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpiOGMxYzkyMy0xNjMyLTRjMzUtOWYxNi05MTVlYmVjOTA3ZWZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNof1HnuGbFMZpu5arYhuLs0wAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg0Fi5z5ZQ9ik7xilxv1EBIQPD25lqeNYNy4D4%2B77aaDekZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaEiEK53%2FPvXqw6lqElv1rgkAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAJ0hDUc6oyQXhQKFMR06AEqee8gPTaowPXShsx%2B0H9M2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjI2Y2Q3ODliLTczNWEtNDExMi1iYmY5LWFmNTAyMTk3NTFkOC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmNkN2JlMjUwLWQxY2EtNGU0Zi04ZTE2LTFmOTNlZmE2ZTQ0MHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDQWLnPllD2KTvGKXG%2FUQEhA8PbmWp41g3LgPj7vtpoN6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggZzxG2Qr0q868Z2%2BZPxATg4mZcrMJA2LIBzTIShgUZomiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggE0XcPxsrW4Ss2S6KeITg29lcLwNYAa4FmhmWwDn4ogZ0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQHSGJjZ7QGOKjG43Q1VPdv6mzRGHyZTqmdV%2FLXKuCGH%2F6MdBfFzpoaaaX1Q8JI%2BKuUfJgOpxzqAh2bwSPo8j1q0%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%23f7931e%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5.8%2017.4%2011%2012.2l3.2%203.2%206-6%22%3E%3C%2Fpath%3E%3Cpath%20d%3D%22M15%208.6h5.6v5.6%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E')",
+    workforce: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2026%2026%22%20width%3D%2226%22%20height%3D%2226%22%20xmlns%3Ac2pa%3D%22http%3A%2F%2Fc2pa.org%2Fmanifest%22%3E%3Cmetadata%3E%3Cc2pa%3Amanifest%3EAAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5MjFiNzgwOC1mOTU4LTRmNzEtOGY4ZS0zMGVlOTQ2ODA4ODQAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaETtFpiaWqMMoi9Cr1dirPEAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDowOWU2MjZlZi1kZThkLTQyMTYtOTJjYi1iNjg5NjNiYzIyODZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo42cPXCtPaDQ42kCyMQxufwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg%2F8D1RajvgwMwv6KsPzjdXUI7qniAuk55asNWoOqPEHGkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaBzXvBkAEsAAOn1pnWV6VzEAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCCFN6%2FN4ewqmeE86PQ2fnHR2%2B5aH1CuUOLWpVjC7mCgbmRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiSZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjkyMWI3ODA4LWY5NTgtNGY3MS04ZjhlLTMwZWU5NDY4MDg4NC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmM3ZDgyYzhjLTNhYzItNGJlOS1hOWI3LTU4ZGEyMzc4MDRjOXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCD%2FwPVFqO%2BDAzC%2Foqw%2FON1dQjuqeIC6Tnlqw1ag6o8QcaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggMx1d%2Bpw0cEbv4ux4eHnS5Yd1laKMmE2Zc8ZCtV0uq2WiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggJyULj9AqzobAcDofw%2BwhDeINhwq9PySYkrnTzfr%2BlSx0Y2xhaW1fZ2VuZXJhdG9yX2luZm%2BjZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g%2FoGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd%2F3cyjxFA3Qo5S46fX0%2FihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB%2FwQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB%2FwQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj%2BOPEz5o%2BnMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn%2FaArXyTwFAZfKrPzxF2vPoJNf1%2BUCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9%2B1rdDwSPLMOPOjKuiXjoU%2FpUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQGfimh9Ix5FQoSM2SCYl3FqHESbzzfdtpgck0By5FuhS6%2F%2FE1xzS1r2Sb4Jzcym1Z5IerU2anLvwXIMEDsnOtwk%3D%3C%2Fc2pa%3Amanifest%3E%3C%2Fmetadata%3E%3Ccircle%20cx%3D%2213%22%20cy%3D%2213%22%20r%3D%2213%22%20fill%3D%22%23f4511e%22%3E%3C%2Fcircle%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Crect%20x%3D%226%22%20y%3D%2215%22%20width%3D%223.6%22%20height%3D%226%22%20rx%3D%221%22%3E%3C%2Frect%3E%3Crect%20x%3D%2211.2%22%20y%3D%2210.5%22%20width%3D%223.6%22%20height%3D%2210.5%22%20rx%3D%221%22%3E%3C%2Frect%3E%3Crect%20x%3D%2216.4%22%20y%3D%226%22%20width%3D%223.6%22%20height%3D%2215%22%20rx%3D%221%22%3E%3C%2Frect%3E%3C%2Fg%3E%3C%2Fsvg%3E')"
+  };
+
+  iconCssFor(key) { return this.TOPIC_ICONS[key] || 'none'; }
+
+  isConfigured() {
+    const inst = window.__instant;
+    return !!(inst && inst.appId && String(inst.appId).indexOf('REPLACE_WITH') === -1);
+  }
+
+  markSynced(key, synced) {
+    const mine = (this.state.mine || []).map(r => r.id === key ? Object.assign({}, r, { synced: synced }) : r);
+    try { window.localStorage.setItem(this.MINE_STORE, JSON.stringify(mine)); } catch (e) {}
+    this.setState({ mine: mine });
+  }
+
+  pushPost(post) {
+    if (!this.isConfigured()) return;
+    const inst = window.__instant;
+    try {
+      Promise.resolve(inst.db.transact(inst.tx.commonsPosts[inst.id()].update({
+        topic: post.topic,
+        title: post.title,
+        body: post.body,
+        author: post.author,
+        localId: post.id,
+        createdAt: Date.now()
+      }))).then(() => this.markSynced(post.id, true)).catch(() => this.markSynced(post.id, false));
+    } catch (e) {}
+  }
+
+  loadMine() {
+    try {
+      const raw = window.localStorage.getItem(this.MINE_STORE);
+      if (raw) this.setState({ mine: JSON.parse(raw) });
+    } catch (e) {}
+  }
+
+  openComposer = () => this.setState({ composerOpen: true, draftError: '', draftMember: this.state.draftMember || this.state.member });
+  closeComposer = () => this.setState({ composerOpen: false, draftError: '' });
+  onDraftMember = (e) => this.setState({ draftMember: e.target.value });
+  onDraftTitle = (e) => this.setState({ draftTitle: e.target.value });
+  onDraftBody = (e) => this.setState({ draftBody: e.target.value });
+  setDraftTopic = (t) => this.setState({ draftTopic: t });
+
+  submitDraft = () => {
+    const s = this.state;
+    const title = (s.draftTitle || '').trim();
+    const body = (s.draftBody || '').trim();
+    if (!title) { this.setState({ draftError: 'Give the idea a one-line title.' }); return; }
+    if (body.length < 20) { this.setState({ draftError: 'Add a few sentences so the community can weigh it.' }); return; }
+    const who = (s.draftMember || '').trim() || 'a member';
+    const post = {
+      id: 'mine-' + Date.now(),
+      anchor: 'mine-' + Date.now(),
+      topic: s.draftTopic,
+      title: title,
+      body: body,
+      full: body,
+      author: who,
+      hours: 0,
+      comments: 0,
+      base: 1,
+      mine: true,
+      synced: false,
+      slotHint: 'Add an image for your post',
+      thread: []
+    };
+    const mine = [post].concat(s.mine);
+    try { window.localStorage.setItem(this.MINE_STORE, JSON.stringify(mine)); } catch (e) {}
+    this.setState({ mine: mine, composerOpen: false, draftTitle: '', draftBody: '', draftError: '', member: who });
+    this.pushPost(post);
+  };
+
+  openPost = (id) => this.setState({ modalId: id, commentsShown: false });
+  closeModal = () => this.setState({ modalId: null, commentsShown: false });
+  toggleComments = () => this.setState(s => ({ commentsShown: !s.commentsShown }));
+  toggleLike = () => this.setState(s => {
+    const id = s.modalId;
+    return { likes: Object.assign({}, s.likes, { [id]: !s.likes[id] }) };
+  });
+
+  componentDidMount() {
+    this.loadMine();
+    this.watchRailWidth();
+    try {
+      const raw = window.localStorage.getItem('jai-commons-votes');
+      if (raw) {
+        const saved = JSON.parse(raw);
+        this.setState({ votes: saved.votes || {}, log: saved.log || [], member: saved.member || '' });
+      }
+    } catch (err) { /* no storage */ }
+    const h = (window.location.hash || '').slice(1);
+    if (h) setTimeout(() => {
+      const t = document.getElementById(h);
+      if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 24 });
+    }, 80);
+  }
+
+  componentWillUnmount() { window.removeEventListener('resize', this.onRailResize); }
+
+  persist(next) {
+    try {
+      window.localStorage.setItem('jai-commons-votes', JSON.stringify({
+        votes: next.votes, log: next.log, member: next.member
+      }));
+    } catch (err) { /* no storage */ }
+  }
+
+  vote = (post, dir) => {
+    this.setState(s => {
+      const prev = s.votes[post.id] || 0;
+      const now = prev === dir ? 0 : dir;
+      const votes = Object.assign({}, s.votes, { [post.id]: now });
+      const member = s.member.trim() || 'anonymous member';
+      const entry = {
+        member: member,
+        topic: post.topic,
+        title: post.title,
+        vote: now === 1 ? 'Up' : (now === -1 ? 'Down' : 'Withdrawn'),
+        when: new Date().toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+      };
+      const log = [entry].concat(s.log).slice(0, 40);
+      const next = { votes: votes, log: log, member: s.member };
+      this.persist(next);
+      return { votes: votes, log: log };
+    });
+  };
+
+  onMember = (e) => {
+    const member = e.target.value;
+    this.setState({ member: member });
+    this.persist({ votes: this.state.votes, log: this.state.log, member: member });
+  };
+
+  setSort = (sort) => this.setState({ sort: sort });
+  setTopic = (topic) => this.setState({ topic: topic });
+  toggleRules = () => this.setState(s => ({ rulesOpen: !s.rulesOpen }));
+  toggleLog = () => this.setState(s => ({ logOpen: !s.logOpen }));
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const that = this;
+    const topics = ['All'].concat(this.basePosts.map(p => p.topic).filter((t, i, a) => a.indexOf(t) === i));
+    const all = (s.mine || []).concat(this.basePosts);
+    let list = all.map(p => {
+      const v = s.votes[p.id] || 0;
+      return Object.assign({}, p, { score: p.base + v, v: v });
+    });
+    if (s.topic !== 'All') list = list.filter(p => p.topic === s.topic);
+    if (s.sort === 'new') list = list.slice().sort((a, b) => a.hours - b.hours);
+    else if (s.sort === 'top') list = list.slice().sort((a, b) => b.score - a.score);
+    else list = list.slice().sort((a, b) => (b.score / Math.pow(b.hours + 2, 0.55)) - (a.score / Math.pow(a.hours + 2, 0.55)));
+    list = list.slice().sort((a, b) => (b.mine ? 1 : 0) - (a.mine ? 1 : 0));
+
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      logGrid: this.railWide ? '1.1fr 1fr 2fr 0.7fr 1fr' : '1fr 1fr',
+      sorts: [['hot', 'Hot'], ['new', 'New'], ['top', 'Top']].map(([k, label]) => ({
+        label: label,
+        bg: s.sort === k ? '#0f9d76' : '#f1f1f1',
+        color: s.sort === k ? '#ffffff' : '#6a6a6a',
+        onClick: () => this.setSort(k)
+      })),
+      topicFilters: topics.map(t => {
+        const st = this.styleFor(t);
+        const on = s.topic === t;
+        return {
+          label: t,
+          iconCss: this.iconCssFor(st.key),
+          border: on ? st.color : '#e2e2e2',
+          bg: on ? st.tint : '#ffffff',
+          color: on ? st.color : (st.key ? '#6a6a6a' : '#8a8a8a'),
+          onClick: () => this.setTopic(t)
+        };
+      }),
+      composerOpen: s.composerOpen,
+      openComposer: this.openComposer,
+      closeComposer: this.closeComposer,
+      draftMember: s.draftMember,
+      draftTitle: s.draftTitle,
+      draftBody: s.draftBody,
+      draftError: s.draftError,
+      onDraftMember: this.onDraftMember,
+      onDraftTitle: this.onDraftTitle,
+      onDraftBody: this.onDraftBody,
+      submitDraft: this.submitDraft,
+      draftTopics: topics.filter(x => x !== 'All').map(x => {
+        const st = this.styleFor(x);
+        const on = s.draftTopic === x;
+        return {
+          label: x,
+          iconCss: this.iconCssFor(st.key),
+          border: on ? st.color : '#e2e2e2',
+          bg: on ? st.tint : '#ffffff',
+          color: on ? st.color : '#6a6a6a',
+          onClick: () => this.setDraftTopic(x)
+        };
+      }),
+      posts: list.map(p => ({
+        anchor: p.anchor,
+        topic: p.topic,
+        topicColor: this.styleFor(p.topic).color,
+        topicTint: this.styleFor(p.topic).tint,
+        topicIconCss: this.iconCssFor(this.styleFor(p.topic).key),
+        isDemo: !p.mine,
+        title: p.title,
+        body: p.body,
+        score: p.score,
+        meta: 'posted by ' + p.author + ' · ' + p.hours + 'h ago · ' + p.comments + ' comments',
+        upColor: p.v === 1 ? '#0f9d76' : '#cfcfcf',
+        downColor: p.v === -1 ? '#f4511e' : '#cfcfcf',
+        onOpen: () => this.openPost(p.id),
+        onUp: () => this.vote(p, 1),
+        onDown: () => this.vote(p, -1)
+      })),
+      modalOpen: !!s.modalId,
+      modal: (function () {
+        const self = that;
+        const p = list.concat([]).filter(x => x.id === s.modalId)[0] || null;
+        if (!p) return { topic: '', topicColor: '#8a8a8a', topicTint: '#f4f4f4', topicIconCss: 'none', isDemo: false, title: '', meta: '', full: '', slotId: 'post-none', slotHint: '' };
+        return {
+          topic: p.topic,
+          topicColor: self.styleFor(p.topic).color,
+          topicTint: self.styleFor(p.topic).tint,
+          topicIconCss: self.iconCssFor(self.styleFor(p.topic).key),
+          isDemo: !p.mine,
+          title: p.title,
+          meta: 'posted by ' + p.author + ' · ' + p.hours + 'h ago · ' + p.comments + ' comments',
+          full: p.full,
+          slotId: 'post-image-' + p.id,
+          slotHint: 'AI summary image for this post'
+        };
+      })(),
+      modalComments: (function () {
+        const p = list.concat([]).filter(x => x.id === s.modalId)[0];
+        return p ? p.thread : [];
+      })(),
+      modalBodyShown: !s.commentsShown,
+      commentsShown: s.commentsShown,
+      closeModal: this.closeModal,
+      toggleComments: this.toggleComments,
+      toggleLike: this.toggleLike,
+      likeLabel: s.likes[s.modalId] ? 'Liked' : 'Like',
+      likeBg: s.likes[s.modalId] ? '#0f9d76' : '#ffffff',
+      likeColor: s.likes[s.modalId] ? '#ffffff' : '#6a6a6a',
+      likeBorder: s.likes[s.modalId] ? '#0f9d76' : '#e2e2e2',
+      commentLabel: s.commentsShown ? 'Hide comments' : 'Comment',
+      commentBg: s.commentsShown ? '#0f9d76' : '#ffffff',
+      commentColor: s.commentsShown ? '#ffffff' : '#6a6a6a',
+      commentBorder: s.commentsShown ? '#0f9d76' : '#e2e2e2',
+      member: s.member,
+      onMember: this.onMember,
+      voteLog: s.log.map(r => Object.assign({}, r, {
+        voteColor: r.vote === 'Up' ? '#0f9d76' : (r.vote === 'Down' ? '#f4511e' : '#9a9a9a')
+      })),
+      hasLog: s.log.length > 0,
+      noLog: s.log.length === 0,
+      rulesOpen: s.rulesOpen,
+      logOpen: s.logOpen,
+      toggleRules: this.toggleRules,
+      toggleLog: this.toggleLog,
+      rulesArrow: s.rulesOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      logArrow: s.logOpen ? 'rotate(90deg)' : 'rotate(0deg)'
+    };
+  }
+}
+</script>
+</body>
+</html>

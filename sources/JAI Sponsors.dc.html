@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#a7ddc9">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#a7ddc9"/>
+    <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="160" fill="#ffffff">SPON</text>
+  </svg>
+</template>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  a { color: #0f9d76; }
+  a:hover { color: #0b7a5c; }
+  @keyframes orbitEllipse {
+    0%    { transform: translate(var(--rx), 0); }
+    25%   { transform: translate(0, var(--ry)); }
+    50%   { transform: translate(calc(var(--rx) * -1), 0); }
+    75%   { transform: translate(0, calc(var(--ry) * -1)); }
+    100%  { transform: translate(var(--rx), 0); }
+  }
+</style>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+</helmet>
+<div style="background:#ffffff; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(56px,12vh,120px) clamp(24px,7vw,80px) 80px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+
+  <div style="width:100%; max-width:1000px;">
+    <img src="./uploads/Screenshot 2026-08-30 at 4.56.52 PM.png" alt="Dot-portrait of the founder" style="display:block; width:clamp(180px,26vw,280px); height:auto; margin-bottom:clamp(18px,3vh,28px);" />
+    <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.015em; font-size:clamp(30px,7vw,60px);">
+      <div style="color:#c7c9c8;">Become</div>
+      <div style="color:#8fd6bd; margin-top:clamp(-6px,-1.6vw,-11px);">A</div>
+      <div style="color:#c7c9c8; margin-top:clamp(-6px,-1.6vw,-11px);">Partner</div>
+      <div style="color:#8fd6bd; margin-top:clamp(-6px,-1.6vw,-11px);">Donor</div>
+      <div style="color:#c7c9c8; margin-top:clamp(-6px,-1.6vw,-11px);">Sponsor</div>
+    </div>
+
+    <p style="margin:clamp(26px,4vh,40px) 0 0; max-width:680px; font-size:clamp(17px,2.4vw,21px); line-height:1.6; color:#4a4a4a; text-wrap:pretty;">Sponsorship pays for the room, the record, and the seats of people who could not otherwise be there. It does not buy a vote, a seat on the board, or a line in the Charter &mdash; the Commons decides what proceeds, and that stays true no matter who writes the check.</p>
+
+    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:26px;">
+      <span style="background:#eef7f3; color:#0f9d76; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:8px 14px; border-radius:999px;">JanuaryAI Project Summit</span>
+      <span style="background:#eef7f3; color:#0f9d76; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:8px 14px; border-radius:999px;">Boulder / Denver</span>
+      <a href="./JAI%20Sponsor%20Handout.dc.html?print=1" target="_blank" rel="noopener" onClick="{{ printHandout }}" style="background:#eef7f3; color:#0d1512; text-decoration:none; cursor:pointer; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:8px 14px; border-radius:999px;" style-hover="background:#c9ecdf;">Print this Page</a>
+    </div>
+
+    <div style="margin-top:clamp(40px,7vh,64px); border-top:1px solid #e2e2e2; padding-top:14px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">Sponsor options</div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:clamp(16px,2.4vw,24px); margin-top:20px;">
+      <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="5">
+        <div style="border:1px solid #ececec; border-radius:16px; padding:22px 22px 24px; display:flex; flex-direction:column; gap:12px; background:#ffffff;">
+          <div style="height:6px; width:56px; border-radius:999px; background:{{ tier.color }};"></div>
+          <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(17px,2.2vw,21px); line-height:1.05; letter-spacing:-0.01em; color:#2f2f2f;">{{ tier.name }}</p>
+          <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:20px; color:#0f9d76;">{{ tier.amount }}</p>
+          <p style="margin:0; font-size:16px; line-height:1.55; color:#5a5a5a; text-wrap:pretty;">{{ tier.funds }}</p>
+          <div style="display:flex; flex-direction:column; gap:7px; margin-top:2px;">
+            <sc-for list="{{ tier.gets }}" as="g" hint-placeholder-count="3">
+              <div style="display:flex; gap:9px; align-items:flex-start; font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:1.45; color:#4a4a4a;">
+                <span style="flex:none; width:7px; height:7px; border-radius:50%; margin-top:6px; background:{{ tier.color }};"></span>
+                <span>{{ g.text }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <button onClick="{{ tier.onRsvp }}" style="margin-top:auto; align-self:flex-start; cursor:pointer; border:none; background:#c9ecdf; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.12em; padding:13px 22px; border-radius:6px;" style-hover="background:#a7ddc9;">RSVP</button>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:clamp(40px,7vh,64px); border-top:1px solid #e2e2e2; padding-top:26px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:clamp(18px,3vw,30px);">
+      <div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(16px,2vw,19px); color:#2f2f2f;">What every sponsor gets</p>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#5a5a5a;">Your name on the published record of the Summit, the full proceedings and vote log, and a written account of exactly what your money paid for.</p>
+      </div>
+      <div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(16px,2vw,19px); color:#2f2f2f;">What no sponsor gets</p>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#5a5a5a;">Agenda control, a vote, veto over a working group, or a private edit to the Charter. Every dollar is disclosed; influence is not for sale.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(36px,6vh,52px); background:#eef7f3; border-radius:16px; padding:clamp(22px,3vw,32px); display:flex; flex-wrap:wrap; align-items:center; gap:18px; justify-content:space-between;">
+      <div style="min-width:240px; flex:1;">
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(17px,2.2vw,22px); line-height:1.1; color:#0d1512;">Not sure how to fund and contribute?</p>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#3f5049;">Tell us the how to match your contribution to your cause. What do you care about? Privately share your interest and your contribution. We will match it to the part of the Summit that needs it and put it in writing.</p>
+      </div>
+      <button onClick="{{ openRsvpAny }}" style="flex:none; cursor:pointer; border:none; background:#c9ecdf; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:0.12em; padding:16px 26px; border-radius:6px;" style-hover="background:#a7ddc9;">RSVP</button>
+    </div>
+
+    <div style="display:flex; gap:24px; margin-top:clamp(48px,8vh,72px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+      <a href="./JAI%20Summit%202027.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Summit 2027</a>
+      <a href="./JanuaryAI%20Charter%20Overview.dc.html#funding" style="color:#0f9d76; text-decoration:none;">Funding in the Charter &rarr;</a>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:clamp(40px,7vh,64px); text-align:center;">
+      <p style="margin:0; max-width:520px; font-family:Georgia, serif; font-style:italic; font-size:12px; line-height:1.65; color:#a8a8a8;">The JanuaryAI Summit is a project developed and produced by<br />BODEN Summit LLC, a Colorado company.<br />(303) 720-6633</p>
+      <p style="margin:0; font-family:Georgia, serif; font-style:italic; font-size:12px; line-height:1.65; color:#a8a8a8;">&copy; 2026 DL Thomas. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <div style="display:{{ rsvpDisplay }}; position:fixed; inset:0; z-index:200; background:rgba(13,21,18,0.72); align-items:flex-start; justify-content:center; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:calc(clamp(14px,3vw,40px) + env(safe-area-inset-top)) calc(clamp(14px,3vw,40px) + env(safe-area-inset-right)) calc(clamp(14px,3vw,40px) + env(safe-area-inset-bottom)) calc(clamp(14px,3vw,40px) + env(safe-area-inset-left));">
+    <div style="width:100%; max-width:900px; background:#ffffff; border-radius:8px; box-shadow:0 24px 70px rgba(0,0,0,0.35); padding:clamp(18px,2.6vw,30px); box-sizing:border-box;">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+        <button onClick="{{ closeRsvp }}" title="Close" style="cursor:pointer; background:none; border:none; padding:0; line-height:1;">
+          <img src="./icons/close-x.svg" alt="Close" style="width:32px; height:32px; display:block;" />
+        </button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(20px,3vw,34px); align-items:start;">
+        <div>
+          <p style="margin:0; text-align:center; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:22px; color:#3a3a3a;">Sponsor the JanuaryAI Summit</p>
+          <p style="margin:6px 0 0; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:14px; color:#8a8a8a;">Monday-Wednesday Jan 18&ndash;20, 2027</p>
+
+          <div style="position:relative; display:flex; align-items:center; justify-content:center; padding:44px 0; margin-top:10px;">
+            <div style="position:absolute; left:50%; top:50%; width:0; height:0; pointer-events:none;">
+              <span style="--rx:110px; --ry:52px; position:absolute; left:-7px; top:-7px; width:14px; height:14px; border-radius:50%; background:#1d8fe1; opacity:0.85; animation:orbitEllipse 9s linear infinite;"></span>
+              <span style="--rx:96px; --ry:62px; position:absolute; left:-8px; top:-8px; width:16px; height:16px; border-radius:50%; background:#7b2d8b; opacity:0.85; animation:orbitEllipse 14s linear infinite reverse; animation-delay:-3s;"></span>
+              <span style="--rx:124px; --ry:44px; position:absolute; left:-8px; top:-8px; width:16px; height:16px; border-radius:50%; background:#3ab54a; opacity:0.85; animation:orbitEllipse 20s linear infinite; animation-delay:-8s;"></span>
+              <span style="--rx:104px; --ry:58px; position:absolute; left:-9px; top:-9px; width:18px; height:18px; border-radius:50%; background:#f26522; opacity:0.85; animation:orbitEllipse 26s linear infinite reverse; animation-delay:-14s;"></span>
+            </div>
+            <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.9; letter-spacing:-0.015em;">
+              <span style="font-size:22px; color:#c7c9c8;">Become</span>
+              <span style="font-size:22px; color:#8fd6bd; margin-top:-4px;">A</span>
+              <span style="font-size:22px; color:#c7c9c8; margin-top:-4px;">Partner</span>
+              <span style="font-size:22px; color:#8fd6bd; margin-top:-4px;">Donor</span>
+              <span style="font-size:22px; color:#c7c9c8; margin-top:-4px;">Sponsor</span>
+            </div>
+          </div>
+
+          <div style="background:#f7931e; padding:16px 18px; margin-top:8px;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:16px; line-height:1.4; color:#ffffff;">&ldquo;The future of AI will not be determined solely by the intelligence we create, but by the wisdom with which we choose to govern, finance, and apply it.&rdquo;</p>
+          </div>
+
+          <p style="margin:20px 0 0; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:bold; font-size:14px; color:#3a3a3a;">Nothing is charged here. RSVP puts you on the sponsor list and we follow up with the written agreement.</p>
+
+          <div style="display:grid; grid-template-columns:110px 1fr; gap:16px; margin-top:16px; align-items:start;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:19px; line-height:1.25; color:#2eaee0;">Give a<br />Gift</p>
+            <p style="margin:0; padding-left:16px; border-left:1px solid #d8dad9; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:13px; line-height:1.5; color:#8a8a8a;">Every table and seat you sponsor is filled by open application, chosen by the Commons rather than by the sponsor.</p>
+          </div>
+        </div>
+
+        <div style="order:{{ formOrder }};">
+          <p style="margin:0; background:#2eaee0; color:#ffffff; text-align:center; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:14px; letter-spacing:0.04em; padding:11px 14px;">Choose your levels &mdash; add as many as you like</p>
+
+          <sc-for list="{{ rsvpTiers }}" as="row" hint-placeholder-count="7">
+            <div style="display:flex; align-items:center; gap:10px; width:100%; border-left:6px solid {{ row.rule }}; background:{{ row.bg }}; padding:10px 12px; box-sizing:border-box;">
+              <button onClick="{{ row.onDot }}" aria-label="{{ row.name }}" style="flex:none; width:22px; height:22px; padding:0; cursor:pointer; border-radius:50%; border:2px solid {{ row.dotBorder }}; background:{{ row.dotFill }};"></button>
+              <span style="flex:1; min-width:0; display:flex; flex-direction:column;">
+                <span style="font-family:Helvetica, Arial, sans-serif; font-size:14px; line-height:1.2; color:#3a3a3a;">{{ row.name }}</span>
+                <sc-if value="{{ row.isPriced }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-family:Helvetica, Arial, sans-serif; font-size:11px; line-height:1.4; color:#8a8a8a;">{{ row.unit }}</span>
+                </sc-if>
+              </span>
+              <sc-if value="{{ row.isPriced }}" hint-placeholder-val="{{ true }}">
+                <span style="flex:none; display:flex; align-items:center; gap:4px;">
+                  <button onClick="{{ row.dec }}" aria-label="Remove one" style="width:26px; height:26px; padding:0; cursor:pointer; border:1px solid #c2c4c3; background:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; line-height:1; color:#3a3a3a; border-radius:2px;">&minus;</button>
+                  <span style="min-width:18px; text-align:center; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:14px; color:#3a3a3a;">{{ row.qty }}</span>
+                  <button onClick="{{ row.inc }}" aria-label="Add one" style="width:26px; height:26px; padding:0; cursor:pointer; border:1px solid #c2c4c3; background:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:15px; line-height:1; color:#3a3a3a; border-radius:2px;">+</button>
+                </span>
+              </sc-if>
+              <span style="flex:none; min-width:72px; text-align:right; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:14px; color:{{ row.totalInk }};">{{ row.lineTotal }}</span>
+            </div>
+          </sc-for>
+
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; background:#2eaee0; padding:12px 14px;">
+            <span style="font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:13px; letter-spacing:0.04em; color:#ffffff;">{{ orderCount }}</span>
+            <span style="font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:16px; color:#ffffff;">{{ orderTotal }}</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px;">
+            <input type="text" value="{{ rsvpName }}" onChange="{{ onRsvpName }}" placeholder="Your name" style="box-sizing:border-box; background:#d9dbda; border:none; padding:13px 12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#3a3a3a; outline:none;" />
+            <input type="text" value="{{ rsvpOrg }}" onChange="{{ onRsvpOrg }}" placeholder="Company or organization (optional)" style="box-sizing:border-box; background:#d9dbda; border:none; padding:13px 12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#3a3a3a; outline:none;" />
+            <input type="text" value="{{ rsvpContact }}" onChange="{{ onRsvpContact }}" placeholder="Email or phone" style="box-sizing:border-box; background:#d9dbda; border:none; padding:13px 12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#3a3a3a; outline:none;" />
+            <textarea value="{{ rsvpNote }}" onChange="{{ onRsvpNote }}" placeholder="What do you care about? (optional)" style="box-sizing:border-box; min-height:74px; resize:vertical; background:#d9dbda; border:none; padding:13px 12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; line-height:1.45; color:#3a3a3a; outline:none;"></textarea>
+          </div>
+
+          <p style="margin:12px 0 0; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:bold; font-size:11px; line-height:1.5; color:#4a4a4a;">No payment is taken on this page. Sponsor amounts are confirmed in writing and disclosed in the published ledger.</p>
+
+          <button onClick="{{ submitRsvp }}" style="width:100%; margin-top:14px; cursor:pointer; border:none; background:#2eaee0; color:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:15px; letter-spacing:0.04em; padding:15px; border-radius:2px;" style-hover="background:#1e97c7;">RSVP &gt;&gt;</button>
+          <sc-if value="{{ rsvpStatus }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:12px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.5; color:#0f9d76;">{{ rsvpStatus }}</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: '#', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  tierDefs = [
+    {
+      name: 'Founding Partner', amount: '$100,000', color: '#7b2d8b', cta: 'Start the conversation',
+      funds: 'Corporation or Individual who underwrites the hall, the record, the livestream, and the travel fund that fills a third of the room.',
+      gets: ['Named as a founding partner of the first Summit', 'Two seats at every working group session', 'A written account of the full budget, published']
+    },
+    {
+      name: 'Founding Sponsor', amount: '$50,000', color: '#1d8fe1', cta: 'Start the conversation',
+      funds: 'Pays for the Charter work itself — drafting, plain-language review, legal read, and the printed edition every attendee takes home.',
+      gets: ['Name on the printed Charter edition', 'Four Summit passes', 'Invitation to the drafting review']
+    },
+    {
+      name: 'Impact Sponsor', amount: '$25,000', color: '#0f9d76', cta: 'Pick a team',
+      funds: 'Adopts 1 of 12 Meeting of the Minds Impact categories for the year, its meeting, its research support and the report it shares with the community.',
+      gets: ['Named with the team in its published report', 'Two Summit passes', 'Quarterly briefing from the team lead']
+    },
+    {
+      name: 'Event Table Sponsor', amount: '$10,000', color: '#f7931e', cta: 'Sponsor a table',
+      funds: 'Buys a table of ten for people from one town, one clinic, one district, or one trade — chosen by the Commons, not by the sponsor.',
+      gets: ['Ten seats, assigned by open application', 'Named in the attendance record', 'One Summit pass for your own team']
+    },
+    {
+      name: 'Event Essentials Sponsor', amount: '$10,000 / $1,000', color: '#8e6bd4', cta: 'Claim an essential',
+      funds: 'Covers one of the things the Summit cannot run without — badges, water stations, charging, the shuttle, the gift bag itself.',
+      gets: ['$10,000: exclusive logo on the essential you fund', '$1,000: one item of your own in every gift bag', 'Named in the Summit program']
+    },
+    {
+      name: 'Mentor VIP Seating', amount: '$1,000', color: '#f4511e', cta: 'Reserve a seat',
+      funds: 'Reserves one seat in the Mentor VIP Seating.',
+      gets: ['One seat in the Mentors seating area during keynotes and stage programs', 'Full Event Pass ticket holder upgrade', 'Mentor name badge']
+    },
+    {
+      name: 'Private Contribution', hideCard: true, amount: 'Thank You', color: '#0f9d76', cta: 'Give privately',
+      funds: 'Tell us the how to match your contribution to your cause. What do you care about? Privately share your interest and your contribution. We will match it to the part of the Summit that needs it and put it in writing.',
+      gets: []
+    }
+  ];
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  state = { rsvpOpen: false, pick: '', qty: {}, name: '', org: '', contact: '', note: '', status: '', thanked: false };
+
+  lockScroll = (on) => {
+    if (typeof document === 'undefined') return;
+    document.body.style.overflow = on ? 'hidden' : '';
+  };
+
+  openRsvp = (name) => { this.lockScroll(true); this.setState({ rsvpOpen: true, pick: name || '', status: '' }); };
+  openRsvpAny = () => this.openRsvp('');
+
+  printHandout = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const existing = document.getElementById('jai-handout-print');
+    if (existing) existing.remove();
+    const f = document.createElement('iframe');
+    f.id = 'jai-handout-print';
+    f.setAttribute('aria-hidden', 'true');
+    f.style.cssText = 'position:fixed; right:0; bottom:0; width:816px; height:1056px; opacity:0; pointer-events:none; border:0;';
+    f.src = './JAI%20Sponsor%20Handout.dc.html';
+    f.onload = () => {
+      setTimeout(() => {
+        try {
+          f.contentWindow.focus();
+          f.contentWindow.print();
+        } catch (err) {
+          window.open('./JAI%20Sponsor%20Handout.dc.html?print=1', '_blank');
+        }
+        setTimeout(() => f.remove(), 60000);
+      }, 1600);
+    };
+    document.body.appendChild(f);
+  };
+  closeRsvp = () => { this.lockScroll(false); this.setState({ rsvpOpen: false }); };
+  pickTier = (name) => this.setState({ pick: name, status: '', thanked: name === 'Private Contribution' });
+
+  unitPrice = (amount) => {
+    const m = String(amount || '').replace(/,/g, '').match(/\$\s*(\d+)/);
+    return m ? parseInt(m[1], 10) : 0;
+  };
+  money = (n) => '$' + n.toLocaleString('en-US');
+  bumpQty = (name, delta) => {
+    const q = Object.assign({}, this.state.qty || {});
+    const next = Math.max(0, Math.min(99, (q[name] || 0) + delta));
+    if (next === 0) { delete q[name]; } else { q[name] = next; }
+    this.setState({ qty: q, status: '' });
+  };
+  orderLines = () => {
+    const q = this.state.qty || {};
+    return this.tierDefs
+      .filter(d => (q[d.name] || 0) > 0)
+      .map(d => ({ name: d.name, qty: q[d.name], unit: this.unitPrice(d.amount) }));
+  };
+
+  submitRsvp = () => {
+    const s = this.state;
+    const name = (s.name || '').trim();
+    const contact = (s.contact || '').trim();
+    const lines = this.orderLines();
+    if (!lines.length) { this.setState({ status: 'Add at least one level to your order.' }); return; }
+    if (!name) { this.setState({ status: 'Add your name so we know who to write to.' }); return; }
+    if (!contact) { this.setState({ status: 'Add an email or phone number.' }); return; }
+
+    const total = lines.reduce((t, l) => t + l.unit * l.qty, 0);
+    const summary = lines.map(l => l.name + ' \u00d7' + l.qty).join(', ');
+    const row = {
+      level: summary,
+      items: JSON.stringify(lines),
+      amount: this.money(total),
+      name: name,
+      org: (s.org || '').trim(),
+      contact: contact,
+      note: (s.note || '').trim(),
+      createdAt: Date.now()
+    };
+
+    try {
+      const stored = JSON.parse(window.localStorage.getItem('jai-sponsor-rsvp') || '[]');
+      stored.push(row);
+      window.localStorage.setItem('jai-sponsor-rsvp', JSON.stringify(stored));
+    } catch (e) {}
+
+    const inst = window.__instant;
+    if (!inst) { this.setState({ status: 'Saved locally \u2014 reconnecting to the RSVP list.' }); return; }
+
+    this.setState({ status: 'Sending\u2026' });
+    Promise.resolve(inst.db.transact(inst.tx.sponsorRsvp[inst.id()].update(row)))
+      .then(() => this.setState({
+        status: 'You are on the sponsor list for ' + summary + '. We will follow up with the written agreement \u2014 nothing was charged.',
+        name: '', org: '', contact: '', note: ''
+      }))
+      .catch(() => this.setState({ status: 'Saved. We had trouble reaching the list and will retry \u2014 your RSVP is not lost.' }));
+  };
+
+  onRsvpName = (e) => this.setState({ name: e.target.value, status: '' });
+  onRsvpOrg = (e) => this.setState({ org: e.target.value, status: '' });
+  onRsvpContact = (e) => this.setState({ contact: e.target.value, status: '' });
+  onRsvpNote = (e) => this.setState({ note: e.target.value, status: '' });
+
+  componentDidMount() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+  }
+
+  componentWillUnmount() { window.removeEventListener('resize', this.onRailResize); this.lockScroll(false); }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      printHandout: this.printHandout,
+      tiers: this.tierDefs.filter(d => !d.hideCard).map(d => ({
+        name: d.name,
+        amount: d.amount,
+        color: d.color,
+        funds: d.funds,
+        cta: d.cta,
+        gets: d.gets.map(t => ({ text: t })),
+        onRsvp: () => this.openRsvp(d.name)
+      })),
+      rsvpDisplay: s.rsvpOpen ? 'flex' : 'none',
+      formOrder: this.railWide ? 0 : -1,
+      openRsvpAny: this.openRsvpAny,
+      closeRsvp: this.closeRsvp,
+      submitRsvp: this.submitRsvp,
+      rsvpStatus: s.status,
+      rsvpName: s.name,
+      rsvpOrg: s.org,
+      rsvpContact: s.contact,
+      rsvpNote: s.note,
+      onRsvpName: this.onRsvpName,
+      onRsvpOrg: this.onRsvpOrg,
+      onRsvpContact: this.onRsvpContact,
+      onRsvpNote: this.onRsvpNote,
+      thanked: !!s.thanked,
+      orderCount: (() => {
+        const n = this.orderLines().reduce((t, l) => t + l.qty, 0);
+        return n === 0 ? 'JanuaryAI Summit 2027' : (n === 1 ? '1 item' : n + ' items');
+      })(),
+      orderTotal: (() => {
+        const lines = this.orderLines();
+        const total = lines.reduce((t, l) => t + l.unit * l.qty, 0);
+        const hasGift = lines.filter(l => l.unit === 0).length > 0;
+        if (!lines.length) return '';
+        return hasGift && total === 0 ? 'Thank You' : this.money(total);
+      })(),
+      rsvpTiers: this.tierDefs.map((d, i) => {
+        const qty = (s.qty || {})[d.name] || 0;
+        const on = qty > 0;
+        const unit = this.unitPrice(d.amount);
+        return {
+          name: d.name,
+          unit: unit === 0 ? '' : this.money(unit) + ' each',
+          isPriced: unit > 0,
+          totalInk: on ? '#0d1512' : '#0f6b52',
+          rule: d.color,
+          qty: qty,
+          lineTotal: !on ? '' : (unit === 0 ? 'Thank You' : this.money(unit * qty)),
+          bg: on ? '#fbcfe0' : (i % 2 === 1 ? '#f6f8f7' : '#ffffff'),
+          dotBorder: on ? d.color : '#b8bab9',
+          dotFill: on ? d.color : '#ffffff',
+          inc: () => this.bumpQty(d.name, 1),
+          dec: () => this.bumpQty(d.name, -1),
+          onDot: () => this.bumpQty(d.name, qty > 0 ? -qty : 1)
+        };
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

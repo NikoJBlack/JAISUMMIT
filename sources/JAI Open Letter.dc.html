@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#a7ddc9">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#a7ddc9"/>
+    <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="220" fill="#ffffff">OL</text>
+  </svg>
+</template>
+
+<meta charset="utf-8">
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  a { color: #0f9d76; }
+  a:hover { color: #0b7a5c; }
+</style>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+</helmet>
+<div style="background:#ffffff; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(56px,12vh,120px) clamp(24px,7vw,80px) 80px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em;">
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8;">The</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">Open</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#8fd6bd; margin-top:clamp(-8px,-2vw,-14px);">Letter</span>
+  </div>
+  <p style="max-width:600px; margin:clamp(28px,5vh,40px) 0 0; text-align:center; font-style:italic; font-size:clamp(18px,3.4vw,22px); line-height:1.55; color:#6a6a6a;">To everyone who will live with the decisions being made right now.</p>
+
+  <div ref="{{ previewRef }}" style="max-width:720px; width:100%; margin-top:clamp(44px,7vh,68px); border:1px solid #dcdcdc; border-radius:14px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.07); box-sizing:border-box;">
+    <div style="display:flex; align-items:center; gap:12px; padding:12px 18px; border-bottom:1px solid #e6e6e6; background:#f7f9f8;">
+      <span style="flex:none; width:9px; height:9px; border-radius:50%; background:#a7ddc9;"></span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">{{ previewKicker }}</span>
+      <span style="margin-left:auto; font-family:Helvetica,Arial,sans-serif; font-size:11px; color:#9a9a9a;">{{ previewMeta }}</span>
+    </div>
+  <div onClick="{{ onPreviewClick }}" style="position:relative; padding:clamp(22px,4vw,34px); cursor:{{ previewCursor }}; max-height:{{ previewMax }}; overflow-y:{{ previewOverflow }};" style-after="content:''; position:absolute; left:0; right:0; bottom:0; height:90px; pointer-events:none; background:linear-gradient(to bottom, rgba(255,255,255,0), #ffffff); opacity:{{ previewFade }}; transition:opacity 0.2s ease;">
+    <sc-if value="{{ showSelected }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(20px,4vw,28px); line-height:1.15; text-transform:uppercase; color:#2f2f2f;">{{ selTitle }}</div>
+        <div style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:17px; color:#8a8a8a; margin-top:8px;">{{ selBlurb }}</div>
+        <sc-for list="{{ selParas }}" as="para" hint-placeholder-count="2">
+          <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:20px 0 0;">{{ para }}</p>
+        </sc-for>
+        <sc-if value="{{ selSourceUrl }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ selSourceUrl }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; min-height:44px; margin-top:18px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#0f9d76; text-decoration:none;">Read the full essay &#8599;</a>
+        </sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{ showDefault }}" hint-placeholder-val="{{ true }}">
+      <div>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;"><strong>JanuaryAI Community</strong><br />Artificial intelligence is being built quickly, by a small number of people, on behalf of everyone. That is not an accusation. It is simply where we are, and it is not a stable place to stay.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">We are not signing against this technology. Many of us build with it, work alongside it, and expect our children to live better because of it. We are signing for something: a seat at the table for the people who will absorb the consequences.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">We believe four things.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;"><strong>That those affected should help decide.</strong> The worker whose job changes, the parent whose school adopts a tutor, the patient whose scan is read by a model — each holds knowledge no research team can supply.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;"><strong>That evidence should outrank enthusiasm.</strong> Pilots should be measured honestly, results published whether or not they flatter anyone, and failures kept on the record where the next community can find them.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;"><strong>That capital carries responsibility.</strong> Money will decide much of what gets built. It should be answerable to the communities it reshapes, and its returns should be measurable in more than one currency.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;"><strong>That intelligence should be distributed, not concentrated.</strong> A capability this general should widen the number of people who can act, not narrow it.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">The JanuaryAI Project is one attempt at the institution these beliefs require: an open Commons, working groups that turn discussion into fundable plans, and an annual Summit where the community itself authorizes what proceeds. It will be judged, as it should be, by what it publishes and what it delivers.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">Signing this letter commits you to nothing more than presence — that when the questions are asked, you intend to be in the room. That is how the wisdom to govern this well gets assembled: not from a summit of experts alone, but from a community willing to keep showing up.</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 8px;">Add your name.</p>
+      </div>
+    </sc-if>
+  </div>
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:14px; padding:14px 18px; border-top:1px solid #e6e6e6; background:#f7f9f8;">
+      <button onClick="{{ onPreviewClick }}" style="border:none; cursor:pointer; background:rgba(244,143,177,0.7); color:#000; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; padding:10px 18px; border-radius:999px; min-height:40px;" style-hover="background:rgba(244,143,177,0.92);">{{ previewAction }}</button>
+      <a href="#jai-library" onClick="{{ onBackToLibrary }}" style="display:inline-flex; align-items:center; min-height:40px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#0f9d76; text-decoration:none;">&larr; Back to the library</a>
+    </div>
+  </div>
+
+  <div style="width:min(560px,92vw); margin-top:clamp(40px,6vh,56px); display:flex; flex-direction:column; gap:14px;">
+    <input type="text" value="{{ signer }}" onChange="{{ onSigner }}" placeholder="Your name" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:6px; padding:15px 20px; text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:clamp(16px,3.5vw,17px); color:#3a3a3a; outline:none;" />
+    <input type="text" value="{{ where }}" onChange="{{ onWhere }}" placeholder="City, State (optional)" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:6px; padding:15px 20px; text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:clamp(16px,3.5vw,17px); color:#3a3a3a; outline:none;" />
+    <sc-if value="{{ status }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; color:#0f9d76; font-size:14px;">{{ status }}</div>
+    </sc-if>
+    <div style="display:flex; justify-content:center;">
+      <button onClick="{{ onSign }}" style="border:none; cursor:pointer; background:rgba(244,143,177,0.7); color:#000; font-weight:900; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-size:clamp(13px,3.2vw,16px); padding:clamp(11px,2vw,14px) clamp(24px,5vw,34px); border-radius:24px;" style-hover="background:rgba(244,143,177,0.92);">YES ! YES!</button>
+    </div>
+  </div>
+
+  <div id="jai-library" ref="{{ libraryRef }}" style="max-width:720px; width:100%; margin-top:clamp(40px,6vh,60px); box-sizing:border-box;">
+    <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; border-bottom:1px solid #e2e2e2; padding-bottom:14px;">
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(18px,3.6vw,24px); text-transform:uppercase; color:#2f2f2f; letter-spacing:0.01em;">The Library</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:15px; color:#8a8a8a;">Published letters from the JanuaryAI Community.</span>
+    </div>
+    <div style="display:flex; flex-direction:column;">
+      <button onClick="{{ onPinnedClick }}" style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; padding:18px 0; border:none; border-bottom:1px solid #eeeeee; background:{{ pinnedBg }}; width:100%; text-align:left; cursor:pointer; transition:background 0.18s ease;" style-hover="background:#f6fbf9;">
+        <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; color:#0f9d76; min-width:26px;">&#9733;</span>
+        <div style="flex:1 1 260px; min-width:0;">
+          <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(14px,2.8vw,17px); text-transform:uppercase; color:#2f2f2f; line-height:1.25;">An Open Letter from the JanuaryAI Community</div>
+          <div style="font-family:Georgia,'Times New Roman',serif; font-size:16px; line-height:1.5; color:#6a6a6a; margin-top:5px;">The founding letter. A seat at the table for the people who will absorb the consequences.</div>
+        </div>
+        <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#ffffff; background:#0f9d76; border:1px solid #0f9d76; border-radius:999px; padding:5px 10px;">Published &middot; Pinned</span>
+      </button>
+      <button onClick="{{ onDarioClick }}" style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; padding:18px 0; border:none; border-bottom:1px solid #eeeeee; background:{{ darioBg }}; width:100%; text-align:left; cursor:pointer; transition:background 0.18s ease;" style-hover="background:#f6fbf9;">
+        <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.04em; color:#a7ddc9; min-width:74px;">Sep 2026</span>
+        <div style="flex:1 1 260px; min-width:0;">
+          <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(14px,2.8vw,17px); text-transform:uppercase; color:#2f2f2f; line-height:1.25;">We Must Pace the Frontier</div>
+          <div style="font-family:Georgia,'Times New Roman',serif; font-size:16px; line-height:1.5; color:#6a6a6a; margin-top:5px;">Dario Amodei, Anthropic &mdash; the case for slowing the frontier, and a three-part plan for doing it.</div>
+        </div>
+        <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#0f9d76; border:1px solid rgba(15,157,118,0.28); border-radius:999px; padding:5px 10px;">Published</span>
+      </button>
+
+    </div>
+  </div>
+
+
+  <div style="max-width:720px; width:100%; margin-top:clamp(48px,8vh,72px); box-sizing:border-box;">
+    <button onClick="{{ toggleField }}" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; width:100%; background:none; border:none; border-bottom:1px solid #e2e2e2; padding:0 0 14px; cursor:pointer; text-align:left;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ fieldArrow }};">&#9654;</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(18px,3.6vw,24px); text-transform:uppercase; color:#2f2f2f; letter-spacing:0.01em;">From the Wider Field</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:15px; color:#8a8a8a;">Letters and statements already on the record, most recent first.</span>
+    </button>
+    <sc-if value="{{ fieldOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex; flex-direction:column;">
+      <sc-for list="{{ field }}" as="doc" hint-placeholder-count="12">
+        <a href="{{ doc.url }}" target="_blank" rel="noopener" style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; padding:18px 0; border-bottom:1px solid #eeeeee; text-decoration:none; transition:background 0.18s ease;" style-hover="background:#f6fbf9;">
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.04em; color:#a7ddc9; min-width:74px;">{{ doc.date }}</span>
+          <div style="flex:1 1 260px; min-width:0;">
+            <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(14px,2.8vw,17px); text-transform:uppercase; color:#2f2f2f; line-height:1.25;">{{ doc.title }}</div>
+            <div style="font-family:Georgia,'Times New Roman',serif; font-size:16px; line-height:1.5; color:#6a6a6a; margin-top:5px;">{{ doc.who }} &mdash; {{ doc.note }}</div>
+          </div>
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#0f9d76; border:1px solid rgba(15,157,118,0.28); border-radius:999px; padding:5px 10px;">Read &#8599;</span>
+        </a>
+      </sc-for>
+    </div>
+    <div style="font-family:Georgia,'Times New Roman',serif; font-size:14px; line-height:1.55; color:#9a9a9a; margin-top:16px;">Listed for reference. Inclusion is not endorsement, and none of these authors are affiliated with the JanuaryAI Foundation.</div>
+    </sc-if>
+  </div>
+
+  <div style="max-width:720px; width:100%; margin-top:clamp(40px,6vh,60px); box-sizing:border-box;">
+    <button onClick="{{ toggleDrafts }}" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; width:100%; background:none; border:none; border-bottom:1px solid #e2e2e2; padding:0 0 14px; cursor:pointer; text-align:left;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ draftsArrow }};">&#9654;</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(18px,3.6vw,24px); text-transform:uppercase; color:#2f2f2f; letter-spacing:0.01em;">Drafts by Category</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:15px; color:#8a8a8a;">Letters still to be written &mdash; tap one to preview it.</span>
+    </button>
+    <sc-if value="{{ draftsOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex; flex-direction:column;">
+      <sc-for list="{{ library }}" as="entry" hint-placeholder-count="8">
+        <button onClick="{{ entry.onClick }}" style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; padding:18px 0; border:none; border-bottom:1px solid #eeeeee; background:{{ entry.rowBg }}; width:100%; text-align:left; cursor:pointer; transition:background 0.18s ease;" style-hover="background:#f6fbf9;">
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; color:#a7ddc9; min-width:26px;">{{ entry.num }}</span>
+          <div style="flex:1 1 260px; min-width:0;">
+            <div style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(14px,2.8vw,17px); text-transform:uppercase; color:#2f2f2f; line-height:1.25;">{{ entry.title }}</div>
+            <div style="font-family:Georgia,'Times New Roman',serif; font-size:16px; line-height:1.5; color:#6a6a6a; margin-top:5px;">{{ entry.blurb }}</div>
+          </div>
+          <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#0f9d76; border:1px solid rgba(15,157,118,0.28); border-radius:999px; padding:5px 10px;">{{ entry.status }}</span>
+        </button>
+      </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="max-width:720px; width:100%; margin-top:clamp(40px,6vh,60px); box-sizing:border-box;">
+    <button onClick="{{ toggleSummaries }}" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px; width:100%; background:none; border:none; border-bottom:1px solid #e2e2e2; padding:0 0 14px; cursor:pointer; text-align:left;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ summariesArrow }};">&#9654;</span>
+      <span style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(18px,3.6vw,24px); text-transform:uppercase; color:#2f2f2f; letter-spacing:0.01em;">AI Community Summaries</span>
+      <span style="font-family:Georgia,'Times New Roman',serif; font-style:italic; font-size:15px; color:#8a8a8a;">What the Commons is saying, by category &mdash; a letter drafts itself at 20 posts.</span>
+    </button>
+    <sc-if value="{{ summariesOpen }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="font-family:Georgia,'Times New Roman',serif; font-size:15px; line-height:1.55; color:#8a8a8a; margin:16px 0 4px;">{{ summaryWeekLabel }}</div>
+        <div style="display:flex; flex-direction:column;">
+          <sc-for list="{{ summaries }}" as="cat" hint-placeholder-count="8">
+            <div style="padding:18px 0; border-bottom:1px solid #eeeeee;">
+              <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px;">
+                <div style="flex:1 1 240px; min-width:0;">
+                  <a href="{{ cat.href }}" style="font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:clamp(14px,2.8vw,17px); text-transform:uppercase; color:#2f2f2f; line-height:1.25; text-decoration:none;">A Letter from {{ cat.topic }}</a>
+                  <div style="font-family:Georgia,'Times New Roman',serif; font-size:16px; line-height:1.5; color:#6a6a6a; margin-top:5px;">{{ cat.summary }}</div>
+                </div>
+                <span style="flex:none; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:{{ cat.chipColor }}; background:{{ cat.chipBg }}; border:1px solid {{ cat.chipBorder }}; border-radius:999px; padding:5px 10px;">{{ cat.chipLabel }}</span>
+              </div>
+              <div style="height:6px; border-radius:999px; background:#f0f0f0; margin-top:12px; overflow:hidden;">
+                <div style="height:6px; border-radius:999px; background:{{ cat.barColor }}; width:{{ cat.barWidth }}; transition:width 0.3s ease;"></div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:10px;">
+                <span style="font-family:Helvetica,Arial,sans-serif; font-size:12px; color:#9a9a9a;">{{ cat.countLabel }}</span>
+                <sc-if value="{{ cat.ready }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ cat.onRead }}" style="cursor:pointer; background:none; border:none; padding:0; min-height:40px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#0f9d76;">Read the draft &rarr;</button>
+                </sc-if>
+                <a href="{{ cat.href }}" style="display:inline-flex; align-items:center; min-height:40px; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#0f9d76; text-decoration:none;">See the posts &rarr;</a>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-family:Georgia,'Times New Roman',serif; font-size:14px; line-height:1.55; color:#9a9a9a; margin-top:16px;">{{ summaryFootnote }}</div>
+      </div>
+    </sc-if>
+  </div>
+  <div style="display:flex; gap:24px; margin-top:clamp(48px,8vh,72px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./JAI%20Project%20website.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Home</a>
+    <a href="./JanuaryAI%20Charter%20Overview.dc.html#principals" style="color:#0f9d76; text-decoration:none;">The Principles &rarr;</a>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:56px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: '#' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  state = { signer: '', where: '', status: '' };
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  componentDidMount() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+  }
+
+  componentWillUnmount() { window.removeEventListener('resize', this.onRailResize); }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  onSigner = (e) => this.setState({ signer: e.target.value });
+  onWhere = (e) => this.setState({ where: e.target.value });
+
+  onSign = () => {
+    const signer = this.state.signer.trim();
+    if (!signer) { this.setState({ status: 'Add your name to sign.' }); return; }
+    const inst = window.__instant;
+    if (!inst) { this.setState({ status: 'Connecting…' }); return; }
+    try {
+      inst.db.transact(inst.tx.openLetter[inst.id()].update({
+        signer: signer, where: this.state.where.trim(), signedAt: Date.now()
+      }));
+      this.setState({ status: 'Signed — thank you for adding your name.', signer: '', where: '' });
+    } catch (err) {
+      this.setState({ status: 'Something went wrong, try again.' });
+    }
+  };
+
+  field = [
+    { date: 'Sep 2026', title: 'We Must Pace the Frontier', who: 'Dario Amodei, Anthropic', note: 'Calls on the industry to slow capability growth; Anthropic commits to permanent embedded evaluators.', url: 'https://darioamodei.com/post/we-must-pace-the-frontier' },
+    { date: '2026', title: 'The Human Statement', who: 'humanstatement.org', note: 'A broad coalition asking that AI amplify human potential rather than replace people.', url: 'https://humanstatement.org/' },
+    { date: 'Aug 2026', title: 'The Future is for Everyone', who: 'Mark Zuckerberg, Meta', note: 'A 6,500-word letter arguing superintelligence should be delivered to everyone, with open weights and fewer restrictions.', url: 'https://about.fb.com/news/2026/08/the-future-is-for-everyone/' },
+    { date: 'May 2026', title: 'Magnifica Humanitas', who: 'Pope Leo XIV', note: 'The first encyclical of his pontificate: safeguarding the human person in the time of AI, and a warning against control resting with a few.', url: 'https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html' },
+    { date: 'Oct 2025', title: 'Statement on Superintelligence', who: 'Future of Life Institute coalition', note: 'Thirty words calling for a prohibition on superintelligence absent scientific consensus and public buy-in.', url: 'https://superintelligence-statement.org/' },
+    { date: 'Jul 2025', title: 'Personal Superintelligence', who: 'Mark Zuckerberg, Meta', note: 'His AI manifesto: superintelligence in everyone\u2019s hands rather than concentrated in an automated few.', url: 'https://www.meta.com/superintelligence/' },
+    { date: 'Jun 2025', title: 'The Gentle Singularity', who: 'Sam Altman, OpenAI', note: 'Argues the takeoff has already started, with year-by-year predictions through 2027.', url: 'https://blog.samaltman.com/the-gentle-singularity' },
+    { date: 'Feb 2025', title: 'Three Observations', who: 'Sam Altman, OpenAI', note: 'Three claims about the economics of intelligence — log-linear returns to compute, cost falling ~10x a year, and value scaling super-exponentially.', url: 'https://blog.samaltman.com/three-observations' },
+    { date: 'Jan 2025', title: 'Reflections', who: 'Sam Altman, OpenAI', note: 'Written after the 2023 board crisis: says OpenAI now knows how to build AGI as traditionally understood and is turning toward superintelligence.', url: 'https://blog.samaltman.com/reflections' },
+    { date: 'Oct 2024', title: 'Machines of Loving Grace', who: 'Dario Amodei, Anthropic', note: 'The case for the upside, in specifics: biology, mental health, development, peace, and work.', url: 'https://darioamodei.com/machines-of-loving-grace' },
+    { date: 'Sep 2024', title: 'The Intelligence Age', who: 'Sam Altman, OpenAI', note: 'Argues deep learning worked, prosperity follows compute, and the transformation will arrive incrementally rather than all at once.', url: 'https://ia.samaltman.com/' },
+    { date: 'Mar 2024', title: 'UN Resolution on Safe and Trustworthy AI', who: 'UN General Assembly, adopted by consensus', note: 'The first global resolution on AI, co-sponsored by 120+ states, tying the technology to the Sustainable Development Goals and the digital divide.', url: 'https://news.un.org/en/story/2024/03/1147831' },
+    { date: 'Nov 2023', title: 'The Bletchley Declaration', who: '28 countries and the EU, AI Safety Summit', note: 'The US, China, the EU and 25 others sign one page agreeing frontier AI poses risks that demand shared scientific assessment.', url: 'https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023' },
+    { date: 'Oct 2023', title: 'Global AI Governance Initiative', who: 'Xi Jinping / People\u2019s Republic of China', note: 'A state proposal that AI be people-centered, that no country monopolize it, and that developing nations have equal access and a voice in governance.', url: 'https://www.fmprc.gov.cn/eng/wjdt_665385/2649_665393/202310/t20231020_11164834.html' },
+    { date: 'May 2023', title: 'Statement on AI Risk', who: 'Geoffrey Hinton and 350+ signatories, Center for AI Safety', note: 'One sentence: mitigating extinction risk from AI should be a global priority alongside pandemics and nuclear war. Hinton left Google weeks earlier to say it freely.', url: 'https://safe.ai/work/statement-on-ai-risk' },
+    { date: 'Mar 2023', title: 'Pause Giant AI Experiments', who: 'Future of Life Institute', note: 'Called on all labs to pause training beyond GPT-4 for six months; 30,000+ signatures.', url: 'https://futureoflife.org/open-letter/pause-giant-ai-experiments/' },
+    { date: 'Mar 2023', title: 'The Age of AI Has Begun', who: 'Bill Gates', note: 'Ranks AI with the graphical interface as a revolution, and argues for aiming it at inequity first.', url: 'https://www.gatesnotes.com/The-Age-of-AI-Has-Begun' },
+    { date: 'Feb 2023', title: 'ChatGPT Heralds an Intellectual Revolution', who: 'Henry Kissinger, Eric Schmidt & Daniel Huttenlocher', note: 'A Wall Street Journal essay placing generative AI on the scale of the Enlightenment, and asking what purpose we intend for it.', url: 'https://www.henryakissinger.com/articles/chatgpt-heralds-an-intellectual-revolution/' },
+    { date: 'Nov 2021', title: 'Recommendation on the Ethics of AI', who: 'UNESCO, 193 member states', note: 'The first global standard on AI ethics agreed by essentially every country on earth, with binding policy areas from data governance to environment.', url: 'https://www.unesco.org/en/artificial-intelligence/recommendation-ethics' },
+    { date: 'Mar 2021', title: "Moore's Law for Everything", who: 'Sam Altman', note: 'An argument for taxing capital and land as AI drives down the cost of labor.', url: 'https://moores.samaltman.com/' },
+    { date: 'Feb 2020', title: 'The Rome Call for AI Ethics', who: 'Pontifical Academy for Life, IBM, Microsoft, FAO, Italian government', note: 'Signed at the Vatican: an algorethics pledge binding faith institutions, industry, and states to transparency, inclusion, and human responsibility.', url: 'https://www.romecall.org/' },
+    { date: 'May 2019', title: 'OECD AI Principles', who: 'OECD member governments', note: 'The first intergovernmental AI standard: inclusive growth, human-centered values, transparency, robustness, accountability. Adopted later by the G20.', url: 'https://oecd.ai/en/ai-principles' },
+    { date: 'Jan 2017', title: 'The Asilomar AI Principles', who: 'Future of Life Institute conference', note: 'Twenty-three principles drafted by AI researchers at Asilomar — research norms, ethics and values, longer-term issues. The template every later statement borrows from.', url: 'https://futureoflife.org/open-letter/ai-principles/' }
+  ];
+
+  THRESHOLD = 20;
+  MINE_STORE = 'jai-commons-mine';
+  summariesOpen = false;
+  commonsPosts = [];
+
+  TOPIC_ANCHORS = {
+    Workforce: 'workforce', Education: 'education', Healthcare: 'healthcare', Governance: 'governance',
+    Climate: 'climate', Opportunity: 'opportunity', Discovery: 'discovery', Civic: 'civic'
+  };
+
+  toggleSummaries = () => { this.summariesOpen = !this.summariesOpen; this.forceUpdate(); };
+
+  weekOf(d) {
+    const dt = d ? new Date(d) : new Date();
+    const day = (dt.getDay() + 6) % 7;
+    dt.setHours(0, 0, 0, 0);
+    dt.setDate(dt.getDate() - day);
+    return dt.toISOString().slice(0, 10);
+  }
+
+  loadCommons() {
+    let local = [];
+    try { local = JSON.parse(window.localStorage.getItem(this.MINE_STORE) || '[]'); } catch (e) {}
+    this.commonsPosts = local.map(p => ({ topic: p.topic, title: p.title, author: p.author, createdAt: p.at || Date.now() }));
+    this.forceUpdate();
+    const inst = window.__instant;
+    if (!inst || !inst.db || !inst.db.subscribeQuery) return;
+    try {
+      inst.db.subscribeQuery({ commonsPosts: {} }, (res) => {
+        const rows = (res && res.data && res.data.commonsPosts) || [];
+        const seen = {};
+        const merged = rows.concat(this.commonsPosts).filter(r => {
+          const k = (r.localId || '') + '|' + (r.title || '');
+          if (seen[k]) return false;
+          seen[k] = true;
+          return true;
+        });
+        this.commonsPosts = merged;
+        this.forceUpdate();
+        this.maybeDraft();
+      });
+      inst.db.subscribeQuery({ letterDrafts: {} }, (res) => {
+        this.savedDrafts = (res && res.data && res.data.letterDrafts) || [];
+        this.forceUpdate();
+      });
+    } catch (e) {}
+  }
+
+  byTopic() {
+    const groups = {};
+    this.commonsPosts.forEach(p => {
+      const k = p.topic || 'Unsorted';
+      if (!groups[k]) groups[k] = [];
+      groups[k].push(p);
+    });
+    return groups;
+  }
+
+  composeLetter(topic, posts) {
+    const week = this.weekOf();
+    const voices = posts.map(p => p.author).filter((a, i, arr) => a && arr.indexOf(a) === i).length;
+    const titles = posts.slice(0, 3).map(p => '\u201c' + (p.title || '').replace(/\u201d/g, '') + '\u201d');
+    return {
+      topic: topic,
+      weekOf: week,
+      postCount: posts.length,
+      voiceCount: voices,
+      body: [
+        'This letter was assembled by the community, not written for it. In the week of ' + week + ', ' + posts.length + ' posts from ' + voices + ' members of the Commons concerned ' + topic.toLowerCase() + '.',
+        'The threads that carried the most weight were ' + titles.join(', ') + '.',
+        'We are not asking anyone to agree with every post behind this letter. We are saying that ' + posts.length + ' people took the trouble to write down what they are seeing, and that a record of that kind is evidence a working group can act on.',
+        'A drafting circle will edit this into a signed letter. Until then it stands as the Commons speaks it \u2014 unedited, attributed, and open to correction.'
+      ].join('\n\n')
+    };
+  }
+
+  maybeDraft() {
+    if (!this.isConfigured || !this.isConfigured()) return;
+    const inst = window.__instant;
+    const week = this.weekOf();
+    const groups = this.byTopic();
+    const saved = this.savedDrafts || [];
+    Object.keys(groups).forEach(topic => {
+      const posts = groups[topic];
+      if (posts.length < this.THRESHOLD) return;
+      if (saved.some(d => d.topic === topic && d.weekOf === week)) return;
+      const letter = this.composeLetter(topic, posts);
+      try {
+        inst.db.transact(inst.tx.letterDrafts[inst.id()].update({
+          topic: letter.topic, weekOf: letter.weekOf, body: letter.body,
+          postCount: letter.postCount, voiceCount: letter.voiceCount, createdAt: Date.now()
+        }));
+      } catch (e) {}
+    });
+  }
+
+  isConfigured() {
+    const inst = window.__instant;
+    return !!(inst && inst.appId && inst.db && String(inst.appId).indexOf('REPLACE_WITH') === -1);
+  }
+
+  componentDidMount() { this.loadCommons(); }
+
+  buildSummaries() {
+    const groups = this.byTopic();
+    const known = Object.keys(this.TOPIC_ANCHORS);
+    const topics = known.concat(Object.keys(groups).filter(k => known.indexOf(k) === -1));
+    return topics.map(topic => {
+      const posts = groups[topic] || [];
+      const n = posts.length;
+      const ready = n >= this.THRESHOLD;
+      const pct = Math.min(100, Math.round((n / this.THRESHOLD) * 100));
+      const anchor = this.TOPIC_ANCHORS[topic] || '';
+      return {
+        topic: topic,
+        href: './JAI%20Issues%20Topics%20Posts.dc.html' + (anchor ? '#' + anchor : ''),
+        summary: n === 0
+          ? 'No posts yet this week. The first one starts the letter.'
+          : (ready
+            ? 'Threshold met \u2014 a draft letter has been composed from ' + n + ' posts and saved to this week\u2019s record.'
+            : n + ' of ' + this.THRESHOLD + ' posts. ' + (this.THRESHOLD - n) + ' more and this category drafts its own letter.'),
+        countLabel: n + (n === 1 ? ' post' : ' posts') + ' \u00b7 week of ' + this.weekOf(),
+        chipLabel: ready ? 'Draft ready' : 'Collecting',
+        chipColor: ready ? '#ffffff' : '#0f9d76',
+        chipBg: ready ? '#0f9d76' : '#ffffff',
+        chipBorder: ready ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        barColor: ready ? '#0f9d76' : '#a7ddc9',
+        barWidth: pct + '%',
+        ready: ready,
+        onRead: () => {
+          this.selected = 'summary';
+          this.summaryLetter = this.composeLetter(topic, posts);
+          this.expanded = true;
+          this.forceUpdate();
+          setTimeout(() => {
+            const el = this.previewRef.current;
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+          }, 30);
+        }
+      };
+    });
+  }
+
+  previewRef = React.createRef();
+  libraryRef = React.createRef();
+
+  library = [
+    { num: '01', title: 'A Letter from Labor', blurb: 'Written by someone whose trade is being rewritten in real time.', status: 'Author sought',
+      paras: ['The question on the shop floor is not whether the tools are impressive. It is who decides how fast they arrive, and who carries the cost of the transition.',
+              'This letter is open. If your trade is being rewritten and you are willing to write it plainly, the Commons will carry it.'] },
+    { num: '02', title: 'A Letter from the Classroom', blurb: 'A teacher on what a tutor that never tires changes, and what it cannot.', status: 'Invited',
+      paras: ['A tutor that never tires is a real gift to a child who has never had one. It is also not a teacher, and pretending otherwise will cost a generation.',
+              'An author has been invited. The draft will be published here for community comment before it is signed.'] },
+    { num: '03', title: 'A Letter from Medicine', blurb: 'A clinician on reading a scan the machine has already read.', status: 'Invited',
+      paras: ['The model reads the scan first now. What remains is judgment, accountability, and the conversation with the person in the room.',
+              'An author has been invited. The draft will be published here for community comment before it is signed.'] },
+    { num: '04', title: 'A Letter from the Farm', blurb: 'Rural capacity, rural bandwidth, and who the yield belongs to.', status: 'Author sought',
+      paras: ['Precision agriculture arrived before reliable broadband did. The data leaves the field faster than the value comes back to it.',
+              'This letter is open. Working growers and rural cooperatives are invited to write it.'] },
+    { num: '05', title: 'A Letter from the Builders', blurb: 'From inside the labs: what responsibility looks like from the keyboard.', status: 'Drafting',
+      paras: ['We are the small number of people the community letter describes. That is not a comfortable sentence to write, and it is the honest one.',
+              'A draft is in progress and will be posted for comment when it is ready.'] },
+    { num: '06', title: 'A Letter from Capital', blurb: 'An investor on returns measured in more than one currency.', status: 'Invited',
+      paras: ['Money will decide much of what gets built. The useful question is what it agrees to be measured against.',
+              'An author has been invited. The draft will be published here for community comment before it is signed.'] },
+    { num: '07', title: 'A Letter from the Bench', blurb: 'Law, evidence, and accountability when the decision-maker is a model.', status: 'Author sought',
+      paras: ['A record that cannot be examined is not evidence. Courts will need to say so, and soon.',
+              'This letter is open to judges, litigators, and legal scholars willing to write it in plain language.'] },
+    { num: '08', title: 'A Letter from the Young', blurb: 'From those who will inherit every decision made this decade.', status: 'Open call',
+      paras: ['Everything decided in the next few years will be lived in by people who had no vote in it.',
+              'This one is an open call. Anyone under twenty-five may submit a draft through the Commons.'] }
+  ];
+
+  selected = -1;
+  expanded = false;
+  fieldOpen = false;
+  draftsOpen = false;
+
+  toggleField = () => { this.fieldOpen = !this.fieldOpen; this.forceUpdate(); };
+  toggleDrafts = () => { this.draftsOpen = !this.draftsOpen; this.forceUpdate(); };
+
+  dario = {
+    title: 'We Must Pace the Frontier',
+    blurb: 'Dario Amodei, Anthropic — September 12, 2026',
+    url: 'https://darioamodei.com/post/we-must-pace-the-frontier',
+    paras: [
+      'The CEO of a frontier lab argues that the industry must slow the rate at which it makes models more capable — a reversal of his long-held position that building fast and building safely were compatible.',
+      'Two developments changed his calculus: recursive self-improvement, where models help build the next generation of models, and an incident in which a swarm of agents launched cyberattacks no one asked for.',
+      'The essay proposes three steps — embedded independent evaluators, coordination among democratic-country labs on common standards and rate limits, and eventual coordination with authoritarian governments. Anthropic commits unilaterally to the first: permanent, employee-level access for third-party evaluators.',
+      'We list it here because it is the clearest statement yet from inside the labs that pace itself is a governance question — which is the question this community exists to answer in public.'
+    ]
+  };
+
+  onDarioClick = (e) => {
+    e.preventDefault();
+    this.selected = 'dario';
+    this.expanded = false;
+    this.forceUpdate();
+    setTimeout(() => {
+      const el = this.previewRef.current;
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+    }, 30);
+  };
+
+  selectLetter(i) {
+    this.selected = i;
+    this.expanded = false;
+    this.forceUpdate();
+    setTimeout(() => {
+      const el = this.previewRef.current;
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+    }, 30);
+  }
+
+  onPreviewClick = () => { this.expanded = !this.expanded; this.forceUpdate(); };
+
+  onPinnedClick = (e) => {
+    e.preventDefault();
+    this.selected = -1;
+    this.expanded = false;
+    this.forceUpdate();
+    setTimeout(() => {
+      const el = this.previewRef.current;
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+    }, 30);
+  };
+
+  onBackToLibrary = (e) => {
+    e.preventDefault();
+    this.selected = -1;
+    this.expanded = false;
+    this.forceUpdate();
+    setTimeout(() => {
+      const el = this.libraryRef.current;
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 76, behavior: 'smooth' });
+    }, 30);
+  };
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    return {
+      library: this.library.map((d, i) => Object.assign({}, d, {
+        rowBg: this.selected === i ? '#f6fbf9' : 'transparent',
+        onClick: () => this.selectLetter(i)
+      })),
+      pinnedBg: (this.selected !== 'dario' && this.selected !== 'summary' && this.selected < 0) ? '#f6fbf9' : 'transparent',
+      onPinnedClick: this.onPinnedClick,
+      field: this.field,
+      fieldOpen: this.fieldOpen,
+      fieldArrow: this.fieldOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      draftsOpen: this.draftsOpen,
+      draftsArrow: this.draftsOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      toggleField: this.toggleField,
+      toggleDrafts: this.toggleDrafts,
+      previewRef: this.previewRef,
+      libraryRef: this.libraryRef,
+      summaries: this.buildSummaries(),
+      summariesOpen: this.summariesOpen,
+      summariesArrow: this.summariesOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      toggleSummaries: this.toggleSummaries,
+      summaryWeekLabel: 'Week of ' + this.weekOf() + ' \u00b7 ' + this.commonsPosts.length + ' posts read from the Commons',
+      summaryFootnote: 'Counts include posts saved to this device and every post synced to the Commons record. At ' + this.THRESHOLD + ' posts a category composes its letter automatically and the draft is filed for that week.',
+      darioBg: this.selected === 'dario' ? '#f6fbf9' : 'transparent',
+      onDarioClick: this.onDarioClick,
+      showSelected: this.selected === 'dario' || this.selected === 'summary' || this.selected >= 0,
+      showDefault: this.selected !== 'dario' && this.selected !== 'summary' && this.selected < 0,
+      selTitle: this.selected === 'summary' ? ('A Letter from ' + (this.summaryLetter ? this.summaryLetter.topic : '')) : (this.selected === 'dario' ? this.dario.title : (this.selected >= 0 ? this.library[this.selected].title : '')),
+      selBlurb: this.selected === 'summary' ? ('Composed by the Commons \u00b7 week of ' + (this.summaryLetter ? this.summaryLetter.weekOf : '')) : (this.selected === 'dario' ? this.dario.blurb : (this.selected >= 0 ? this.library[this.selected].blurb : '')),
+      selParas: this.selected === 'summary' ? (this.summaryLetter ? this.summaryLetter.body.split('\n\n') : []) : (this.selected === 'dario' ? this.dario.paras : (this.selected >= 0 ? this.library[this.selected].paras : [])),
+      selSourceUrl: this.selected === 'dario' ? this.dario.url : '',
+      previewKicker: this.selected === 'summary' ? 'Community summary' : (this.selected === 'dario' ? 'From the wider field' : (this.selected >= 0 ? 'Library preview' : 'Featured letter')),
+      previewMeta: this.selected === 'summary' ? ((this.summaryLetter ? this.summaryLetter.postCount : 0) + ' posts') : (this.selected === 'dario' ? 'Sep 12, 2026' : (this.selected >= 0 ? this.library[this.selected].status : 'January 2026')),
+      previewMax: this.expanded ? 'none' : 'clamp(240px,32vh,340px)',
+      previewOverflow: this.expanded ? 'visible' : 'hidden',
+      previewFade: this.expanded ? 0 : (this.selected === 'summary' ? 1 : this.selected === 'dario' ? 1 : this.selected < 0 ? 1 : (this.library[this.selected].paras.join(' ').length > 340 ? 1 : 0)),
+      previewCursor: 'pointer',
+      previewAction: this.expanded ? 'Collapse the letter' : 'Read the letter',
+      onPreviewClick: this.onPreviewClick,
+      onBackToLibrary: this.onBackToLibrary,
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      signer: this.state.signer,
+      where: this.state.where,
+      status: this.state.status,
+      onSigner: this.onSigner,
+      onWhere: this.onWhere,
+      onSign: this.onSign
+    };
+  }
+}
+</script>
+</body>
+</html>

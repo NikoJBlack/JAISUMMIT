@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#0f9d76">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0f9d76"/>
+    <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="220" fill="#ffffff">MM</text>
+  </svg>
+</template>
+
+<meta charset="utf-8">
+<script src="./image-slot.js"></script>
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  @keyframes momMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  a { color: #0f9d76; }
+  a:hover { color: #0b7a5c; }
+</style>
+</helmet>
+<div style="background:#ffffff; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(56px,12vh,120px) clamp(24px,7vw,80px) 80px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em;">
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8;">Meeting</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">of the</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#8fd6bd; margin-top:clamp(-8px,-2vw,-14px);">Minds</span>
+  </div>
+  <p style="max-width:600px; margin:clamp(28px,5vh,40px) 0 0; text-align:center; font-style:italic; font-size:clamp(18px,3.4vw,22px); line-height:1.55; color:#6a6a6a;">Meeting of the Minds is a circle.</p>
+
+  <div style="width:min(900px,100%); margin-top:clamp(32px,5vh,44px);">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:14px;">
+      <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">Active topics</div>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html" style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;">All issues, topics &amp; posts &rarr;</a>
+    </div>
+    <div style="overflow:hidden; padding-bottom:6px; mask-image:linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); -webkit-mask-image:linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);">
+      <div style="display:flex; gap:14px; width:max-content; animation:momMarquee 48s linear infinite;">
+        <div style="display:flex; gap:14px;">
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#workforce" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-workforce" src="./uploads/JanuaryAI_06.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Workforce image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Workforce</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#education" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-education" src="./uploads/JanuaryAI_22.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Education image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Education</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#healthcare" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-healthcare" src="./uploads/JanuaryAI_05.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Healthcare image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Healthcare</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#opportunity" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-opportunity" src="./uploads/JanuaryAI_23.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Opportunity image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Opportunity</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#climate" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-climate" src="./uploads/JanuaryAI_15.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Climate image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Climate</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#governance" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-governance" src="./uploads/JanuaryAI_24.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Governance image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">AI Governance</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#civic" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-civic" src="./uploads/JanuaryAI_19.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Civic Participation image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Civic Participation</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#discovery" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-discovery" src="./uploads/JanuaryAI_25.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Scientific Discovery image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Scientific Discovery</div>
+      </a>
+        </div>
+        <div aria-hidden="true" style="display:flex; gap:14px;">
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#workforce" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-workforce" src="./uploads/JanuaryAI_06.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Workforce image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Workforce</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#education" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-education" src="./uploads/JanuaryAI_22.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Education image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Education</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#healthcare" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-healthcare" src="./uploads/JanuaryAI_05.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Healthcare image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Healthcare</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#opportunity" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-opportunity" src="./uploads/JanuaryAI_23.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Opportunity image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Opportunity</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#climate" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-climate" src="./uploads/JanuaryAI_15.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Climate image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Climate</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#governance" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-governance" src="./uploads/JanuaryAI_24.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Governance image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">AI Governance</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#civic" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-civic" src="./uploads/JanuaryAI_19.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Civic Participation image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Civic Participation</div>
+      </a>
+      <a href="./JAI%20Issues%20Topics%20Posts.dc.html#discovery" style="width:170px; flex:none; text-decoration:none;">
+        <image-slot id="mom-topic-discovery" src="./uploads/JanuaryAI_25.jpg" style="width:100%; height:110px; object-fit:cover;" shape="rounded" radius="12" placeholder="Scientific Discovery image"></image-slot>
+        <div style="margin-top:8px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#2f2f2f;">Scientific Discovery</div>
+      </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:640px; width:100%; margin-top:clamp(48px,8vh,72px);">
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Artificial intelligence is changing how we work, learn, create, and live, and the future will not be shaped by one company or one voice. It will be shaped by people willing to learn from each other.</p>
+
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">As ideas mature within the Commons, some demonstrate exceptional promise. Those ideas move into the second phase of the annual cycle: the Meeting of the Minds. Entrepreneurs, educators, researchers, artists, students, policy makers, and curious citizens are selected for expertise, lived experience, professional perspective, or demonstrated commitment to a particular challenge, and they take up a simple question: how can AI expand human potential and serve the common good? The objective is not to debate whether a problem exists. The objective is to design solutions.</p>
+
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Bring your questions, your ideas, and your work. Your voice stays yours. If others want to learn from your ideas, we encourage them to visit your website, read your research, listen to your podcast, and bring that perspective back to the circle. What you find here reflects our best thinking today &mdash; a beginning, not a finish line.</p>
+
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:clamp(18px,3.4vw,22px); line-height:1.55; color:#0f9d76; margin:0 0 22px;">Pull up a chair. The circle is forming. We&rsquo;d be honored to hear your perspective.</p>
+
+    <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:36px 0 18px;">The Working Groups</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 18px;">Groups are organized around specific themes, and new ones emerge as the community identifies new priorities.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px 22px; margin:0 0 26px;">
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Workforce transformation</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Education</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Healthcare</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Entrepreneurship</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Scientific discovery</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Government innovation</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Climate resilience</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Civic participation</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Economic opportunity</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">AI governance</div>
+    </div>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Each group functions as a multidisciplinary design studio. Researchers contribute evidence. Entrepreneurs contribute practical experience. Community leaders contribute lived reality. Investors contribute financial insight. Policy experts contribute regulatory perspective. AI systems contribute analysis, synthesis, and scenario planning. Together they produce something none could create independently.</p>
+
+    <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:36px 0 18px;">The Deliverables</p>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 18px;">Every Meeting of the Minds concludes with tangible outputs. Each proposal includes:</p>
+    <div style="display:flex; flex-direction:column; gap:9px; margin:0 0 26px;">
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">A clearly defined societal challenge</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">The opportunity created by AI</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">A proposed solution</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Stakeholders and beneficiaries</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Governance considerations and ethical implications</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Budget requirements and success metrics</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Pilot implementation strategy and scaling potential</div>
+      <div style="font-size:clamp(16px,3vw,18px); line-height:1.5; color:#4a4a4a;">Risks and mitigation plans</div>
+    </div>
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0;">By the conclusion of this phase, ideas are no longer conversations. They are investment-ready initiatives, carried forward to the January Summit where the community decides what gets built.</p>
+  </div>
+
+  <div style="display:flex; gap:24px; margin-top:clamp(48px,8vh,72px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./JAI%20Project%20website.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Home</a>
+    <a href="./JanuaryAI%20Charter%20Overview.dc.html#cycle" style="color:#0f9d76; text-decoration:none;">The Virtuous Cycle &rarr;</a>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:56px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: '#' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  watchRailWidth() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+    this.onRailResize();
+  }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  componentDidMount() { this.watchRailWidth(); }
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() { return { navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef, railEnter: () => this.setRailOpen(true), railLeave: () => this.setRailOpen(false), railToggle: this.toggleRailOpen, railTap: this.railTap }; }
+}
+</script>
+</body>
+</html>

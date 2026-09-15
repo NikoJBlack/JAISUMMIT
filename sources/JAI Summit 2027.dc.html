@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#a7ddc9">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#a7ddc9"/>
+    <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="200" fill="#ffffff">27</text>
+  </svg>
+</template>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  if (!window.Stripe && !document.querySelector('script[data-stripe-js]')) {
+    var s = document.createElement('script');
+    s.src = 'https://js.stripe.com/v3/';
+    s.setAttribute('data-stripe-js', '1');
+    document.head.appendChild(s);
+  }
+</script>
+<script>
+  // Stripe checkout config — replace with your live values from dashboard.stripe.com
+  window.__stripe = {
+    publishableKey: 'pk_test_REPLACE_ME',
+    prices: {
+      t3000: 'price_REPLACE_3000',
+      t1750: 'price_REPLACE_1750',
+      t1250: 'price_REPLACE_1250',
+      t950:  'price_REPLACE_950',
+      t300:  'price_REPLACE_300',
+      t6000: 'price_REPLACE_6000'
+    }
+  };
+</script>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  a { color: #0f9d76; }
+  a:hover { color: #0b7a5c; }
+  @keyframes orbitEllipse {
+    0%    { transform: translate(var(--rx), 0); }
+    12.5% { transform: translate(calc(var(--rx) * 0.707), calc(var(--ry) * 0.707)); }
+    25%   { transform: translate(0, var(--ry)); }
+    37.5% { transform: translate(calc(var(--rx) * -0.707), calc(var(--ry) * 0.707)); }
+    50%   { transform: translate(calc(var(--rx) * -1), 0); }
+    62.5% { transform: translate(calc(var(--rx) * -0.707), calc(var(--ry) * -0.707)); }
+    75%   { transform: translate(0, calc(var(--ry) * -1)); }
+    87.5% { transform: translate(calc(var(--rx) * 0.707), calc(var(--ry) * -0.707)); }
+    100%  { transform: translate(var(--rx), 0); }
+  }
+  @keyframes bandDrift { from { transform: scale(1.06) translate(0,0); } to { transform: scale(1.14) translate(-1.5%, -1.5%); } }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="background:#ffffff; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(56px,12vh,120px) clamp(24px,7vw,80px) 80px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+
+  <div style="position:relative; display:flex; align-items:center; justify-content:center; padding:clamp(70px,14vw,130px) 0;">
+    <div style="position:absolute; left:50%; top:50%; width:0; height:0; pointer-events:none;">
+      <span style="--rx:clamp(140px,34vw,320px); --ry:clamp(60px,13vw,120px); position:absolute; left:-15px; top:-15px; width:30px; height:30px; border-radius:50%; background:#1d8fe1; opacity:0.8; animation:orbitEllipse 9s linear infinite;"></span>
+      <span style="--rx:clamp(120px,29vw,270px); --ry:clamp(74px,16vw,146px); position:absolute; left:-18px; top:-18px; width:36px; height:36px; border-radius:50%; background:#7b2d8b; opacity:0.8; animation:orbitEllipse 14s linear infinite reverse; animation-delay:-3s;"></span>
+      <span style="--rx:clamp(155px,37vw,350px); --ry:clamp(52px,11vw,102px); position:absolute; left:-18px; top:-18px; width:36px; height:36px; border-radius:50%; background:#3ab54a; opacity:0.8; animation:orbitEllipse 20s linear infinite; animation-delay:-8s;"></span>
+      <span style="--rx:clamp(132px,32vw,296px); --ry:clamp(66px,14vw,132px); position:absolute; left:-21px; top:-21px; width:42px; height:42px; border-radius:50%; background:#f26522; opacity:0.8; animation:orbitEllipse 26s linear infinite reverse; animation-delay:-14s;"></span>
+    </div>
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em;">
+      <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8;">JanuaryAI</span>
+      <span style="font-size:clamp(34px,8vw,58px); color:#8fd6bd; margin-top:clamp(-8px,-2vw,-14px);">Summit</span>
+      <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">2027</span>
+    </div>
+  </div>
+  <div style="width:100%; max-width:1120px; margin-top:clamp(20px,3vh,34px);">
+    <div style="position:relative; width:100%; aspect-ratio:16/7; overflow:hidden; background:#0e1512;">
+      <image-slot id="summit-hero" shape="rect" src="./uploads/JAI Hero-170f48d1.png" placeholder="Hero &mdash; the gathering, wide, golden hour" style="position:absolute; inset:0; filter:saturate(1.3) contrast(1.06); animation:bandDrift 24s ease-in-out infinite alternate;"></image-slot>
+<svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="position:absolute; left:0; right:0; bottom:-1px; width:100%; height:clamp(26px,4vw,52px); display:block;"><path d="M0,42 L38,26 L74,44 L112,22 L152,40 L192,18 L232,38 L272,20 L316,42 L358,24 L398,44 L440,26 L482,46 L524,28 L566,48 L610,30 L652,50 L694,32 L736,50 L778,34 L820,52 L862,36 L904,52 L948,38 L990,54 L1032,40 L1074,56 L1116,42 L1158,58 L1200,44 L1200,60 L0,60 Z" fill="#a7ddc9"></path></svg>
+    </div>
+
+    <div style="position:relative; background:#a7ddc9; overflow:hidden; padding:clamp(30px,5vw,58px) clamp(22px,4vw,54px) clamp(46px,7vw,84px);">
+      <div style="position:relative; z-index:2; max-width:620px;">
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:0.94; font-size:clamp(24px,4.4vw,44px); color:#ffffff;">Summit 2027 seats</p>
+        <p style="margin:18px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(16px,2vw,19px); line-height:1.6; color:#17352c;">Sign the Open Letter and you are on the list. Invitations, dates, and travel details go to that list first &mdash; nothing else to fill out, nothing to pay yet.</p>
+        <p style="margin:14px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(16px,2vw,19px); line-height:1.6; color:#17352c;">Attendance in person will be capped. Participation in the vote will not be.</p>
+        <button onClick="{{ openSeat }}" style="display:inline-block; margin-top:26px; cursor:pointer; border:none; background:#0d1512; color:#a7ddc9; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:0.12em; padding:15px 26px; border-radius:6px;" style-hover="background:#17352c;">Hold my seat</button>
+      </div>
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="position:absolute; left:0; right:0; bottom:-1px; width:100%; height:clamp(26px,4vw,52px); display:block; z-index:3;"><path d="M0,44 L42,58 L84,38 L128,54 L170,34 L214,52 L256,32 L300,50 L344,30 L386,48 L430,28 L474,46 L516,26 L560,44 L604,24 L646,42 L690,22 L732,40 L776,20 L818,38 L862,20 L904,36 L948,18 L990,34 L1034,18 L1076,32 L1118,16 L1160,30 L1200,16 L1200,60 L0,60 Z" fill="#ffffff"></path></svg>
+    </div>
+
+    <div style="background:#ffffff; padding:clamp(34px,5vw,60px) clamp(22px,4vw,54px) clamp(44px,6vw,72px);">
+      <p style="margin:0 0 clamp(26px,4vw,40px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; font-size:clamp(18px,3vw,34px); white-space:nowrap; color:#1a1a1a;">A growing <span style="color:#0f9d76;">AI for Good</span> community</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:clamp(20px,3vw,34px);">
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:4px; background:#eceeed;">
+          <image-slot id="summit-card-a" src="./uploads/summit-card-a.webp" shape="rect" placeholder="Working group at a table, mid-argument" style="position:absolute; inset:0; filter:saturate(1.25) contrast(1.05);"></image-slot>
+        </div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.02; font-size:clamp(18px,2.4vw,24px); color:#1a1a1a;">Join the Commons</p>
+        <p style="margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(15px,1.8vw,17px); line-height:1.6; color:#4a4a4a;">Every plan presented at the Summit starts in the commons. Pick the question you actually live with and share it in Issues, Topics and Posts</p>
+        <button onClick="{{ openSeat }}" style="align-self:flex-start; margin-top:4px; cursor:pointer; border:none; background:#a7ddc9; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.12em; padding:13px 22px; border-radius:6px;" style-hover="background:#8fd6bd;">Level me up</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:4px; background:#eceeed;">
+          <image-slot id="summit-card-b" src="./uploads/summit-card-b.webp" shape="rect" placeholder="Someone speaking to a room" style="position:absolute; inset:0; filter:saturate(1.25) contrast(1.05);"></image-slot>
+        </div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.02; font-size:clamp(18px,2.4vw,24px); color:#1a1a1a;">Bring an issue</p>
+        <p style="margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(15px,1.8vw,17px); line-height:1.6; color:#4a4a4a;">The Impact Group is where the impact agenda gets set. Post the thing nobody is asking about yet.</p>
+        <button onClick="{{ openSeat }}" data-cta="commons" style="align-self:flex-start; margin-top:4px; cursor:pointer; border:none; background:#a7ddc9; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.12em; padding:13px 22px; border-radius:6px;" style-hover="background:#8fd6bd;">This is important</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border-radius:4px; background:#eceeed;">
+          <image-slot id="summit-card-c" src="./uploads/summit-card-c.webp" shape="rect" placeholder="Two people outdoors, Colorado light" style="position:absolute; inset:0; filter:saturate(1.25) contrast(1.05);"></image-slot>
+        </div>
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; line-height:1.02; font-size:clamp(18px,2.4vw,24px); color:#1a1a1a;">Write the Charter</p>
+        <p style="margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:clamp(15px,1.8vw,17px); line-height:1.6; color:#4a4a4a;">How the Foundation is governed, funded, and held to account &mdash; in plain language.</p>
+        <button onClick="{{ openSeat }}" style="align-self:flex-start; margin-top:4px; cursor:pointer; border:none; background:#a7ddc9; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.12em; padding:13px 22px; border-radius:6px;" style-hover="background:#8fd6bd;">Write the Charter</button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="./JAI%20Sponsors.dc.html" aria-label="Brand Partners" style="margin-top:-52px; display:block; line-height:0; text-decoration:none; transition:transform 0.2s ease, filter 0.2s ease;" style-hover="transform:scale(1.06) rotate(-3deg); filter:drop-shadow(0 12px 26px rgba(0,0,0,0.22));"><img src="./uploads/Screenshot 2026-09-03 at 10.41.39 PM.png" alt="Brand Partners" style="display:block; width:clamp(180px,22vw,240px); height:auto;" /></a>
+
+  <p style="max-width:620px; margin:clamp(28px,5vh,40px) 0 0; text-align:center; font-style:italic; font-size:clamp(18px,3.4vw,22px); line-height:1.55; color:#6a6a6a;">A few days each year when the community &mdash; not a panel of experts &mdash; decides what proceeds.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:clamp(30px,5vh,44px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;">
+    <span style="background:rgba(167,221,201,0.35); color:#0f9d76; padding:9px 16px; border-radius:999px;">JanuaryAI Summit 2027</span>
+    <span style="background:rgba(199,201,200,0.35); color:#6a6a6a; padding:9px 16px; border-radius:999px;">Meeting of the Minds</span>
+    <span style="background:rgba(167,221,201,0.35); color:#0f9d76; padding:9px 16px; border-radius:999px;">Boulder &middot; Denver</span>
+  </div>
+
+  <div style="max-width:640px; width:100%; margin-top:clamp(44px,7vh,68px);">
+    <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">Everything the Project does over a year runs toward these few days. The Commons raises the issues. The working groups turn the arguments worth having into plans that can actually be funded and measured. The Summit is where those plans are put in front of the community that will live with them, and where the community says yes, not yet, or no.</p>
+
+    <div style="margin:clamp(36px,6vh,52px) 0 0;">
+      <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(18px,4vw,24px); letter-spacing:-0.01em; color:#0f9d76; margin:0 0 14px;">What happens there</p>
+      <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 22px;"><strong>The year on the record.</strong> Every pilot the Foundation funded is reported honestly &mdash; including the ones that failed, and what they cost.</p>
+      <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 22px;"><strong>Impact group readouts.</strong> Each impact group drafts its plan: what it would build, for whom, at what price, measured how.</p>
+      <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 22px;"><strong>Authorization.</strong> Members vote on which plans carry into the following year. The tally is published with the record.</p>
+      <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 22px;"><strong>The next questions.</strong> The Summit closes by naming the issues the Commons will spend the next year on.</p>
+    </div>
+
+    <div style="margin:clamp(36px,6vh,52px) 0 0;">
+      <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(18px,4vw,24px); letter-spacing:-0.01em; color:#0f9d76; margin:0 0 14px;">Who is in the room</p>
+      <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">Members of the community, first. The worker whose job changed, the parent whose school adopted a tutor, the clinician, the small-town lender, the builder. Researchers and funders attend as participants, not as the authority. The Principles convene it; they do not decide it.</p>
+    </div>
+
+    <div style="margin:clamp(36px,6vh,52px) 0 0;">
+      <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(18px,4vw,24px); letter-spacing:-0.01em; color:#0f9d76; margin:0 0 14px;">How to be there</p>
+      <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.65; color:#4a4a4a; margin:0 0 24px;">Sign the Open Letter and you are on the list. Invitations, dates, and travel details go to that list first &mdash; there is nothing else to fill out and nothing to pay yet. Attendance in person will be capped; participation in the vote will not be.</p>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:clamp(40px,6vh,56px);">
+    <a href="./JAI%20Open%20Letter.dc.html" style="text-decoration:none; background:rgba(244,143,177,0.7); color:#000; font-weight:900; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-size:clamp(13px,3.2vw,16px); padding:clamp(12px,2vw,15px) clamp(24px,5vw,34px); border-radius:24px;" style-hover="background:rgba(244,143,177,0.92);">Sign &amp; hold my seat</a>
+    <a href="./JAI%20Meeting%20of%20the%20Minds.dc.html" style="text-decoration:none; border:1px solid #c7c9c8; color:#0f9d76; font-weight:900; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-size:clamp(13px,3.2vw,16px); padding:clamp(12px,2vw,15px) clamp(24px,5vw,34px); border-radius:24px;" style-hover="border-color:#0f9d76;">See the working groups</a>
+  </div>
+
+  <div style="display:flex; gap:24px; margin-top:clamp(48px,8vh,72px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./MAJAI%20Lander.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Home</a>
+    <a href="./JanuaryAI%20Charter%20Overview.dc.html#plan" style="color:#0f9d76; text-decoration:none;">JAI-Charter &rarr;</a>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:56px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+
+  <div style="display:{{ seatDisplay }}; position:fixed; inset:0; z-index:200; background:rgba(13,21,18,0.72); align-items:flex-start; justify-content:center; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:calc(clamp(14px,3vw,40px) + env(safe-area-inset-top)) calc(clamp(14px,3vw,40px) + env(safe-area-inset-right)) calc(clamp(14px,3vw,40px) + env(safe-area-inset-bottom)) calc(clamp(14px,3vw,40px) + env(safe-area-inset-left));">
+    <div style="width:100%; max-width:900px; background:#ffffff; border-radius:8px; box-shadow:0 24px 70px rgba(0,0,0,0.35); padding:clamp(18px,2.6vw,30px); box-sizing:border-box;">
+      <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+        <button onClick="{{ closeSeat }}" style="cursor:pointer; border:1px solid #e2e2e2; background:#ffffff; border-radius:50%; width:44px; height:44px; min-height:44px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:19px; color:#4a4a4a; line-height:1; padding:0;" style-hover="color:#f4511e; border-color:#f4511e;">&times;</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(20px,3vw,34px); align-items:start;">
+        <div>
+          <p style="margin:0; text-align:center; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:22px; color:#3a3a3a;">JanuaryAI Summit 2027</p>
+          <p style="margin:6px 0 0; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:14px; color:#8a8a8a;">Monday-Wednesday Jan 18&ndash;20, 2027</p>
+      <div style="position:relative; display:flex; align-items:center; justify-content:center; padding:44px 0; margin-top:10px;">
+        <div style="position:absolute; left:50%; top:50%; width:0; height:0; pointer-events:none;">
+          <span style="--rx:110px; --ry:52px; position:absolute; left:-7px; top:-7px; width:14px; height:14px; border-radius:50%; background:#1d8fe1; opacity:0.85; animation:orbitEllipse 9s linear infinite;"></span>
+          <span style="--rx:96px; --ry:62px; position:absolute; left:-8px; top:-8px; width:16px; height:16px; border-radius:50%; background:#7b2d8b; opacity:0.85; animation:orbitEllipse 14s linear infinite reverse; animation-delay:-3s;"></span>
+          <span style="--rx:124px; --ry:44px; position:absolute; left:-8px; top:-8px; width:16px; height:16px; border-radius:50%; background:#3ab54a; opacity:0.85; animation:orbitEllipse 20s linear infinite; animation-delay:-8s;"></span>
+          <span style="--rx:104px; --ry:58px; position:absolute; left:-9px; top:-9px; width:18px; height:18px; border-radius:50%; background:#f26522; opacity:0.85; animation:orbitEllipse 26s linear infinite reverse; animation-delay:-14s;"></span>
+        </div>
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.9; letter-spacing:-0.015em;">
+          <span style="font-size:30px; color:#c7c9c8;">JanuaryAI</span>
+          <span style="font-size:30px; color:#8fd6bd; margin-top:-5px;">Summit</span>
+          <span style="font-size:30px; color:#c7c9c8; margin-top:-5px;">2027</span>
+        </div>
+      </div>
+          <div style="background:#f7931e; padding:16px 18px; margin-top:8px;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:16px; line-height:1.4; color:#ffffff;">&ldquo;The future of AI will not be determined solely by the intelligence we create, but by the wisdom with which we choose to govern, finance, and apply it.&rdquo;</p>
+          </div>
+
+          <p style="margin:20px 0 0; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:bold; font-size:14px; color:#3a3a3a;">Decide now which ticket tier is best for you !</p>
+
+          <div style="display:grid; grid-template-columns:110px 1fr; gap:16px; margin-top:16px; align-items:start;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:19px; line-height:1.25; color:#2eaee0;">AI for<br />Good</p>
+            <p style="margin:0; padding-left:16px; border-left:1px solid #d8dad9; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:13px; line-height:1.5; color:#8a8a8a;">We believe in the power of a generous community and want to share our good fortune. We invite a limited number of supporters to share their passion and request a 1 Day Free Pass. Please email summit@majaii.com</p>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:10px; margin-top:24px;">
+            <span style="flex:none; background:#2eaee0; color:#ffffff; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:0.04em; padding:11px 14px;">Discount code</span>
+            <input type="text" value="{{ code }}" onChange="{{ onCode }}" placeholder="" style="flex:1; min-width:0; box-sizing:border-box; background:#d9dbda; border:none; padding:11px 12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#3a3a3a; outline:none;" />
+            <button onClick="{{ applyCode }}" style="flex:none; cursor:pointer; border:none; background:rgba(244,143,177,0.7); color:#000; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:11px; padding:9px 14px; border-radius:24px;" style-hover="background:rgba(244,143,177,0.92);">YES !</button>
+          </div>
+          <p style="margin:10px 0 0; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:13px; line-height:1.5; color:#4a4a4a;">*includes Founders Dinner on Day 1</p>
+          <sc-if value="{{ codeStatus }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:10px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:13px; color:#0f9d76;">{{ codeStatus }}</p>
+          </sc-if>
+          <sc-if value="{{ codePending }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:6px 0 0; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:11px; line-height:1.5; color:#6a6a6a;">Your card will not be processed until approved. Your RSVP is confirmed.</p>
+          </sc-if>
+        </div>
+
+        <div style="order:{{ ticketsOrder }};">
+          <p style="margin:0; background:#2eaee0; color:#ffffff; text-align:center; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:14px; letter-spacing:0.04em; padding:11px 14px;">Reserve tickets</p>
+
+          <div style="position:relative; overflow:hidden; touch-action:pan-y;">
+          <div style="display:flex; align-items:stretch; width:200%; transform:{{ trayShift }}; transition:transform 380ms cubic-bezier(0.4,0,0.2,1);">
+          <div style="width:50%; flex:none; box-sizing:border-box;">
+          <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="6">
+            <div style="background:{{ tier.bg }}; padding:10px 12px;">
+              <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-size:14px; color:#3a3a3a;">{{ tier.name }}</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:4px;">
+                <div style="display:flex; align-items:center; gap:5px; flex:none;">
+                  <button onClick="{{ tier.dec }}" style="width:44px; height:44px; min-height:44px; flex:none; cursor:pointer; border:1px solid #b8bab9; background:#ffffff; border-radius:4px; font-family:Helvetica, Arial, sans-serif; font-size:18px; color:#4a4a4a; line-height:1; padding:0;" style-hover="border-color:#2eaee0;">&minus;</button>
+                  <span style="min-width:26px; text-align:center; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:16px; color:#1a1a1a;">{{ tier.qty }}</span>
+                  <button onClick="{{ tier.inc }}" style="width:44px; height:44px; min-height:44px; flex:none; cursor:pointer; border:1px solid #b8bab9; background:#ffffff; border-radius:4px; font-family:Helvetica, Arial, sans-serif; font-size:18px; color:#4a4a4a; line-height:1; padding:0;" style-hover="border-color:#2eaee0;">+</button>
+                </div>
+                <button onClick="{{ tier.more }}" style="flex:1; text-align:center; cursor:pointer; border:none; background:none; padding:0; font-family:Helvetica, Arial, sans-serif; font-size:18px; line-height:1.1; color:#2eaee0;" style-hover="text-decoration:underline;">+more details</button>
+                <p style="margin:0; flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:14px; color:{{ tier.ink }}; white-space:nowrap;">{{ tier.total }}</p>
+              </div>
+              <p style="margin:4px 0 0; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#4a4a4a;">{{ tier.tax }}</p>
+            </div>
+          </sc-for>
+          </div>
+          <div onClick="{{ closeDetail }}" style="width:50%; flex:none; box-sizing:border-box; cursor:pointer; background:#eef4f1; padding:16px 18px; display:flex; flex-direction:column; gap:10px;">
+            <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:13px; letter-spacing:0.02em; color:#1a1a1a;">{{ detailName }}</p>
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:14px; color:#0f9d76;">{{ detailPrice }}</p>
+            <p style="margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.6; color:#3a3a3a;">{{ detailBody }}</p>
+            <p style="margin:auto 0 0; font-family:Helvetica, Arial, sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:#2eaee0;">&larr; Tap anywhere to close</p>
+          </div>
+          </div>
+          </div>
+
+          <p style="margin:10px 0 0; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:bold; font-size:11px; line-height:1.5; color:#4a4a4a;">A 4% credit card fee will be applied to your order.</p>
+
+          <button onClick="{{ reserveSeat }}" style="width:100%; margin-top:14px; cursor:pointer; border:none; background:#2eaee0; color:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:15px; letter-spacing:0.04em; padding:14px; border-radius:2px;" style-hover="background:#1e97c7;">Get tickets &gt;&gt;</button>
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-top:14px; border-top:1px solid #d9dbda; padding-top:10px;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:12px; letter-spacing:0.06em; color:#3a3a3a;">Order total</p>
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:18px; color:#0f9d76;">{{ orderTotal }}</p>
+          </div>
+          <button onClick="{{ checkout }}" style="width:100%; margin-top:10px; cursor:pointer; border:none; background:#635bff; color:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:15px; letter-spacing:0.04em; padding:15px; border-radius:2px; display:flex; align-items:center; justify-content:center; gap:9px;" style-hover="background:#4f46e5;">
+            <span>Check out securely</span>
+            <span style="font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:12px; opacity:0.85; letter-spacing:0.02em;">Stripe</span>
+          </button>
+          <p style="margin:8px 0 0; text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:11px; color:#6a6a6a;">Payments processed by Stripe. Card details never touch this site.</p>
+          <sc-if value="{{ seatStatus }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:12px 0 0; font-family:Georgia, 'Times New Roman', serif; font-size:14px; line-height:1.5; color:#0f9d76;">{{ seatStatus }}</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <sc-if value="{{ adminOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; right:14px; bottom:14px; z-index:140; width:min(420px,calc(100vw - 28px)); max-height:72vh; overflow:auto; background:#ffffff; border:1px solid #d9dbda; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,0.24); padding:14px 16px;">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px;">
+        <p style="margin:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.1em; color:#0f9d76;">Ticket orders</p>
+        <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-size:11px; color:#8a8a8a;">{{ adminSummary }}</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
+        <sc-for list="{{ adminRows }}" as="row" hint-placeholder-count="0">
+          <div style="border:1px solid #ececec; border-radius:8px; padding:9px 10px;">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px;">
+              <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:12px; color:#1a1a1a;">{{ row.who }}</p>
+              <p style="margin:0; flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:12px; color:#0f9d76;">{{ row.total }}</p>
+            </div>
+            <p style="margin:3px 0 0; font-family:Helvetica, Arial, sans-serif; font-size:11px; line-height:1.45; color:#6a6a6a;">{{ row.detail }}</p>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:7px;">
+              <span style="font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; padding:4px 8px; border-radius:999px; background:{{ row.badgeBg }}; color:{{ row.badgeColor }};">{{ row.badge }}</span>
+              <button onClick="{{ row.approve }}" style="display:{{ row.approveShow }}; cursor:pointer; border:1px solid #0f9d76; background:#eaf6f2; color:#0f9d76; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; padding:5px 10px; border-radius:999px;" style-hover="background:#d8efe7;">Approve</button>
+              <span style="font-family:Helvetica, Arial, sans-serif; font-size:10px; color:#a8a8a8;">{{ row.sync }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ downloadCsv }}" style="width:100%; margin-top:12px; cursor:pointer; border:none; background:#2eaee0; color:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:12px; letter-spacing:0.06em; padding:11px; border-radius:6px;" style-hover="background:#1e97c7;">Download CSV</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ payOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePay }}" style="position:fixed; inset:0; z-index:120; background:rgba(13,21,18,0.6); display:flex; align-items:flex-start; justify-content:center; overflow:auto; padding:clamp(16px,4vh,54px) 16px;">
+      <div onClick="{{ stopPay }}" style="width:min(460px,100%); background:#ffffff; border-radius:12px; box-shadow:0 30px 90px rgba(0,0,0,0.34); overflow:hidden;">
+
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; background:#635bff; padding:14px 18px;">
+          <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:13px; letter-spacing:0.06em; color:#ffffff;">Secure checkout</p>
+          <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:13px; color:#ffffff; opacity:0.9;">Stripe</p>
+        </div>
+
+        <div style="padding:18px 18px 6px;">
+          <p style="margin:0 0 10px; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:11px; letter-spacing:0.1em; color:#8a8a8a;">Your order</p>
+          <sc-for list="{{ payLines }}" as="line" hint-placeholder-count="2">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:7px 0; border-bottom:1px solid #f0f0f0;">
+              <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-size:13.5px; line-height:1.4; color:#3a3a3a;">{{ line.label }}</p>
+              <p style="margin:0; flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:13.5px; color:#1a1a1a;">{{ line.amount }}</p>
+            </div>
+          </sc-for>
+          <sc-if value="{{ paySubtotalShow }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid #f0f0f0;">
+              <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:12px; letter-spacing:0.06em; color:#3a3a3a;">Subtotal</p>
+              <p style="margin:0; flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:13.5px; color:#1a1a1a;">{{ paySubtotal }}</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ payDiscountShow }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:7px 0; border-bottom:1px solid #f0f0f0;">
+              <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-size:13.5px; color:#0f9d76;">{{ payDiscountLabel }}</p>
+              <p style="margin:0; flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:13.5px; color:#0f9d76;">{{ payDiscountAmount }}</p>
+            </div>
+          </sc-if>
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid #f0f0f0;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-size:13.5px; color:#6a6a6a;">Card processing fee (4%)</p>
+            <p style="margin:0; flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:13.5px; color:#3a3a3a;">{{ payFee }}</p>
+          </div>
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:12px 0 4px;">
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; text-transform:uppercase; font-size:12px; letter-spacing:0.06em; color:#1a1a1a;">Total due</p>
+            <p style="margin:0; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:20px; color:#0f9d76;">{{ payTotal }}</p>
+          </div>
+        </div>
+
+        <div style="padding:6px 18px 20px; display:flex; flex-direction:column; gap:10px;">
+          <input type="email" value="{{ payEmail }}" onChange="{{ onPayEmail }}" placeholder="Email" style="box-sizing:border-box; width:100%; background:#ffffff; border:1px solid #d5d8dc; border-radius:6px; padding:12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#1a1a1a; outline:none;" style-focus="border-color:#635bff;" />
+          <input type="text" value="{{ payName }}" onChange="{{ onPayName }}" placeholder="Name on card" style="box-sizing:border-box; width:100%; background:#ffffff; border:1px solid #d5d8dc; border-radius:6px; padding:12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#1a1a1a; outline:none;" style-focus="border-color:#635bff;" />
+          <input type="text" inputmode="numeric" value="{{ payCard }}" onChange="{{ onPayCard }}" placeholder="Card number" style="box-sizing:border-box; width:100%; background:#ffffff; border:1px solid #d5d8dc; border-radius:6px; padding:12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; letter-spacing:0.04em; color:#1a1a1a; outline:none;" style-focus="border-color:#635bff;" />
+          <div style="display:flex; gap:10px;">
+            <input type="text" inputmode="numeric" value="{{ payExp }}" onChange="{{ onPayExp }}" placeholder="MM / YY" style="flex:1; min-width:0; box-sizing:border-box; background:#ffffff; border:1px solid #d5d8dc; border-radius:6px; padding:12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#1a1a1a; outline:none;" style-focus="border-color:#635bff;" />
+            <input type="text" inputmode="numeric" value="{{ payCvc }}" onChange="{{ onPayCvc }}" placeholder="CVC" style="flex:1; min-width:0; box-sizing:border-box; background:#ffffff; border:1px solid #d5d8dc; border-radius:6px; padding:12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#1a1a1a; outline:none;" style-focus="border-color:#635bff;" />
+            <input type="text" inputmode="numeric" value="{{ payZip }}" onChange="{{ onPayZip }}" placeholder="ZIP" style="flex:1; min-width:0; box-sizing:border-box; background:#ffffff; border:1px solid #d5d8dc; border-radius:6px; padding:12px; font-family:Helvetica, Arial, sans-serif; font-size:16px; color:#1a1a1a; outline:none;" style-focus="border-color:#635bff;" />
+          </div>
+
+          <button onClick="{{ submitPay }}" style="width:100%; margin-top:4px; cursor:pointer; border:none; background:#635bff; color:#ffffff; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:16px; padding:15px; border-radius:6px;" style-hover="background:#4f46e5;">{{ payButton }}</button>
+
+          <sc-if value="{{ payNotice }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:2px 0 0; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:11.5px; line-height:1.5; color:#6a6a6a;">{{ payNotice }}</p>
+          </sc-if>
+          <p style="margin:0; text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:11px; line-height:1.5; color:#8a8a8a;">Payments processed by Stripe. Card details never touch this site.</p>
+          <button onClick="{{ closePay }}" style="margin:2px auto 0; cursor:pointer; border:none; background:none; font-family:Helvetica, Arial, sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:#8a8a8a;" style-hover="color:#3a3a3a;">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: '#', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  tierDefs = [
+    { key: 't3000', name: '$1,500 Ticket 3 Day Pass*', base: 1500 },
+    { key: 't1750', name: '$1,250 Ticket 2 Day Pass*', base: 1250 },
+    { key: 't1250', name: '$1000 Ticket First Day Pass*', base: 1000 },
+    { key: 't950', name: '$500 Ticket First Day Pass (event only)', base: 500 },
+    { key: 't300', name: '$1,750 Ticket Workshop', base: 1750 },
+    { key: 't6000', name: '$4,500 4x Tickets 3 Day All Access Pass*', base: 4500 },
+    { key: 'patron', name: '$6 per Month Patron', base: 6, note: 'Thank You for supporting Ai for Good !' }
+  ];
+
+  detailCopy = {
+    t3000: 'All three days, every session and working group, reserved seating in the main hall, all meals, and the printed Charter edition. *Includes Founders Dinner on Day 1.',
+    t1750: 'Two days of your choosing, full access to sessions and working groups, meals on the days you attend. *Includes Founders Dinner on Day 1.',
+    t1250: 'Opening day only \u2014 the plenary, the Charter reading, and the first round of working groups. Lunch included. *Includes Founders Dinner on Day 1.',
+    t950: 'Opening day general admission. Plenary and Charter reading, open seating, lunch included.',
+    t300: 'One hands-on workshop with a working-group lead. Small room, limited seats, materials provided.',
+    t6000: 'Four three-day all-access passes at a group rate \u2014 bring your team, your board, or your neighbors. Seats assigned together. *Includes Founders Dinner on Day 1.',
+    patron: 'A recurring $6 monthly gift. Not a ticket \u2014 it funds the Commons, the Charter work, and travel support for members who could not otherwise attend.'
+  };
+
+  closePay = () => this.setState({ payOpen: false });
+  stopPay = (e) => e.stopPropagation();
+  onPayEmail = (e) => this.setState({ payEmail: e.target.value });
+  onPayName = (e) => this.setState({ payName: e.target.value });
+  onPayCard = (e) => this.setState({ payCard: e.target.value });
+  onPayExp = (e) => this.setState({ payExp: e.target.value });
+  onPayCvc = (e) => this.setState({ payCvc: e.target.value });
+  onPayZip = (e) => this.setState({ payZip: e.target.value });
+
+  submitPay = () => {
+    const st = this.state;
+    if (!st.payEmail || !st.payCard || !st.payExp || !st.payCvc) {
+      this.setState({ payNotice: 'Enter your email and full card details to continue.' });
+      return;
+    }
+    if (this.discountRate() > 0) {
+      this.saveOrder({ status: 'pending_approval' });
+      this.setState({ payOpen: false, seatStatus: 'Your card will not be processed until approved. Your RSVP is confirmed.' });
+      return;
+    }
+    this.saveOrder({ status: 'awaiting_payment' });
+    this.setState({ payOpen: false, seatStatus: 'Checkout opens soon \u2014 ticketing goes live shortly. Your selection is held on this page; nothing is charged today.' });
+  };
+
+  openDetail = (key) => this.setState({ detailKey: key });
+  closeDetail = () => this.setState({ detailKey: null });
+
+  taxRate = 0.09;
+
+  discountCodes = { MAJAI27: 0.70, SUMMIT27: 0.20, RMAIIG27: 0.50 };
+
+  discountRate = () => this.discountCodes[(this.state.appliedCode || '').toUpperCase()] || 0;
+
+  unitOf = (d) => {
+    if (d.note) return d.base;
+    return Math.round(d.base * (1 - this.discountRate()) * 100) / 100;
+  };
+
+  money = (n) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  stripeCfg = () => (typeof window !== 'undefined' && window.__stripe) || {};
+
+  checkout = async () => {
+    const q = this.state.qty || {};
+    const items = this.tierDefs
+      .filter(d => (q[d.key] || 0) > 0)
+      .map(d => ({ price: (this.stripeCfg().prices || {})[d.key], quantity: q[d.key] }));
+    if (!items.length) { this.setState({ seatStatus: 'Choose at least one ticket before checking out.' }); return; }
+    this.setState({ payOpen: true, seatOpen: false, seatStatus: '' });
+    return;
+
+    const cfg = this.stripeCfg();
+    const keyReady = cfg.publishableKey && cfg.publishableKey.indexOf('REPLACE') === -1;
+    const pricesReady = items.every(i => i.price && i.price.indexOf('REPLACE') === -1);
+    if (!keyReady || !pricesReady || typeof window.Stripe !== 'function') {
+      this.setState({ seatStatus: 'Checkout opens soon \u2014 ticketing goes live shortly. Your selection is held on this page; nothing is charged today.' });
+      return;
+    }
+
+    this.setState({ seatStatus: 'Opening secure checkout\u2026' });
+    try {
+      const stripe = window.Stripe(cfg.publishableKey);
+      const back = window.location.href.split('#')[0];
+      const { error } = await stripe.redirectToCheckout({
+        mode: 'payment',
+        lineItems: items,
+        successUrl: back + '?checkout=success',
+        cancelUrl: back + '?checkout=cancelled'
+      });
+      if (error) this.setState({ seatStatus: error.message || 'Checkout could not open. Please try again.' });
+    } catch (err) {
+      this.setState({ seatStatus: (err && err.message) || 'Checkout could not open. Please try again.' });
+    }
+  };
+
+  state = { seatOpen: false, seatStatus: '', qty: {}, code: '', codeStatus: '' };
+
+  onCode = (e) => this.setState({ code: e.target.value, codeStatus: '' });
+  applyCode = () => {
+    const c = (this.state.code || '').trim();
+    if (!c) { this.setState({ appliedCode: '', codeStatus: 'Enter a discount code first.', codePending: false }); return; }
+    const rate = this.discountCodes[c.toUpperCase()];
+    if (!rate) { this.setState({ appliedCode: '', codeStatus: 'That code is not recognized. Check the spelling or ask your host.', codePending: false }); return; }
+    this.setState({
+      appliedCode: c,
+      codePending: true,
+      codeStatus: Math.round(rate * 100) + '% off applied \u2014 code \u201c' + c.toUpperCase() + '\u201d. Ticket prices below are updated.'
+    });
+  };
+
+  lockScroll = (on) => {
+    if (typeof document === 'undefined') return;
+    document.body.style.overflow = on ? 'hidden' : '';
+  };
+
+  openSeat = () => { this.lockScroll(true); this.setState({ seatOpen: true, seatStatus: '' }); };
+  closeSeat = () => { this.lockScroll(false); this.setState({ seatOpen: false, detailKey: null, qty: {}, code: '', codeStatus: '', appliedCode: '', codePending: false, seatStatus: '' }); };
+
+  bump = (key, d) => this.setState(s => {
+    const q = Object.assign({}, s.qty);
+    q[key] = Math.max(0, (q[key] || 0) + d);
+    return { qty: q, seatStatus: '' };
+  });
+
+  localKey = 'jai-ticket-orders';
+
+  readLocalOrders() {
+    try { return JSON.parse(localStorage.getItem(this.localKey) || '[]'); } catch (e) { return []; }
+  }
+
+  async saveOrder(extra) {
+    const q = this.state.qty || {};
+    const items = this.tierDefs.filter(d => (q[d.key] || 0) > 0).map(d => ({
+      key: d.key, name: d.name, qty: q[d.key], unit: d.base, lineTotal: d.base * q[d.key]
+    }));
+    if (!items.length) return null;
+    const subtotal = items.reduce((t, i) => t + i.lineTotal, 0);
+    const rate = this.discountRate();
+    const discount = Math.round(subtotal * rate * 100) / 100;
+    const net = Math.round((subtotal - discount) * 100) / 100;
+    const fee = Math.round(net * 0.04 * 100) / 100;
+    const order = Object.assign({
+      orderId: 'JAI-' + Date.now().toString(36).toUpperCase(),
+      email: (this.state.payEmail || '').trim(),
+      name: (this.state.payName || '').trim(),
+      zip: (this.state.payZip || '').trim(),
+      items: JSON.stringify(items),
+      ticketCount: items.reduce((t, i) => t + i.qty, 0),
+      subtotal: subtotal,
+      code: (this.state.appliedCode || '').toUpperCase(),
+      discountRate: rate,
+      discountAmount: discount,
+      cardFee: fee,
+      total: Math.round((net + fee) * 100) / 100,
+      createdAt: Date.now(),
+      synced: false
+    }, extra || {});
+
+    const local = this.readLocalOrders();
+    local.push(order);
+    try { localStorage.setItem(this.localKey, JSON.stringify(local)); } catch (e) {}
+
+    const inst = window.__instant;
+    if (inst) {
+      try {
+        await inst.db.transact(inst.tx.ticketOrders[inst.id()].update(order));
+        const rows = this.readLocalOrders().map(r => r.orderId === order.orderId ? Object.assign({}, r, { synced: true }) : r);
+        try { localStorage.setItem(this.localKey, JSON.stringify(rows)); } catch (e) {}
+      } catch (e) {}
+    }
+    this.forceUpdate();
+    return order;
+  }
+
+  adminOn = () => typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('admin') === '1';
+
+  approveOrder = (orderId) => {
+    const rows = this.readLocalOrders().map(r => r.orderId === orderId ? Object.assign({}, r, { status: 'approved', approvedAt: Date.now() }) : r);
+    try { localStorage.setItem(this.localKey, JSON.stringify(rows)); } catch (e) {}
+    const inst = window.__instant;
+    const row = rows.filter(r => r.orderId === orderId)[0];
+    if (inst && row) {
+      try { inst.db.transact(inst.tx.ticketOrders[inst.id()].update(Object.assign({}, row, { synced: true }))); } catch (e) {}
+    }
+    this.forceUpdate();
+  };
+
+  downloadCsv = () => {
+    const rows = this.readLocalOrders();
+    const cols = ['orderId','createdAt','status','email','name','zip','ticketCount','items','subtotal','code','discountRate','discountAmount','cardFee','total','synced'];
+    const esc = (v) => '"' + String(v === undefined || v === null ? '' : v).split('"').join('""') + '"';
+    const csv = [cols.join(',')].concat(rows.map(r => cols.map(c => esc(c === 'createdAt' ? new Date(r[c]).toISOString() : r[c])).join(','))).join('\n');
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'jai-ticket-orders.csv';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+  };
+
+  reserveSeat = () => {
+    const q = this.state.qty || {};
+    const n = Object.keys(q).reduce((t, k) => t + (q[k] || 0), 0);
+    if (!n) { this.setState({ seatStatus: 'Choose at least one seat.' }); return; }
+    this.saveOrder({ status: this.discountRate() > 0 ? 'pending_approval' : 'rsvp' });
+    this.setState({ seatStatus: n + (n === 1 ? ' ticket reserved.' : ' tickets reserved.') + ' We will email your confirmation \u2014 nothing is charged today.' });
+  };
+
+  componentDidMount() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+  }
+
+  componentWillUnmount() { window.removeEventListener('resize', this.onRailResize); this.lockScroll(false); }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    const q = this.state.qty || {};
+    const total = this.tierDefs.reduce((t, d) => t + (q[d.key] || 0), 0);
+    const dd = this.tierDefs.filter(d => d.key === this.state.detailKey)[0];
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      checkout: this.checkout,
+      trayShift: this.state.detailKey ? 'translateX(-50%)' : 'translateX(0)',
+      ticketsOrder: this.railWide ? 0 : -1,
+      closeDetail: this.closeDetail,
+      detailName: dd ? dd.name : '',
+      detailPrice: dd ? this.money(this.unitOf(dd)) + (dd.note ? ' per month' : ' each') : '',
+      detailBody: dd ? (this.detailCopy[dd.key] || '') : '',
+      orderTotal: this.money(this.tierDefs.reduce((t, d) => t + (q[d.key] || 0) * this.unitOf(d), 0)),
+      seatDisplay: this.state.seatOpen ? 'flex' : 'none',
+      openSeat: this.openSeat,
+      closeSeat: this.closeSeat,
+      reserveSeat: this.reserveSeat,
+      seatStatus: this.state.seatStatus,
+      seatTotal: total === 1 ? '1 seat' : total + ' seats',
+      code: this.state.code,
+      onCode: this.onCode,
+      applyCode: this.applyCode,
+      codeStatus: this.state.codeStatus,
+      codePending: !!this.state.codePending,
+      adminOn: this.adminOn(),
+      adminSummary: (() => {
+        const r = this.readLocalOrders();
+        const pend = r.filter(x => x.status === 'pending_approval').length;
+        return r.length + ' order' + (r.length === 1 ? '' : 's') + (pend ? ' \u00b7 ' + pend + ' pending' : '');
+      })(),
+      adminRows: this.readLocalOrders().slice().reverse().map(r => {
+        const pending = r.status === 'pending_approval';
+        const badge = { pending_approval: 'Pending approval', approved: 'Approved', rsvp: 'RSVP', awaiting_payment: 'Awaiting payment' }[r.status] || r.status;
+        return {
+          who: (r.name || r.email || 'No contact given'),
+          total: this.money(r.total),
+          detail: r.ticketCount + ' ticket' + (r.ticketCount === 1 ? '' : 's')
+            + (r.code ? ' \u00b7 ' + r.code + ' (' + Math.round(r.discountRate * 100) + '% off)' : '')
+            + ' \u00b7 ' + r.orderId + ' \u00b7 ' + new Date(r.createdAt).toLocaleString('en-US'),
+          badge: badge,
+          badgeBg: pending ? 'rgba(244,81,30,0.12)' : (r.status === 'approved' ? 'rgba(167,221,201,0.5)' : '#eef0f2'),
+          badgeColor: pending ? '#c93f13' : (r.status === 'approved' ? '#0f9d76' : '#6a6a6a'),
+          approveShow: pending ? 'inline-block' : 'none',
+          approve: () => this.approveOrder(r.orderId),
+          sync: r.synced ? 'synced' : 'local only'
+        };
+      }),
+      downloadCsv: this.downloadCsv,
+      payOpen: !!this.state.payOpen,
+      closePay: this.closePay,
+      stopPay: this.stopPay,
+      payEmail: this.state.payEmail || '',
+      payName: this.state.payName || '',
+      payCard: this.state.payCard || '',
+      payExp: this.state.payExp || '',
+      payCvc: this.state.payCvc || '',
+      payZip: this.state.payZip || '',
+      onPayEmail: this.onPayEmail,
+      onPayName: this.onPayName,
+      onPayCard: this.onPayCard,
+      onPayExp: this.onPayExp,
+      onPayCvc: this.onPayCvc,
+      onPayZip: this.onPayZip,
+      submitPay: this.submitPay,
+      payNotice: this.state.payNotice || (this.discountRate() > 0 ? 'Your card will not be processed until approved. Your RSVP is confirmed.' : ''),
+      payLines: this.tierDefs.filter(d => (q[d.key] || 0) > 0).map(d => ({
+        label: (q[d.key] > 1 ? q[d.key] + ' \u00d7 ' : '') + d.name.replace(/^\$[\d,]+\s*/, ''),
+        amount: this.money(d.base * q[d.key])
+      })),
+      paySubtotalShow: this.discountRate() > 0,
+      paySubtotal: this.money(this.tierDefs.reduce((t, d) => t + (q[d.key] || 0) * d.base, 0)),
+      payDiscountShow: this.discountRate() > 0,
+      payDiscountLabel: (this.state.appliedCode || '').toUpperCase() + ' \u2014 ' + Math.round(this.discountRate() * 100) + '% off applied',
+      payDiscountAmount: '\u2212' + this.money(this.tierDefs.reduce((t, d) => t + (q[d.key] || 0) * (d.note ? 0 : d.base * this.discountRate()), 0)),
+      payFee: this.money(Math.round(this.tierDefs.reduce((t, d) => t + (q[d.key] || 0) * this.unitOf(d), 0) * 0.04 * 100) / 100),
+      payTotal: this.money(Math.round(this.tierDefs.reduce((t, d) => t + (q[d.key] || 0) * this.unitOf(d), 0) * 1.04 * 100) / 100),
+      payButton: this.discountRate() > 0 ? 'Confirm RSVP' : 'Pay ' + this.money(Math.round(this.tierDefs.reduce((t, d) => t + (q[d.key] || 0) * this.unitOf(d), 0) * 1.04 * 100) / 100),
+      tiers: this.tierDefs.map((d, i) => ({
+        name: d.name,
+        total: this.money((q[d.key] || 0) > 0 ? this.unitOf(d) * q[d.key] : this.unitOf(d)),
+        tax: d.note || (this.money(d.base)
+          + ((q[d.key] || 0) > 1 ? ' \u00d7 ' + q[d.key] + ' tickets' : '')),
+        bg: i % 2 === 1 ? '#fbcfe0' : '#ffffff',
+        ink: i % 2 === 1 ? '#0d1512' : '#0f6b52',
+        qty: q[d.key] || 0,
+        more: () => this.openDetail(d.key),
+        inc: () => this.bump(d.key, 1),
+        dec: () => this.bump(d.key, -1)
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

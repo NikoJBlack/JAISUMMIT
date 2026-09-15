@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#0d1512">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0d1512"></rect>
+    <circle cx="600" cy="400" r="230" fill="none" stroke="#a7ddc9" stroke-width="6"></circle>
+    <circle cx="600" cy="400" r="140" fill="none" stroke="#0f9d76" stroke-width="6"></circle>
+    <circle cx="600" cy="400" r="52" fill="#a7ddc9"></circle>
+  </svg>
+</template>
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin:0; background:#ffffff; -webkit-text-size-adjust:100%; overflow-x:hidden; }
+  a { color:#0f9d76; }
+  a:hover { color:#0d7d5d; }
+  @keyframes jaiSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes jaiCounter { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+  @keyframes bubbleWobble {
+    from { transform: translateY(calc(var(--wy) * -1)) rotate(calc(var(--wr) * -1)); }
+    to   { transform: translateY(var(--wy)) rotate(var(--wr)); }
+  }
+  @keyframes bubbleAngle {
+    0%   { transform: translateX(0); }
+    30%  { transform: translateX(var(--ax)); }
+    100% { transform: translateX(var(--ax)); }
+  }
+  @keyframes bubbleFlow {
+    0%    { bottom: -12%; opacity: 0; transform: translateX(-50%) scale(0.4); }
+    0.35% { bottom: -8%;  opacity: 1; transform: translateX(-50%) scale(1.18); }
+    0.7%  { opacity: 1; transform: translateX(-50%) scale(0.93); }
+    1.1%  { opacity: 1; transform: translateX(-50%) scale(1); }
+    30%   { bottom: 112%; opacity: 1; transform: translateX(-50%) scale(1); }
+    30.4% { bottom: 112%; opacity: 0; transform: translateX(-50%) scale(1); }
+    100%  { bottom: 112%; opacity: 0; transform: translateX(-50%) scale(0.4); }
+  }
+  @keyframes bubbleFlow {
+    0%    { bottom: -12%; opacity: 0; transform: translateX(-50%) scale(0.4); }
+    0.35% { bottom: -8%;  opacity: 1; transform: translateX(-50%) scale(1.18); }
+    0.7%  { opacity: 1; transform: translateX(-50%) scale(0.93); }
+    1.1%  { opacity: 1; transform: translateX(-50%) scale(1); }
+    30%   { bottom: 112%; opacity: 1; transform: translateX(-50%) scale(1); }
+    30.4% { bottom: 112%; opacity: 0; transform: translateX(-50%) scale(1); }
+    100%  { bottom: 112%; opacity: 0; transform: translateX(-50%) scale(0.4); }
+  }
+  @keyframes bubblePop {
+    0%   { opacity: 0; transform: translateX(-50%) scale(0.4); }
+    3%   { opacity: 1; transform: translateX(-50%) scale(1.16); }
+    5%   { opacity: 1; transform: translateX(-50%) scale(0.94); }
+    7%   { opacity: 1; transform: translateX(-50%) scale(1); }
+    88%  { opacity: 1; transform: translateX(-50%) scale(1); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  }
+  @keyframes bubbleSway { from { transform: translateX(calc(var(--sx) * -1)); } to { transform: translateX(var(--sx)); } }
+  @keyframes jaiWobbleA { from { transform: translate(-4px,3px); } to { transform: translate(5px,-4px); } }
+  @keyframes jaiWobbleB { from { transform: translate(3px,4px); } to { transform: translate(-4px,-3px); } }
+  @keyframes jaiPulse { 0%,100% { transform: scale(1); opacity:0.55; } 50% { transform: scale(1.12); opacity:0.9; } }
+  @keyframes orbitEllipse {
+    0%    { transform: translate(var(--rx), 0); }
+    12.5% { transform: translate(calc(var(--rx) * 0.707), calc(var(--ry) * 0.707)); }
+    25%   { transform: translate(0, var(--ry)); }
+    37.5% { transform: translate(calc(var(--rx) * -0.707), calc(var(--ry) * 0.707)); }
+    50%   { transform: translate(calc(var(--rx) * -1), 0); }
+    62.5% { transform: translate(calc(var(--rx) * -0.707), calc(var(--ry) * -0.707)); }
+    75%   { transform: translate(0, calc(var(--ry) * -1)); }
+    87.5% { transform: translate(calc(var(--rx) * 0.707), calc(var(--ry) * -0.707)); }
+    100%  { transform: translate(var(--rx), 0); }
+  }
+  [data-orbit-paused="true"] *, [data-orbit-paused="true"] { animation-play-state: paused !important; }
+  [data-flick="true"] > div, [data-flick="true"] > div > div { animation-play-state: paused !important; }
+  [data-flick="true"] > div { opacity: 1 !important; filter: none !important; }
+</style>
+</helmet>
+<div style="background:transparent; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(18px,4vh,34px) clamp(10px,2vw,24px) 26px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+
+  <p style="margin:0; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.02em; line-height:0.9; font-size:clamp(38px,8vw,84px); color:#c7c9c8;">Global<br /><span style="color:#8fd6bd;">AI For Good</span><br />Community</p>
+
+  <p style="max-width:640px; margin:clamp(6px,1.2vh,12px) 0 0; text-align:center; font-size:clamp(16px,2.4vw,19px); line-height:1.65; color:#4a4a4a; text-wrap:pretty;">Every organization, company, lab, and local group with a voice in the Commons, drifting through the same open room.<br /><br /><sc-if value="{{ showDraft }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block; background:#f4511e; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.12em; padding:5px 11px; border-radius:4px; margin-right:8px;">Draft</span><strong style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:0.82em; letter-spacing:0.06em; color:#c93f13;">This page is in draft.</strong><br /></sc-if>Tap a name to read its card and see who it shares ground with.</p>
+
+  <div data-orbit-paused="{{ paused }}" onClick="{{ onStageClick }}" onDoubleClick="{{ onStageDouble }}" onPointerDown="{{ onFlickDown }}" onPointerMove="{{ onFlickMove }}" onPointerUp="{{ onFlickUp }}" onPointerCancel="{{ onFlickUp }}" style="position:relative; width:100%; max-width:1400px; height:clamp(880px,102vh,1180px); margin-top:clamp(2px,0.6vh,8px);">
+
+
+    <div style="position:absolute; inset:0; overflow:hidden; touch-action:pan-y; transition:opacity 0.55s ease; opacity:{{ orbitOpacity }}; pointer-events:{{ orbitPointer }};">
+      <div data-flick="{{ flicking }}" style="position:absolute; inset:-8% 0; transform:translateY({{ fieldY }}); will-change:transform;">
+      <div style="position:absolute; left:calc(87% + 0.01%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:187.9s;"><div style="--ax:-1px; animation:bubbleAngle 184s linear infinite; animation-delay:187.9s;"><span data-org="OpenAI" style="display:inline-block; max-width:168px; --wy:7.1px; --wr:0.61deg; animation:bubbleWobble 14.0s ease-in-out infinite alternate; animation-delay:-15.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">OpenAI</span></div></div>
+      <div style="position:absolute; left:calc(87% + 0.51%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:85.1s;"><div style="--ax:-9px; animation:bubbleAngle 184s linear infinite; animation-delay:85.1s;"><span data-org="Anthropic" style="display:inline-block; max-width:168px; --wy:5.2px; --wr:1.15deg; animation:bubbleWobble 12.5s ease-in-out infinite alternate; animation-delay:-16.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Anthropic</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.17%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:91.5s;"><div style="--ax:0px; animation:bubbleAngle 150s linear infinite; animation-delay:91.5s;"><span data-org="Google DeepMind" style="display:inline-block; max-width:168px; --wy:4.4px; --wr:0.83deg; animation:bubbleWobble 15.2s ease-in-out infinite alternate; animation-delay:-16.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Google DeepMind</span></div></div>
+      <div style="position:absolute; left:calc(62% + 0.21%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:20.8s;"><div style="--ax:-6px; animation:bubbleAngle 158s linear infinite; animation-delay:20.8s;"><span data-org="Microsoft AI" style="display:inline-block; max-width:168px; --wy:5.6px; --wr:0.88deg; animation:bubbleWobble 8.7s ease-in-out infinite alternate; animation-delay:-12.1s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Microsoft AI</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.25%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:92.2s;"><div style="--ax:5px; animation:bubbleAngle 172s linear infinite; animation-delay:92.2s;"><span data-org="NVIDIA" style="display:inline-block; max-width:168px; --wy:3.2px; --wr:0.68deg; animation:bubbleWobble 10.2s ease-in-out infinite alternate; animation-delay:-9.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#d29a0f; border:1.5px solid #e0a516; color:#241a02;">NVIDIA</span></div></div>
+      <div style="position:absolute; left:calc(87% + 0.19%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:74.3s;"><div style="--ax:8px; animation:bubbleAngle 184s linear infinite; animation-delay:74.3s;"><span data-org="Meta AI" style="display:inline-block; max-width:168px; --wy:5.5px; --wr:0.71deg; animation:bubbleWobble 7.1s ease-in-out infinite alternate; animation-delay:-6.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Meta AI</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.08%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:64.9s;"><div style="--ax:-7px; animation:bubbleAngle 150s linear infinite; animation-delay:64.9s;"><span data-org="Hugging Face" style="display:inline-block; max-width:168px; --wy:5.6px; --wr:0.49deg; animation:bubbleWobble 9.7s ease-in-out infinite alternate; animation-delay:-8.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">Hugging Face</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.26%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:80.3s;"><div style="--ax:2px; animation:bubbleAngle 172s linear infinite; animation-delay:80.3s;"><span data-org="Mistral AI" style="display:inline-block; max-width:168px; --wy:3.6px; --wr:1.08deg; animation:bubbleWobble 10.5s ease-in-out infinite alternate; animation-delay:-7.1s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Mistral AI</span></div></div>
+      <div style="position:absolute; left:calc(12% + -0.24%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:12.7s;"><div style="--ax:0px; animation:bubbleAngle 150s linear infinite; animation-delay:12.7s;"><span data-org="Cohere" style="display:inline-block; max-width:168px; --wy:4.8px; --wr:0.90deg; animation:bubbleWobble 18.6s ease-in-out infinite alternate; animation-delay:-3.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Cohere</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.15%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:91.0s;"><div style="--ax:-3px; animation:bubbleAngle 158s linear infinite; animation-delay:91.0s;"><span data-org="IBM Research" style="display:inline-block; max-width:168px; --wy:5.1px; --wr:1.44deg; animation:bubbleWobble 14.4s ease-in-out infinite alternate; animation-delay:-14.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#d29a0f; border:1.5px solid #e0a516; color:#241a02;">IBM Research</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.04%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:29.2s;"><div style="--ax:-4px; animation:bubbleAngle 172s linear infinite; animation-delay:29.2s;"><span data-org="Apple" style="display:inline-block; max-width:168px; --wy:3.6px; --wr:0.75deg; animation:bubbleWobble 17.4s ease-in-out infinite alternate; animation-delay:-7.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#0c7a5c; border:1.5px solid #0f9d76; color:#ffffff;">Apple</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.08%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:82.5s;"><div style="--ax:5px; animation:bubbleAngle 150s linear infinite; animation-delay:82.5s;"><span data-org="Amazon Science" style="display:inline-block; max-width:168px; --wy:4.3px; --wr:1.04deg; animation:bubbleWobble 17.7s ease-in-out infinite alternate; animation-delay:-6.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#0c7a5c; border:1.5px solid #0f9d76; color:#ffffff;">Amazon Science</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.50%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:176.6s;"><div style="--ax:4px; animation:bubbleAngle 184s linear infinite; animation-delay:176.6s;"><span data-org="Stability AI" style="display:inline-block; max-width:168px; --wy:4.2px; --wr:1.38deg; animation:bubbleWobble 8.3s ease-in-out infinite alternate; animation-delay:-6.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#1470b4; border:1.5px solid #1d8fe1; color:#ffffff;">Stability AI</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.20%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:74.1s;"><div style="--ax:-8px; animation:bubbleAngle 150s linear infinite; animation-delay:74.1s;"><span data-org="AI Alliance" style="display:inline-block; max-width:168px; --wy:6.2px; --wr:0.91deg; animation:bubbleWobble 12.7s ease-in-out infinite alternate; animation-delay:-8.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">AI Alliance</span></div></div>
+      <div style="position:absolute; left:calc(62% + 0.09%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:98.8s;"><div style="--ax:-5px; animation:bubbleAngle 158s linear infinite; animation-delay:98.8s;"><span data-org="Pro-Human AI Declaration" style="display:inline-block; max-width:168px; --wy:4.6px; --wr:1.41deg; animation:bubbleWobble 16.5s ease-in-out infinite alternate; animation-delay:-8.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">Pro-Human AI Declaration</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.33%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:26.4s;"><div style="--ax:8px; animation:bubbleAngle 184s linear infinite; animation-delay:26.4s;"><span data-org="Future of Life" style="display:inline-block; max-width:168px; --wy:5.0px; --wr:0.60deg; animation:bubbleWobble 16.7s ease-in-out infinite alternate; animation-delay:-13.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">Future of Life</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.58%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:113.5s;"><div style="--ax:-7px; animation:bubbleAngle 172s linear infinite; animation-delay:113.5s;"><span data-org="AMD" style="display:inline-block; max-width:168px; --wy:4.1px; --wr:0.67deg; animation:bubbleWobble 10.4s ease-in-out infinite alternate; animation-delay:-13.1s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#d29a0f; border:1.5px solid #e0a516; color:#241a02;">AMD</span></div></div>
+      <div style="position:absolute; left:calc(12% + -0.32%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:46.3s;"><div style="--ax:1px; animation:bubbleAngle 150s linear infinite; animation-delay:46.3s;"><span data-org="Intel" style="display:inline-block; max-width:168px; --wy:4.5px; --wr:0.59deg; animation:bubbleWobble 8.0s ease-in-out infinite alternate; animation-delay:-1.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#d29a0f; border:1.5px solid #e0a516; color:#241a02;">Intel</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.02%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:38.1s;"><div style="--ax:-6px; animation:bubbleAngle 184s linear infinite; animation-delay:38.1s;"><span data-org="Oracle" style="display:inline-block; max-width:168px; --wy:4.5px; --wr:0.64deg; animation:bubbleWobble 14.7s ease-in-out infinite alternate; animation-delay:-4.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#0c7a5c; border:1.5px solid #0f9d76; color:#ffffff;">Oracle</span></div></div>
+      <div style="position:absolute; left:calc(62% + 0.46%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:158.1s;"><div style="--ax:-8px; animation:bubbleAngle 158s linear infinite; animation-delay:158.1s;"><span data-org="Dell" style="display:inline-block; max-width:168px; --wy:6.0px; --wr:0.40deg; animation:bubbleWobble 13.6s ease-in-out infinite alternate; animation-delay:-18.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#0c7a5c; border:1.5px solid #0f9d76; color:#ffffff;">Dell</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.56%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:38.2s;"><div style="--ax:0px; animation:bubbleAngle 172s linear infinite; animation-delay:38.2s;"><span data-org="Sony Group" style="display:inline-block; max-width:168px; --wy:6.3px; --wr:0.61deg; animation:bubbleWobble 9.6s ease-in-out infinite alternate; animation-delay:-1.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#c2440f; border:1.5px solid #f26522; color:#ffffff;">Sony Group</span></div></div>
+      <div style="position:absolute; left:calc(62% + 0.36%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:138.0s;"><div style="--ax:-3px; animation:bubbleAngle 158s linear infinite; animation-delay:138.0s;"><span data-org="ServiceNow" style="display:inline-block; max-width:168px; --wy:7.5px; --wr:1.49deg; animation:bubbleWobble 9.9s ease-in-out infinite alternate; animation-delay:-5.8s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">ServiceNow</span></div></div>
+      <div style="position:absolute; left:calc(12% + -0.16%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:135.0s;"><div style="--ax:-2px; animation:bubbleAngle 150s linear infinite; animation-delay:135.0s;"><span data-org="Red Hat" style="display:inline-block; max-width:168px; --wy:5.1px; --wr:1.27deg; animation:bubbleWobble 8.2s ease-in-out infinite alternate; animation-delay:-14.7s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">Red Hat</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.09%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:10.9s;"><div style="--ax:8px; animation:bubbleAngle 158s linear infinite; animation-delay:10.9s;"><span data-org="Cerebras" style="display:inline-block; max-width:168px; --wy:4.5px; --wr:0.71deg; animation:bubbleWobble 19.1s ease-in-out infinite alternate; animation-delay:-11.8s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">Cerebras</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.08%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:38.8s;"><div style="--ax:0px; animation:bubbleAngle 150s linear infinite; animation-delay:38.8s;"><span data-org="Stanford HAI" style="display:inline-block; max-width:168px; --wy:7.0px; --wr:1.14deg; animation:bubbleWobble 6.9s ease-in-out infinite alternate; animation-delay:-13.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">Stanford HAI</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.31%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:29.3s;"><div style="--ax:0px; animation:bubbleAngle 150s linear infinite; animation-delay:29.3s;"><span data-org="MIT CSAIL" style="display:inline-block; max-width:168px; --wy:5.3px; --wr:0.41deg; animation:bubbleWobble 14.2s ease-in-out infinite alternate; animation-delay:-17.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">MIT CSAIL</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.34%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:32.1s;"><div style="--ax:-4px; animation:bubbleAngle 158s linear infinite; animation-delay:32.1s;"><span data-org="Berkeley BAIR" style="display:inline-block; max-width:168px; --wy:5.6px; --wr:0.96deg; animation:bubbleWobble 8.1s ease-in-out infinite alternate; animation-delay:-13.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Berkeley BAIR</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.35%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:153.6s;"><div style="--ax:5px; animation:bubbleAngle 184s linear infinite; animation-delay:153.6s;"><span data-org="AI2" style="display:inline-block; max-width:168px; --wy:3.3px; --wr:1.14deg; animation:bubbleWobble 18.9s ease-in-out infinite alternate; animation-delay:-14.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">AI2</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.00%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:168.8s;"><div style="--ax:3px; animation:bubbleAngle 172s linear infinite; animation-delay:168.8s;"><span data-org="Partnership on AI" style="display:inline-block; max-width:168px; --wy:6.7px; --wr:0.95deg; animation:bubbleWobble 13.4s ease-in-out infinite alternate; animation-delay:-6.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">Partnership on AI</span></div></div>
+      <div style="position:absolute; left:calc(12% + -0.45%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:54.8s;"><div style="--ax:8px; animation:bubbleAngle 150s linear infinite; animation-delay:54.8s;"><span data-org="AI Now Institute" style="display:inline-block; max-width:168px; --wy:7.4px; --wr:1.39deg; animation:bubbleWobble 14.1s ease-in-out infinite alternate; animation-delay:-6.4s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">AI Now Institute</span></div></div>
+      <div style="position:absolute; left:calc(62% + 0.23%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:71.2s;"><div style="--ax:8px; animation:bubbleAngle 158s linear infinite; animation-delay:71.2s;"><span data-org="Mozilla Foundation" style="display:inline-block; max-width:168px; --wy:4.5px; --wr:1.24deg; animation:bubbleWobble 16.5s ease-in-out infinite alternate; animation-delay:-7.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">Mozilla Foundation</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.32%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:6.1s;"><div style="--ax:2px; animation:bubbleAngle 172s linear infinite; animation-delay:6.1s;"><span data-org="EFF" style="display:inline-block; max-width:168px; --wy:2.7px; --wr:0.84deg; animation:bubbleWobble 12.8s ease-in-out infinite alternate; animation-delay:-2.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">EFF</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.21%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:127.4s;"><div style="--ax:8px; animation:bubbleAngle 150s linear infinite; animation-delay:127.4s;"><span data-org="Data &amp; Society" style="display:inline-block; max-width:168px; --wy:3.0px; --wr:1.33deg; animation:bubbleWobble 11.2s ease-in-out infinite alternate; animation-delay:-19.1s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">Data &amp; Society</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.26%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:49.7s;"><div style="--ax:8px; animation:bubbleAngle 172s linear infinite; animation-delay:49.7s;"><span data-org="AJL" style="display:inline-block; max-width:168px; --wy:5.9px; --wr:0.68deg; animation:bubbleWobble 18.6s ease-in-out infinite alternate; animation-delay:-5.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#c2440f; border:1.5px solid #f26522; color:#ffffff;">AJL</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.05%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:134.5s;"><div style="--ax:1px; animation:bubbleAngle 172s linear infinite; animation-delay:134.5s;"><span data-org="NIST AI Safety" style="display:inline-block; max-width:168px; --wy:3.0px; --wr:0.92deg; animation:bubbleWobble 7.6s ease-in-out infinite alternate; animation-delay:-3.1s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">NIST AI Safety</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.40%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:158.3s;"><div style="--ax:3px; animation:bubbleAngle 172s linear infinite; animation-delay:158.3s;"><span data-org="AI Congress" style="display:inline-block; max-width:168px; --wy:4.4px; --wr:0.55deg; animation:bubbleWobble 17.1s ease-in-out infinite alternate; animation-delay:-5.6s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">AI Congress</span></div></div>
+      <div style="position:absolute; left:calc(37% + -0.53%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:18.7s;"><div style="--ax:8px; animation:bubbleAngle 172s linear infinite; animation-delay:18.7s;"><span data-org="Linux Foundation" style="display:inline-block; max-width:168px; --wy:4.5px; --wr:0.84deg; animation:bubbleWobble 15.2s ease-in-out infinite alternate; animation-delay:-9.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">Linux Foundation</span></div></div>
+      <div style="position:absolute; left:calc(87% + 0.26%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:49.7s;"><div style="--ax:-5px; animation:bubbleAngle 184s linear infinite; animation-delay:49.7s;"><span data-org="MLCommons" style="display:inline-block; max-width:168px; --wy:6.9px; --wr:0.99deg; animation:bubbleWobble 10.8s ease-in-out infinite alternate; animation-delay:-8.6s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">MLCommons</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.10%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:80.7s;"><div style="--ax:-2px; animation:bubbleAngle 158s linear infinite; animation-delay:80.7s;"><span data-org="Anyscale" style="display:inline-block; max-width:168px; --wy:4.1px; --wr:1.40deg; animation:bubbleWobble 9.5s ease-in-out infinite alternate; animation-delay:-0.8s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">Anyscale</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.59%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:108.5s;"><div style="--ax:6px; animation:bubbleAngle 150s linear infinite; animation-delay:108.5s;"><span data-org="Roadzen" style="display:inline-block; max-width:168px; --wy:3.5px; --wr:1.29deg; animation:bubbleWobble 13.7s ease-in-out infinite alternate; animation-delay:-3.6s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#0c7a5c; border:1.5px solid #0f9d76; color:#ffffff;">Roadzen</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.26%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:146.0s;"><div style="--ax:7px; animation:bubbleAngle 172s linear infinite; animation-delay:146.0s;"><span data-org="CERN" style="display:inline-block; max-width:168px; --wy:6.3px; --wr:0.82deg; animation:bubbleWobble 14.6s ease-in-out infinite alternate; animation-delay:-2.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">CERN</span></div></div>
+      <div style="position:absolute; left:calc(62% + 0.54%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:149.5s;"><div style="--ax:-6px; animation:bubbleAngle 158s linear infinite; animation-delay:149.5s;"><span data-org="NASA" style="display:inline-block; max-width:168px; --wy:5.5px; --wr:0.91deg; animation:bubbleWobble 11.7s ease-in-out infinite alternate; animation-delay:-4.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#d29a0f; border:1.5px solid #e0a516; color:#241a02;">NASA</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.28%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:130.1s;"><div style="--ax:-6px; animation:bubbleAngle 158s linear infinite; animation-delay:130.1s;"><span data-org="NSF" style="display:inline-block; max-width:168px; --wy:7.5px; --wr:1.06deg; animation:bubbleWobble 10.8s ease-in-out infinite alternate; animation-delay:-15.7s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#7b2d8b; border:1.5px solid #7b2d8b; color:#ffffff;">NSF</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.19%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:61.4s;"><div style="--ax:7px; animation:bubbleAngle 184s linear infinite; animation-delay:61.4s;"><span data-org="Cleveland Clinic" style="display:inline-block; max-width:168px; --wy:4.5px; --wr:1.39deg; animation:bubbleWobble 11.3s ease-in-out infinite alternate; animation-delay:-6.4s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Cleveland Clinic</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.39%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:123.9s;"><div style="--ax:-7px; animation:bubbleAngle 172s linear infinite; animation-delay:123.9s;"><span data-org="INSAIT" style="display:inline-block; max-width:168px; --wy:3.8px; --wr:0.71deg; animation:bubbleWobble 19.3s ease-in-out infinite alternate; animation-delay:-9.6s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">INSAIT</span></div></div>
+      <div style="position:absolute; left:calc(87% + 0.57%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:131.6s;"><div style="--ax:-1px; animation:bubbleAngle 184s linear infinite; animation-delay:131.6s;"><span data-org="MOC Alliance" style="display:inline-block; max-width:168px; --wy:4.2px; --wr:1.21deg; animation:bubbleWobble 15.3s ease-in-out infinite alternate; animation-delay:-16.8s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">MOC Alliance</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.31%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:40.5s;"><div style="--ax:4px; animation:bubbleAngle 158s linear infinite; animation-delay:40.5s;"><span data-org="EPFL" style="display:inline-block; max-width:168px; --wy:3.3px; --wr:0.97deg; animation:bubbleWobble 13.1s ease-in-out infinite alternate; animation-delay:-18.4s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">EPFL</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.16%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:103.2s;"><div style="--ax:-4px; animation:bubbleAngle 172s linear infinite; animation-delay:103.2s;"><span data-org="ETH Zurich" style="display:inline-block; max-width:168px; --wy:2.9px; --wr:0.89deg; animation:bubbleWobble 17.2s ease-in-out infinite alternate; animation-delay:-2.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#257c34; border:1.5px solid #3ab54a; color:#ffffff;">ETH Zurich</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.22%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:143.2s;"><div style="--ax:-4px; animation:bubbleAngle 184s linear infinite; animation-delay:143.2s;"><span data-org="Cornell" style="display:inline-block; max-width:168px; --wy:6.2px; --wr:1.00deg; animation:bubbleWobble 12.9s ease-in-out infinite alternate; animation-delay:-6.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Cornell</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.15%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:97.7s;"><div style="--ax:-8px; animation:bubbleAngle 184s linear infinite; animation-delay:97.7s;"><span data-org="Dartmouth" style="display:inline-block; max-width:168px; --wy:3.5px; --wr:0.48deg; animation:bubbleWobble 14.3s ease-in-out infinite alternate; animation-delay:-17.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Dartmouth</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.20%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:60.8s;"><div style="--ax:4px; animation:bubbleAngle 158s linear infinite; animation-delay:60.8s;"><span data-org="Imperial College" style="display:inline-block; max-width:168px; --wy:6.4px; --wr:0.95deg; animation:bubbleWobble 15.9s ease-in-out infinite alternate; animation-delay:-5.1s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Imperial College</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.20%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:119.9s;"><div style="--ax:5px; animation:bubbleAngle 158s linear infinite; animation-delay:119.9s;"><span data-org="U. Illinois" style="display:inline-block; max-width:168px; --wy:3.8px; --wr:1.25deg; animation:bubbleWobble 14.3s ease-in-out infinite alternate; animation-delay:-0.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">U. Illinois</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.55%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:21.3s;"><div style="--ax:7px; animation:bubbleAngle 150s linear infinite; animation-delay:21.3s;"><span data-org="Notre Dame" style="display:inline-block; max-width:168px; --wy:5.9px; --wr:0.67deg; animation:bubbleWobble 18.4s ease-in-out infinite alternate; animation-delay:-5.7s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Notre Dame</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.15%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:52.0s;"><div style="--ax:-8px; animation:bubbleAngle 158s linear infinite; animation-delay:52.0s;"><span data-org="U. Tokyo" style="display:inline-block; max-width:168px; --wy:5.6px; --wr:1.41deg; animation:bubbleWobble 15.9s ease-in-out infinite alternate; animation-delay:-9.6s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">U. Tokyo</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.37%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:118.6s;"><div style="--ax:-6px; animation:bubbleAngle 184s linear infinite; animation-delay:118.6s;"><span data-org="Yale" style="display:inline-block; max-width:168px; --wy:5.8px; --wr:1.46deg; animation:bubbleWobble 6.9s ease-in-out infinite alternate; animation-delay:-17.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">Yale</span></div></div>
+      <div style="position:absolute; left:calc(87% + 0.43%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:165.8s;"><div style="--ax:-8px; animation:bubbleAngle 184s linear infinite; animation-delay:165.8s;"><span data-org="IIT Bombay" style="display:inline-block; max-width:168px; --wy:3.2px; --wr:0.74deg; animation:bubbleWobble 9.2s ease-in-out infinite alternate; animation-delay:-14.5s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">IIT Bombay</span></div></div>
+      <div style="position:absolute; left:calc(87% + -0.16%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:107.0s;"><div style="--ax:-5px; animation:bubbleAngle 184s linear infinite; animation-delay:107.0s;"><span data-org="TU Munich" style="display:inline-block; max-width:168px; --wy:6.3px; --wr:1.33deg; animation:bubbleWobble 15.8s ease-in-out infinite alternate; animation-delay:-13.7s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#2f7f9e; border:1.5px solid #2f7f9e; color:#ffffff;">TU Munich</span></div></div>
+      <div style="position:absolute; left:calc(12% + -0.35%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:2.6s;"><div style="--ax:-4px; animation:bubbleAngle 150s linear infinite; animation-delay:2.6s;"><span data-org="AFT" style="display:inline-block; max-width:168px; --wy:3.8px; --wr:0.59deg; animation:bubbleWobble 14.6s ease-in-out infinite alternate; animation-delay:-6.0s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">AFT</span></div></div>
+      <div style="position:absolute; left:calc(87% + 0.20%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 184s linear infinite; animation-delay:16.8s;"><div style="--ax:6px; animation:bubbleAngle 184s linear infinite; animation-delay:16.8s;"><span data-org="Christian Leaders" style="display:inline-block; max-width:168px; --wy:4.6px; --wr:0.46deg; animation:bubbleWobble 7.2s ease-in-out infinite alternate; animation-delay:-1.3s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">Christian Leaders</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.59%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:71.9s;"><div style="--ax:-1px; animation:bubbleAngle 172s linear infinite; animation-delay:71.9s;"><span data-org="Progressive Democrats" style="display:inline-block; max-width:168px; --wy:3.6px; --wr:0.88deg; animation:bubbleWobble 9.5s ease-in-out infinite alternate; animation-delay:-7.4s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">Progressive Democrats</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.28%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:118.4s;"><div style="--ax:-2px; animation:bubbleAngle 150s linear infinite; animation-delay:118.4s;"><span data-org="SAG-AFTRA" style="display:inline-block; max-width:168px; --wy:7.2px; --wr:0.92deg; animation:bubbleWobble 8.9s ease-in-out infinite alternate; animation-delay:-14.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">SAG-AFTRA</span></div></div>
+      <div style="position:absolute; left:calc(62% + -0.05%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 158s linear infinite; animation-delay:109.2s;"><div style="--ax:8px; animation:bubbleAngle 158s linear infinite; animation-delay:109.2s;"><span data-org="Project Liberty" style="display:inline-block; max-width:168px; --wy:3.7px; --wr:1.42deg; animation:bubbleWobble 7.7s ease-in-out infinite alternate; animation-delay:-19.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#8fd6bd; border:1.5px solid #0f9d76; color:#0d1512;">Project Liberty</span></div></div>
+      <div style="position:absolute; left:calc(37% + 0.26%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 172s linear infinite; animation-delay:60.5s;"><div style="--ax:-8px; animation:bubbleAngle 172s linear infinite; animation-delay:60.5s;"><span data-org="RMAIIG" style="display:inline-block; max-width:168px; --wy:5.9px; --wr:1.29deg; animation:bubbleWobble 12.6s ease-in-out infinite alternate; animation-delay:-17.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#c02f6d; border:1.5px solid #e0538a; color:#ffffff;">RMAIIG</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.19%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:99.2s;"><div style="--ax:4px; animation:bubbleAngle 150s linear infinite; animation-delay:99.2s;"><span data-org="Denver AI Meetup" style="display:inline-block; max-width:168px; --wy:7.0px; --wr:1.25deg; animation:bubbleWobble 15.1s ease-in-out infinite alternate; animation-delay:-13.9s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:14px; line-height:1.35; background:#c02f6d; border:1.5px solid #e0538a; color:#ffffff;">Denver AI Meetup</span></div></div>
+      <div style="position:absolute; left:calc(12% + 0.35%); bottom:-12%; opacity:0; transform:translateX(-50%); animation:bubbleFlow 150s linear infinite; animation-delay:143.6s;"><div style="--ax:-6px; animation:bubbleAngle 150s linear infinite; animation-delay:143.6s;"><span data-org="CU Boulder" style="display:inline-block; max-width:168px; --wy:2.7px; --wr:1.14deg; animation:bubbleWobble 15.0s ease-in-out infinite alternate; animation-delay:-1.2s; white-space:normal; text-wrap:balance; box-sizing:border-box; border-radius:22px; cursor:pointer; padding:8px 17px; text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:400; font-size:15.5px; line-height:1.22; background:#6b7780; border:1.5px solid #7d8a94; color:#ffffff;">CU Boulder</span></div></div>
+      </div>
+    </div>
+
+    <div style="position:absolute; left:0; right:0; top:0; height:84px; z-index:6; pointer-events:none; background:linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.92) 38%, rgba(255,255,255,0) 100%);"></div>
+
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; transition:opacity 0.55s ease; opacity:{{ webOpacity }};">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="0">
+        <line x1="50" y1="50" x2="{{ l.x }}" y2="{{ l.y }}" stroke="#8fd6bd" stroke-width="{{ l.w }}" stroke-linecap="round" opacity="0.75"></line>
+      </sc-for>
+    </svg>
+
+    <div style="position:absolute; inset:0; transition:opacity 0.55s ease; opacity:{{ webOpacity }}; pointer-events:{{ webPointer }};">
+      <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="0">
+        <div style="position:absolute; left:{{ n.left }}%; top:{{ n.top }}%; width:0; height:0; transition:left 0.75s cubic-bezier(0.22,1,0.36,1), top 0.75s cubic-bezier(0.22,1,0.36,1);">
+          <div style="position:absolute; transform:translate(-50%,-50%);">
+            <span data-org="{{ n.name }}" style="display:inline-block; box-sizing:border-box; cursor:pointer; max-width:clamp(150px,20vw,230px); text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:clamp(13px,1.5vw,16px); line-height:1.3; padding:6px 16px; border-radius:999px; transition:opacity 0.5s ease; background:{{ n.bg }}; border:{{ n.border }}; color:{{ n.color }}; opacity:{{ n.opacity }};">{{ n.name }}<span style="display:block; margin-top:2px; font-weight:400; font-size:0.82em; opacity:0.8;">{{ n.reason }}</span></span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <p style="max-width:620px; margin:clamp(14px,2.4vh,24px) 0 0; text-align:center; font-style:italic; font-size:clamp(17px,3vw,21px); line-height:1.55; color:#6a6a6a;">If your organization belongs in this picture, say so &mdash; the list is kept by the Commons, not by us.</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:clamp(12px,2vh,18px);">
+    <a href="./JAI%20Contact.dc.html" style="text-decoration:none; background:#a7ddc9; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:0.12em; padding:15px 28px; border-radius:6px;" style-hover="background:#8fd6bd;">Add your group</a>
+    <a href="./JAI%20Issues%20Topics%20Posts.dc.html" style="text-decoration:none; background:#ffffff; border:2px solid #c7c9c8; color:#5a5a5a; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:12px; letter-spacing:0.12em; padding:13px 26px; border-radius:6px;" style-hover="border-color:#0f9d76; color:#0f9d76;">See the Commons</a>
+  </div>
+
+  <div style="display:flex; gap:24px; margin-top:clamp(22px,3.6vh,36px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./MAJAI%20Lander.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Home</a>
+    <a href="./JanuaryAI%20Charter%20Overview.dc.html#plan" style="color:#0f9d76; text-decoration:none;">JAI-Charter &rarr;</a>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:26px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+
+  <div onClick="{{ clearPick }}" title="Back to the swarm" style="position:fixed; right:clamp(16px,3vw,44px); top:38%; z-index:70; display:{{ clearDisplay }}; width:56px; height:56px; border-radius:50%; background:#f4511e; box-shadow:0 8px 22px rgba(244,81,30,0.38); cursor:pointer; align-items:center; justify-content:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:24px; color:#ffffff; line-height:1; transition:transform 0.18s ease, background 0.18s ease;" style-hover="background:#d93f12; transform:scale(1.08);">X</div>
+
+  <sc-if value="{{ cardOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeCard }}" style="position:fixed; inset:0; z-index:80; background:rgba(13,21,18,0.55); display:flex; align-items:center; justify-content:center; padding:24px;">
+      <div onClick="{{ stop }}" style="position:relative; width:min(560px,92vw); max-height:86vh; overflow:auto; background:#ffffff; border-radius:14px; padding:clamp(24px,4vw,38px); box-shadow:0 30px 80px rgba(0,0,0,0.3);">
+        <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase; color:{{ cardAccent }};">{{ cardCat }}</div>
+        <p style="margin:8px 0 0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-0.015em; line-height:1; font-size:clamp(24px,4.6vw,38px); color:#1a1a1a;">{{ cardName }}</p>
+        <p style="margin:14px 0 0; font-size:16px; line-height:1.6; color:#4a4a4a; text-wrap:pretty;">{{ cardDesc }}</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; font-family:Helvetica, Arial, sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">
+          <sc-for list="{{ cardTags }}" as="t" hint-placeholder-count="3">
+            <span style="background:rgba(167,221,201,0.3); color:#0f9d76; padding:6px 11px; border-radius:999px;">{{ t.label }}</span>
+          </sc-for>
+        </div>
+        <div style="margin-top:22px; border-top:1px solid #ececec; padding-top:16px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76;">Shared ground with</div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:12px;">
+          <sc-for list="{{ cardAllies }}" as="a" hint-placeholder-count="4">
+            <div style="display:flex; align-items:baseline; gap:10px;">
+              <span style="flex:none; width:6px; height:6px; border-radius:50%; background:#8fd6bd;"></span>
+              <span style="flex:none; font-family:Helvetica, Arial, sans-serif; font-weight:700; font-size:13px; color:#2f2f2f;">{{ a.name }}</span>
+              <span style="font-size:12.5px; line-height:1.45; color:#7a7a7a;">{{ a.reason }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;">
+          <a href="{{ cardSite }}" target="_blank" rel="noopener" style="display:{{ cardSiteDisplay }}; text-decoration:none; background:#a7ddc9; color:#0d1512; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.1em; padding:13px 20px; border-radius:6px;" style-hover="background:#8fd6bd;">Visit site &nearr;</a>
+          <a href="{{ cardMail }}" style="text-decoration:none; background:#ffffff; border:2px solid #c7c9c8; color:#5a5a5a; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.1em; padding:11px 18px; border-radius:6px;" style-hover="border-color:#0f9d76; color:#0f9d76;">Email a contact</a>
+          <a href="tel:+13037200000" style="text-decoration:none; background:#ffffff; border:2px solid #c7c9c8; color:#5a5a5a; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.1em; padding:11px 18px; border-radius:6px;" style-hover="border-color:#0f9d76; color:#0f9d76;">Call (303) 720-0000</a>
+          <button onClick="{{ exploreCard }}" style="display:{{ exploreDisplay }}; cursor:pointer; background:#ffffff; border:2px solid #0f9d76; color:#0f9d76; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:11px; letter-spacing:0.1em; padding:11px 18px; border-radius:6px;" style-hover="background:#eaf6f2;">Center this one</button>
+        </div>
+        <div style="display:flex; justify-content:center; margin-top:22px;">
+          <img onClick="{{ closeCard }}" src="./icons/close-x.svg" alt="Close" style="width:32px; height:32px; cursor:pointer;" />
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;streamSpeed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.4,&quot;max&quot;:2.5,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;labelScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.8,&quot;max&quot;:1.5,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Names&quot;},&quot;colorMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Category colors&quot;,&quot;Mint monochrome&quot;],&quot;default&quot;:&quot;Category colors&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Names&quot;},&quot;showDraft&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { paused: false, sel: '', card: '' };
+  flickY = 0;
+  flickV = 0;
+  flickActive = false;
+  flickDragged = false;
+  railHover = -1;
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: '#' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  tagWords = {
+    frontier: 'trains frontier models',
+    enterprise: 'puts AI into working businesses',
+    open: 'publishes open weights or code',
+    academic: 'university research',
+    policy: 'works the policy side',
+    rights: 'civil liberties and rights',
+    safety: 'evaluation and safety work',
+    standards: 'measurement and standards',
+    community: 'organizes people locally',
+    colorado: 'Colorado footprint',
+    education: 'teaching and workforce',
+    data: 'data governance',
+    prohuman: 'signed the Pro-Human AI Declaration',
+    aialliance: 'AI Alliance member'
+  };
+
+  tagPal = {"frontier":["#1470b4","#0b4f80","#ffffff"],"open":["#257c34","#12551f","#ffffff"],"policy":["#7b2d8b","#4a1656","#ffffff"],"rights":["#c2440f","#7d2b06","#ffffff"],"standards":["#d29a0f","#7a5606","#241a02"],"academic":["#6b7780","#3d474e","#ffffff"],"enterprise":["#0c7a5c","#064a37","#ffffff"],"community":["#c02f6d","#7d1a45","#ffffff"],"prohuman":["#8fd6bd","#0f9d76","#0d1512"],"aialliance":["#2f7f9e","#124252","#ffffff"]};
+  palRank = ["prohuman","frontier","open","policy","rights","standards","community","enterprise","aialliance","academic"];
+
+  paletteFor(o) {
+    const k = this.palRank.filter(x => o.tags.indexOf(x) >= 0)[0] || 'academic';
+    const p = this.tagPal[k];
+    return { bg: p[0], border: '1.5px solid ' + p[1], color: p[2], accent: p[0] };
+  }
+
+  catStyle = {
+    co: { label: 'Lab or Company' },
+    inst: { label: 'Institute or Nonprofit' },
+    local: { label: 'Local Group' },
+    decl: { label: 'Declaration' }
+  };
+
+  orgs = [
+    { name: "OpenAI", cat: 'co', ring: 0, tags: ["frontier","safety","enterprise"], desc: "Frontier lab shipping general-purpose models at consumer scale." },
+    { name: "Anthropic", cat: 'co', ring: 0, tags: ["frontier","safety","policy"], desc: "Frontier lab organized around safety research and interpretability." },
+    { name: "Google DeepMind", cat: 'co', ring: 0, tags: ["frontier","academic","safety"], desc: "Research lab bridging academic publication and product-scale models." },
+    { name: "Microsoft AI", cat: 'co', ring: 0, tags: ["enterprise","frontier"], desc: "AI inside the tools most offices already run." },
+    { name: "NVIDIA", cat: 'co', ring: 0, tags: ["enterprise","standards"], desc: "The compute layer everything else here is trained on." },
+    { name: "Meta AI", cat: 'co', ring: 0, tags: ["frontier","open","aialliance"], desc: "Frontier research released with open weights; co-founder of the AI Alliance." },
+    { name: "Hugging Face", cat: 'co', ring: 1, tags: ["open","community","standards","aialliance"], desc: "The commons of models and datasets, and the norms for sharing them." },
+    { name: "Mistral AI", cat: 'co', ring: 1, tags: ["frontier","open"], desc: "European lab pairing frontier training with open releases." },
+    { name: "Cohere", cat: 'co', ring: 1, tags: ["enterprise","frontier"], desc: "Models for businesses that need their data to stay put." },
+    { name: "IBM Research", cat: 'co', ring: 1, tags: ["enterprise","standards","academic","aialliance"], desc: "Co-founder of the AI Alliance; long-horizon enterprise research." },
+    { name: "Apple", cat: 'co', ring: 1, tags: ["enterprise","data"], desc: "On-device inference as a privacy position." },
+    { name: "Amazon Science", cat: 'co', ring: 1, tags: ["enterprise","academic"], desc: "Applied research at retail and cloud scale." },
+    { name: "Stability AI", cat: 'co', ring: 1, tags: ["open","frontier","aialliance"], desc: "Open generative models for image, audio, and video." },
+    { name: "AI Alliance", cat: 'inst', ring: 1, tags: ["open","standards","community","enterprise","aialliance"], desc: "Consortium launched by IBM and Meta with more than fifty founding members and collaborators, organized around open models, open science, and shared tooling." },
+    { name: "Pro-Human AI Declaration", cat: 'decl', ring: 1, tags: ["prohuman","policy","rights","community","safety"], desc: "Coalition statement convened by the Future of Life Institute and ratified in New Orleans: AI should serve humanity, not the reverse. Backed by more than forty organizations across the political spectrum, with 33 principles in five themes. Individual signatories include Yoshua Bengio, Geoffrey Hinton, Richard Branson, Steve Bannon, Glenn Beck, Susan Rice, Ralph Nader, Daron Acemoglu, Randi Weingarten, and Joseph Gordon-Levitt." },
+    { name: "Future of Life", cat: 'inst', ring: 1, tags: ["prohuman","safety","policy","rights"], desc: "Convened the Pro-Human AI Declaration; works on large-scale risk from transformative technology." },
+    { name: "AMD", cat: 'co', ring: 1, tags: ["enterprise","standards","aialliance"], desc: "Chipmaker; AI Alliance founding member." },
+    { name: "Intel", cat: 'co', ring: 1, tags: ["enterprise","standards","aialliance"], desc: "Chipmaker; AI Alliance founding member." },
+    { name: "Oracle", cat: 'co', ring: 1, tags: ["enterprise","data","aialliance"], desc: "Enterprise data and cloud; AI Alliance founding member." },
+    { name: "Dell", cat: 'co', ring: 1, tags: ["enterprise","aialliance"], desc: "Infrastructure for on-premise AI; AI Alliance founding member." },
+    { name: "Sony Group", cat: 'co', ring: 1, tags: ["enterprise","rights","aialliance"], desc: "Media and devices; AI Alliance founding member." },
+    { name: "ServiceNow", cat: 'co', ring: 1, tags: ["enterprise","open","aialliance"], desc: "Workflow platform; AI Alliance founding member." },
+    { name: "Red Hat", cat: 'co', ring: 1, tags: ["open","enterprise","aialliance"], desc: "Open-source infrastructure; AI Alliance founding member." },
+    { name: "Cerebras", cat: 'co', ring: 1, tags: ["enterprise","open","aialliance"], desc: "Wafer-scale AI hardware; AI Alliance founding member." },
+    { name: "Stanford HAI", cat: 'inst', ring: 2, tags: ["academic","policy","safety"], desc: "Human-centered AI research feeding policy debate." },
+    { name: "MIT CSAIL", cat: 'inst', ring: 2, tags: ["academic","open"], desc: "Computer science research with a long open-publication record." },
+    { name: "Berkeley BAIR", cat: 'inst', ring: 2, tags: ["academic","safety","aialliance"], desc: "UC Berkeley AI research; AI Alliance founding member." },
+    { name: "AI2", cat: 'inst', ring: 2, tags: ["academic","open","safety"], desc: "Allen Institute for AI: nonprofit research, fully open models." },
+    { name: "Partnership on AI", cat: 'inst', ring: 2, tags: ["policy","standards","community","aialliance"], desc: "Multi-stakeholder body writing shared practice; AI Alliance founding member." },
+    { name: "AI Now Institute", cat: 'inst', ring: 2, tags: ["policy","rights","data"], desc: "Research on concentrated power in the AI industry." },
+    { name: "Mozilla Foundation", cat: 'inst', ring: 2, tags: ["open","rights","community"], desc: "Public-interest technology and trustworthy AI advocacy." },
+    { name: "EFF", cat: 'inst', ring: 2, tags: ["rights","policy"], desc: "Electronic Frontier Foundation: digital rights litigation and advocacy." },
+    { name: "Data & Society", cat: 'inst', ring: 2, tags: ["data","policy","academic"], desc: "Social research on how automated systems land on real people." },
+    { name: "AJL", cat: 'inst', ring: 2, tags: ["rights","community","safety"], desc: "Algorithmic Justice League: bias auditing and public accountability." },
+    { name: "NIST AI Safety", cat: 'inst', ring: 2, tags: ["standards","safety","policy"], desc: "Federal measurement work: how you test a model and say what you found." },
+    { name: "AI Congress", cat: 'inst', ring: 2, tags: ["policy","standards","community"], desc: "Convening body where practitioners and lawmakers argue the rules in public." },
+    { name: "Linux Foundation", cat: 'inst', ring: 2, tags: ["open","standards","community","aialliance"], desc: "Neutral home for open-source projects; AI Alliance founding member." },
+    { name: "MLCommons", cat: 'inst', ring: 2, tags: ["standards","open","aialliance"], desc: "Benchmarks and measurement for machine learning; AI Alliance founding member." },
+    { name: "Anyscale", cat: 'co', ring: 2, tags: ["open","enterprise","aialliance"], desc: "Distributed compute for AI workloads; AI Alliance founding member." },
+    { name: "Roadzen", cat: 'co', ring: 2, tags: ["enterprise","data","aialliance"], desc: "Applied AI in insurance and mobility; AI Alliance founding member." },
+    { name: "CERN", cat: 'inst', ring: 2, tags: ["academic","open","aialliance"], desc: "Physics research at scale; AI Alliance founding member." },
+    { name: "NASA", cat: 'inst', ring: 2, tags: ["academic","standards","aialliance"], desc: "Federal science agency; AI Alliance founding member." },
+    { name: "NSF", cat: 'inst', ring: 2, tags: ["academic","policy","aialliance"], desc: "National Science Foundation; AI Alliance founding member." },
+    { name: "Cleveland Clinic", cat: 'inst', ring: 2, tags: ["academic","data","aialliance"], desc: "Clinical research and care; AI Alliance founding member." },
+    { name: "INSAIT", cat: 'inst', ring: 2, tags: ["academic","open","aialliance"], desc: "Bulgarian AI institute; AI Alliance founding member." },
+    { name: "MOC Alliance", cat: 'inst', ring: 2, tags: ["academic","open","aialliance"], desc: "Open cloud testbed run by Boston University and Harvard; AI Alliance founding member." },
+    { name: "EPFL", cat: 'inst', ring: 2, tags: ["academic","open","aialliance"], desc: "Swiss federal technology institute; AI Alliance founding member." },
+    { name: "ETH Zurich", cat: 'inst', ring: 2, tags: ["academic","open","aialliance"], desc: "Swiss federal technology institute; AI Alliance founding member." },
+    { name: "Cornell", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner." },
+    { name: "Dartmouth", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner." },
+    { name: "Imperial College", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner, London." },
+    { name: "U. Illinois", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner." },
+    { name: "Notre Dame", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner." },
+    { name: "U. Tokyo", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner." },
+    { name: "Yale", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "Yale Engineering: AI Alliance founding member." },
+    { name: "IIT Bombay", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner, India." },
+    { name: "TU Munich", cat: 'inst', ring: 3, tags: ["academic","education","aialliance"], desc: "AI Alliance university partner, Germany." },
+    { name: "AFT", cat: 'inst', ring: 3, tags: ["prohuman","education","community","rights"], desc: "American Federation of Teachers; drafting organization behind the Pro-Human AI Declaration." },
+    { name: "Christian Leaders", cat: 'inst', ring: 3, tags: ["prohuman","community","rights"], desc: "Congress of Christian Leaders; faith coalition among the declaration drafters." },
+    { name: "Progressive Democrats", cat: 'inst', ring: 3, tags: ["prohuman","policy","community"], desc: "Progressive Democrats of America; declaration drafter and signatory." },
+    { name: "SAG-AFTRA", cat: 'inst', ring: 3, tags: ["prohuman","rights","community"], desc: "Performers union signatory; likeness and consent are its front line." },
+    { name: "Project Liberty", cat: 'inst', ring: 3, tags: ["prohuman","rights","policy","data"], desc: "Signed in support of AI that empowers people rather than replacing them." },
+    { name: "RMAIIG", cat: 'local', ring: 3, tags: ["community","colorado","academic"], desc: "Rocky Mountain AI Interest Group: Boulder practitioner meetups since long before the boom." },
+    { name: "Denver AI Meetup", cat: 'local', ring: 3, tags: ["community","colorado"], desc: "Monthly Denver gathering of builders, students, and the merely curious." },
+    { name: "CU Boulder", cat: 'local', ring: 3, tags: ["academic","colorado","education"], desc: "State research university and the Front Range talent pipeline." },
+  ];
+
+  sites = {"OpenAI":"https://openai.com","Anthropic":"https://www.anthropic.com","Google DeepMind":"https://deepmind.google","Microsoft AI":"https://www.microsoft.com/ai","NVIDIA":"https://www.nvidia.com","Meta AI":"https://ai.meta.com","Hugging Face":"https://huggingface.co","Mistral AI":"https://mistral.ai","Cohere":"https://cohere.com","IBM Research":"https://research.ibm.com","Apple":"https://machinelearning.apple.com","Amazon Science":"https://www.amazon.science","Stability AI":"https://stability.ai","AI Alliance":"https://thealliance.ai","Pro-Human AI Declaration":"https://futureoflife.org","Future of Life":"https://futureoflife.org","AMD":"https://www.amd.com","Intel":"https://www.intel.com","Oracle":"https://www.oracle.com","Dell":"https://www.dell.com","Sony Group":"https://www.sony.com","ServiceNow":"https://www.servicenow.com","Red Hat":"https://www.redhat.com","Cerebras":"https://cerebras.ai","Stanford HAI":"https://hai.stanford.edu","MIT CSAIL":"https://www.csail.mit.edu","Berkeley BAIR":"https://bair.berkeley.edu","AI2":"https://allenai.org","Partnership on AI":"https://partnershiponai.org","AI Now Institute":"https://ainowinstitute.org","Mozilla Foundation":"https://foundation.mozilla.org","EFF":"https://www.eff.org","Data & Society":"https://datasociety.net","AJL":"https://www.ajl.org","NIST AI Safety":"https://www.nist.gov","Linux Foundation":"https://www.linuxfoundation.org","MLCommons":"https://mlcommons.org","Anyscale":"https://www.anyscale.com","Roadzen":"https://www.roadzen.ai","CERN":"https://home.cern","NASA":"https://www.nasa.gov","NSF":"https://www.nsf.gov","Cleveland Clinic":"https://my.clevelandclinic.org","INSAIT":"https://insait.ai","MOC Alliance":"https://massopen.cloud","EPFL":"https://www.epfl.ch","ETH Zurich":"https://ethz.ch","Cornell":"https://www.cornell.edu","Dartmouth":"https://home.dartmouth.edu","Imperial College":"https://www.imperial.ac.uk","U. Illinois":"https://illinois.edu","Notre Dame":"https://www.nd.edu","U. Tokyo":"https://www.u-tokyo.ac.jp/en","Yale":"https://seas.yale.edu","IIT Bombay":"https://www.iitb.ac.in","TU Munich":"https://www.tum.de/en","AFT":"https://www.aft.org","SAG-AFTRA":"https://www.sagaftra.org","Project Liberty":"https://www.projectliberty.io","Progressive Democrats":"https://pdamerica.org","CU Boulder":"https://www.colorado.edu","RMAIIG":"https://www.meetup.com/rmaiig","Denver AI Meetup":"https://www.meetup.com"};
+
+  ringGeom = [{ n: 6, r: 12 }, { n: 18, r: 24 }, { n: 24, r: 36 }, { n: 17, r: 48 }];
+
+  flickLimit() {
+    const el = this.flickEl;
+    return el ? el.getBoundingClientRect().height * 0.42 : 300;
+  }
+
+  flickScale = 1;
+  pointers = {};
+
+  applyFlick() {
+    if (!this.flickSheet) return;
+    this.flickSheet.style.transformOrigin = '50% 50%';
+    this.flickSheet.style.transform = 'translateY(' + this.flickY.toFixed(1) + 'px) scale(' + this.flickScale.toFixed(3) + ')';
+  }
+
+  pinchDist() {
+    const ks = Object.keys(this.pointers);
+    if (ks.length < 2) return 0;
+    const a = this.pointers[ks[0]], b = this.pointers[ks[1]];
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  }
+
+  onFlickDown = (e) => {
+    if (this.state.sel) return;
+    this.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+    if (Object.keys(this.pointers).length === 2) {
+      this.pinchStart = this.pinchDist();
+      this.pinchScale0 = this.flickScale;
+      this.flickDragged = true;
+      this.flickV = 0;
+      return;
+    }
+    this.flickEl = e.currentTarget;
+    this.flickSheet = e.currentTarget.querySelector('[data-flick]');
+    this.flickActive = true;
+    this.flickDragged = false;
+    this.flickLastY = e.clientY;
+    this.flickLastT = performance.now();
+    this.flickV = 0;
+    this.flickTotal = 0;
+    if (this.flickRaf) { cancelAnimationFrame(this.flickRaf); this.flickRaf = 0; }
+    if (this.flickSheet) this.flickSheet.setAttribute('data-flick', 'true');
+    this.flickTarget = (e.target.closest && e.target.closest('[data-org]')) || null;
+    this.flickPointerId = e.pointerId;
+  };
+
+  onFlickMove = (e) => {
+    if (this.pointers[e.pointerId]) { this.pointers[e.pointerId] = { x: e.clientX, y: e.clientY }; }
+    if (Object.keys(this.pointers).length >= 2) {
+      if (e.cancelable) e.preventDefault();
+      const d = this.pinchDist();
+      if (this.pinchStart > 0 && d > 0) {
+        this.flickScale = Math.max(0.55, Math.min(2.6, this.pinchScale0 * (d / this.pinchStart)));
+        this.applyFlick();
+      }
+      return;
+    }
+    if (!this.flickActive) return;
+    const dy = e.clientY - this.flickLastY;
+    const now = performance.now();
+    const dt = Math.max(8, now - this.flickLastT);
+    this.flickV = dy / dt * 16;
+    this.flickLastY = e.clientY;
+    this.flickLastT = now;
+    this.flickTotal += Math.abs(dy);
+    if (this.flickTotal > 7 && !this.flickDragged) {
+      this.flickDragged = true;
+      this.flickTarget = null;
+      if (this.flickEl) this.flickEl.style.touchAction = 'none';
+      if (this.flickEl && this.flickEl.setPointerCapture) { try { this.flickEl.setPointerCapture(this.flickPointerId); } catch (err) {} }
+    }
+    if (!this.flickDragged) return;
+    if (e.cancelable) e.preventDefault();
+    const lim = this.flickLimit();
+    this.flickY = Math.max(-lim, Math.min(lim, this.flickY + dy));
+    this.applyFlick();
+  };
+
+  onFlickUp = (e) => {
+    if (e && e.pointerId !== undefined) delete this.pointers[e.pointerId];
+    if (Object.keys(this.pointers).length >= 1) { this.pinchStart = 0; return; }
+    this.pinchStart = 0;
+    if (!this.flickActive) return;
+    this.flickActive = false;
+    if (this.flickEl) this.flickEl.style.touchAction = '';
+    const lim = this.flickLimit();
+    const glide = () => {
+      this.flickV *= 0.94;
+      this.flickY = Math.max(-lim, Math.min(lim, this.flickY + this.flickV));
+      this.applyFlick();
+      if (Math.abs(this.flickV) > 0.35) { this.flickRaf = requestAnimationFrame(glide); return; }
+      this.flickRaf = 0;
+      this.settleTimer = setTimeout(() => {
+        if (this.flickSheet && !this.flickActive) this.flickSheet.setAttribute('data-flick', 'false');
+      }, 900);
+    };
+    if (this.settleTimer) clearTimeout(this.settleTimer);
+    this.flickRaf = requestAnimationFrame(glide);
+  };
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  applyTweaks = () => {
+    const sheet = document.querySelector('[data-flick]');
+    if (!sheet) return;
+    const speed = Number(this.props.streamSpeed) > 0 ? Number(this.props.streamSpeed) : 1;
+    const scale = Number(this.props.labelScale) > 0 ? Number(this.props.labelScale) : 1;
+    const mint = (this.props.colorMode || 'Category colors') === 'Mint monochrome';
+    const kids = sheet.children;
+    for (let i = 0; i < kids.length; i++) {
+      const outer = kids[i];
+      [outer, outer.firstElementChild].forEach(el => {
+        if (!el || !el.style.animationName) return;
+        if (el.dataset.baseDur === undefined) {
+          el.dataset.baseDur = el.style.animationDuration;
+          el.dataset.baseDelay = el.style.animationDelay;
+        }
+        const dur = parseFloat(el.dataset.baseDur) || 160;
+        const del = parseFloat(el.dataset.baseDelay) || 0;
+        el.style.animationDuration = (dur / speed).toFixed(1) + 's';
+        el.style.animationDelay = (del / speed).toFixed(1) + 's';
+      });
+      const span = outer.querySelector('[data-org]');
+      if (!span) continue;
+      if (span.dataset.baseFont === undefined) {
+        span.dataset.baseFont = span.style.fontSize;
+        span.dataset.baseBg = span.style.background;
+        span.dataset.baseBorder = span.style.border;
+        span.dataset.baseColor = span.style.color;
+      }
+      span.style.fontSize = ((parseFloat(span.dataset.baseFont) || 15.5) * scale).toFixed(1) + 'px';
+      if (mint) {
+        span.style.background = '#8fd6bd';
+        span.style.border = '1.5px solid #0f9d76';
+        span.style.color = '#0d1512';
+      } else {
+        span.style.background = span.dataset.baseBg;
+        span.style.border = span.dataset.baseBorder;
+        span.style.color = span.dataset.baseColor;
+      }
+    }
+  };
+
+  componentDidUpdate() { this.applyTweaks(); }
+
+  componentDidMount() {
+    this.applyTweaks();
+    setTimeout(this.applyTweaks, 60);
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+    this.onKey = (e) => {
+      if (e.key !== 'Escape') return;
+      if (this.state.card) this.setState({ card: '' });
+      else if (this.state.sel) this.setState({ sel: '' });
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onRailResize);
+    window.removeEventListener('keydown', this.onKey);
+  }
+
+  find(name) { return this.orgs.filter(o => o.name === name)[0]; }
+
+  shared(a, b) { return a.tags.filter(t => b.tags.indexOf(t) >= 0); }
+
+  allyList(sel) {
+    return this.orgs
+      .filter(o => o.name !== sel.name)
+      .map(o => ({ org: o, tags: this.shared(sel, o) }))
+      .filter(x => x.tags.length > 0)
+      .sort((a, b) => b.tags.length - a.tags.length || a.org.name.localeCompare(b.org.name))
+      .slice(0, 8);
+  }
+
+  reasonText(tags) {
+    return tags.slice(0, 2).map(t => this.tagWords[t]).join(' \u00b7 ');
+  }
+
+  homePos(o) {
+    const g = this.ringGeom[o.ring];
+    const peers = this.orgs.filter(p => p.ring === o.ring);
+    const i = peers.indexOf(o);
+    const th = (2 * Math.PI / g.n) * i;
+    return { left: 50 + g.r * Math.sin(th), top: 50 - g.r * Math.cos(th) };
+  }
+
+  buildSwarm() {
+    const selName = this.state.sel;
+    const nodes = [];
+    const links = [];
+    if (!selName) {
+      this.orgs.forEach(o => {
+        const p = this.homePos(o);
+        const cs = this.paletteFor(o);
+        nodes.push({ name: o.name, left: p.left.toFixed(1), top: p.top.toFixed(1), opacity: 0, reason: '', bg: cs.bg, border: cs.border, color: cs.color });
+      });
+      return { nodes, links };
+    }
+    const sel = this.find(selName);
+    const allies = this.allyList(sel);
+    const allyIndex = {};
+    allies.forEach((a, i) => { allyIndex[a.org.name] = i; });
+    const others = this.orgs.filter(o => o.name !== selName && allyIndex[o.name] === undefined);
+    const radiusFor = (n) => (n >= 3 ? 19 : n === 2 ? 27 : 35);
+
+    this.orgs.forEach(o => {
+      const cs = this.paletteFor(o);
+      let left, top, opacity, reason;
+      if (o.name === selName) {
+        left = 50; top = 50; opacity = 1; reason = 'selected';
+      } else if (allyIndex[o.name] !== undefined) {
+        const a = allies[allyIndex[o.name]];
+        const th = (2 * Math.PI / allies.length) * allyIndex[o.name] - Math.PI / 2;
+        const r = radiusFor(a.tags.length);
+        left = 50 + r * Math.cos(th);
+        top = 50 + r * Math.sin(th);
+        opacity = 1;
+        reason = this.reasonText(a.tags);
+        links.push({ x: left.toFixed(1), y: top.toFixed(1), w: (0.25 + 0.25 * a.tags.length).toFixed(2) });
+      } else {
+        const i = others.indexOf(o);
+        const th = (2 * Math.PI / others.length) * i;
+        left = 50 + 47 * Math.sin(th);
+        top = 50 - 47 * Math.cos(th);
+        opacity = 0.2;
+        reason = '';
+      }
+      nodes.push({ name: o.name, left: left.toFixed(1), top: top.toFixed(1), opacity: opacity, reason: reason, bg: cs.bg, border: cs.border, color: cs.color });
+    });
+    return { nodes, links };
+  }
+
+  resetFlick() {
+    if (this.flickRaf) { cancelAnimationFrame(this.flickRaf); this.flickRaf = 0; }
+    if (this.settleTimer) clearTimeout(this.settleTimer);
+    this.flickY = 0;
+    this.flickV = 0;
+    this.flickScale = 1;
+    this.pointers = {};
+    this.applyFlick();
+    if (this.flickSheet) this.flickSheet.setAttribute('data-flick', 'false');
+    if (this.flickEl) this.flickEl.style.touchAction = '';
+  }
+
+  pick = (name) => { if (this.find(name)) { this.resetFlick(); this.setState({ sel: name }); } };
+
+  onStageClick = (e) => {
+    if (this.flickDragged) { this.flickDragged = false; return; }
+    const el = e.target.closest ? e.target.closest('[data-org]') : null;
+    if (!el) { if (!this.state.sel) this.setState({ sel: '' }); return; }
+    const name = el.getAttribute('data-org');
+    if (!this.find(name)) return;
+    this.resetFlick();
+    this.setState({ sel: name, card: name });
+  };
+
+  onStageDouble = (e) => {
+    const el = e.target.closest ? e.target.closest('[data-org]') : null;
+    if (!el) { if (!this.state.sel && this.flickScale !== 1) { this.flickScale = 1; this.flickY = 0; this.applyFlick(); } return; }
+    const name = el.getAttribute('data-org');
+    if (this.find(name)) this.setState({ sel: name, card: name });
+  };
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    const sel = this.state.sel;
+    const swarm = this.buildSwarm();
+    const card = this.state.card ? this.find(this.state.card) : null;
+    const cardAllies = card ? this.allyList(card).map(a => ({ name: a.org.name, reason: this.reasonText(a.tags) })) : [];
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      showDraft: this.props.showDraft !== false,
+      paused: (this.state.paused || this.props.motion === false) ? 'true' : 'false',
+      pauseLabel: this.state.paused ? 'Resume orbit' : 'Pause orbit',
+      togglePause: () => this.setState(s => ({ paused: !s.paused })),
+      nodes: swarm.nodes,
+      links: swarm.links,
+      orbitOpacity: sel ? 0 : 1,
+      orbitPointer: sel ? 'none' : 'auto',
+      webOpacity: sel ? 1 : 0,
+      webPointer: sel ? 'auto' : 'none',
+      logoOpacity: sel ? 0 : 1,
+      clearDisplay: sel ? 'flex' : 'none',
+      flicking: 'false',
+      fieldY: '0px',
+      onFlickDown: this.onFlickDown,
+      onFlickMove: this.onFlickMove,
+      onFlickUp: this.onFlickUp,
+      clearPick: () => { this.resetFlick(); this.setState({ sel: '', card: '' }); },
+      onStageClick: this.onStageClick,
+      onStageDouble: this.onStageDouble,
+      cardOpen: !!card,
+      cardName: card ? card.name : '',
+      cardDesc: card ? card.desc : '',
+      cardCat: card ? this.catStyle[card.cat].label : '',
+      cardAccent: card ? this.paletteFor(card).accent : '#0f9d76',
+      cardTags: card ? card.tags.map(t => ({ label: t })) : [],
+      cardAllies: cardAllies,
+      cardSite: card ? (this.sites[card.name] || '#') : '#',
+      cardSiteDisplay: (card && this.sites[card.name]) ? 'inline-block' : 'none',
+      cardMail: card ? ('mailto:jan@jai.global?subject=' + encodeURIComponent('Introduction: ' + card.name.split('&amp;').join('&')) + '&body=' + encodeURIComponent('I would like to connect with ' + card.name.split('&amp;').join('&') + ' through the JanuaryAI Commons.')) : 'mailto:jan@jai.global',
+      exploreDisplay: (card && card.name !== this.state.sel) ? 'inline-block' : 'none',
+      exploreCard: () => this.setState({ sel: this.state.card, card: '' }),
+      closeCard: () => this.setState({ card: '' }),
+      stop: (e) => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

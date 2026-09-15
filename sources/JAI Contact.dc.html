@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#0f9d76">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0f9d76"/>
+    <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="220" fill="#ffffff">C</text>
+  </svg>
+</template>
+
+<meta charset="utf-8">
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; background: #ffffff; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  a { color: #0f9d76; }
+  a:hover { color: #0b7a5c; }
+</style>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+</helmet>
+<div style="background:#ffffff; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(56px,12vh,120px) clamp(24px,7vw,80px) 80px; font-family:Georgia, 'Times New Roman', serif;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em;">
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8;">JanuaryAI</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">Project</span>
+    <span style="font-size:clamp(34px,8vw,58px); color:#8fd6bd; margin-top:clamp(-8px,-2vw,-14px);">Contact</span>
+  </div>
+  <p style="max-width:520px; margin:clamp(28px,5vh,40px) 0 0; text-align:center; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a;">Questions, ideas, or an interest in taking part? Send a note and a principal will reply.</p>
+
+  <div style="width:min(560px,92vw); margin-top:clamp(36px,6vh,52px); display:flex; flex-direction:column; gap:16px;">
+    <input type="text" value="{{ name }}" onChange="{{ onName }}" placeholder="Name" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:6px; padding:15px 20px; font-family:Helvetica, Arial, sans-serif; font-size:clamp(16px,3.5vw,17px); color:#3a3a3a; outline:none;" />
+    <input type="text" value="{{ contact }}" onChange="{{ onContact }}" placeholder="Email or text #" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:6px; padding:15px 20px; font-family:Helvetica, Arial, sans-serif; font-size:clamp(16px,3.5vw,17px); color:#3a3a3a; outline:none;" />
+    <textarea value="{{ message }}" onChange="{{ onMessage }}" rows="6" placeholder="Your message" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.55); border:none; border-radius:6px; padding:15px 20px; font-family:Helvetica, Arial, sans-serif; font-size:clamp(16px,3.5vw,17px); color:#3a3a3a; outline:none; resize:vertical;"></textarea>
+    <sc-if value="{{ status }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; color:#0f9d76; font-size:14px;">{{ status }}</div>
+    </sc-if>
+    <div style="display:flex; justify-content:center; margin-top:6px;">
+      <button onClick="{{ onSubmit }}" style="border:none; cursor:pointer; background:rgba(244,143,177,0.7); color:#000; font-weight:900; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-size:clamp(13px,3.2vw,16px); padding:clamp(11px,2vw,14px) clamp(26px,5vw,38px); border-radius:24px;" style-hover="background:rgba(244,143,177,0.9);">SEND</button>
+    </div>
+  </div>
+
+  <div style="width:min(640px,92vw); margin-top:clamp(48px,8vh,72px); border-top:1px solid #e2e2e2; padding-top:32px;">
+    <button onClick="{{ toggleAbout }}" style="display:flex; align-items:center; gap:16px; width:100%; background:none; border:none; cursor:pointer; padding:0; text-align:left; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); line-height:1.2; color:#2f2f2f; text-transform:uppercase; letter-spacing:0.01em;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ aboutArrow }};">&#9654;</span>
+      <span>About JAI</span>
+    </button>
+    <sc-if value="{{ aboutOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:22px;">
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The JanuaryAI Foundation is a civic institution built for the age of artificial intelligence. It brings everyday citizens, subject-matter experts, and capital partners into one continuous process: an open Commons where problems and ideas surface, working groups that turn the best of them into fundable proposals, and an annual Summit where the community itself decides what gets built.</p>
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">What follows is measured in public. Decisions, budgets, and outcomes are published, because trust in an institution like this cannot be requested — it has to be earned, cycle after cycle.</p>
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0;">JAI is designed for generations rather than moments: commercial success and public benefit treated as compatible, evidence favored over ideology, and stewardship favored over ownership.</p>
+        <button onClick="{{ toggleAbout }}" style="display:flex; align-items:center; justify-content:center; width:100%; background:none; border:none; cursor:pointer; padding:20px 0 4px;">
+          <img src="./icons/close-x.svg" alt="Close section" style="width:32px; height:32px; display:block;" />
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="width:min(640px,92vw); margin-top:clamp(40px,6vh,56px); border-top:1px solid #e2e2e2; padding-top:32px;">
+    <button onClick="{{ toggleJan }}" style="display:flex; align-items:center; gap:16px; width:100%; background:none; border:none; cursor:pointer; padding:0; text-align:left; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); line-height:1.2; color:#2f2f2f; text-transform:uppercase; letter-spacing:0.01em;">
+      <span style="font-size:28px; color:#a7ddc9; display:inline-block; transition:transform 0.2s ease; transform:{{ janArrow }};">&#9654;</span>
+      <span>JAN our Fair Witness</span>
+    </button>
+    <sc-if value="{{ janOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:22px;">
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">JAN is the AI knowledge scribe of the JanuaryAI ecosystem — the institution's memory. Every conversation in the Commons, every working-group deliverable, every Summit decision and every measured result is recorded, connected, and made searchable.</p>
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">A fair witness does not advocate. JAN's role is to keep the record straight: what was proposed, who was heard, what was decided, what actually happened. That record is what lets a community govern honestly over decades rather than re-litigating the same questions each year.</p>
+        <p style="font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0;">JAN is governed like any other part of the institution — with published rules, human oversight, and accountability to the community it serves.</p>
+        <button onClick="{{ toggleJan }}" style="display:flex; align-items:center; justify-content:center; width:100%; background:none; border:none; cursor:pointer; padding:20px 0 4px;">
+          <img src="./icons/close-x.svg" alt="Close section" style="width:32px; height:32px; display:block;" />
+        </button>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="width:min(640px,92vw); margin-top:clamp(56px,9vh,80px); text-align:center;">
+    <div style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(30px,7vw,52px); line-height:0.95; letter-spacing:-0.01em; color:#8fd6bd;">JanuaryAI Foundation</div>
+    <p style="font-size:clamp(16px,3vw,19px); line-height:1.6; color:#4a4a4a; margin:18px 0 0;">2026 Blue Mountain Skyway, Abundance, Colorado 80000</p>
+    <p style="font-size:clamp(16px,3vw,19px); line-height:1.6; color:#4a4a4a; margin:3em 0 0;">jan@jai.global &nbsp;&nbsp; (303) 720-0000</p>
+    <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#0f9d76; margin:3em 0 0;">JAI is an American Innovation Since 2026</p>
+  </div>
+
+  <div style="display:flex; gap:24px; margin-top:clamp(48px,8vh,72px); font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;">
+    <a href="./JAI%20Project%20website.dc.html" style="color:#0f9d76; text-decoration:none;">&larr; Home</a>
+    <a href="./JanuaryAI%20Charter%20Overview.dc.html#principals" style="color:#0f9d76; text-decoration:none;">Charter &rarr;</a>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:56px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: './MAJAI%20Lander.dc.html', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: '#' }
+  ];
+
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  watchRailWidth() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+    this.onRailResize();
+  }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') {
+          const t = document.getElementById(h.slice(1));
+          if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 24, behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  state = { name: '', contact: '', message: '', status: '', aboutOpen: false, janOpen: false };
+
+  toggleAbout = () => this.setState(s => ({ aboutOpen: !s.aboutOpen }));
+  toggleJan = () => this.setState(s => ({ janOpen: !s.janOpen }));
+
+  onName = (e) => this.setState({ name: e.target.value });
+  onContact = (e) => this.setState({ contact: e.target.value });
+  onMessage = (e) => this.setState({ message: e.target.value });
+
+  onSubmit = () => {
+    const { name, contact, message } = this.state;
+    if (!contact.trim() && !message.trim()) return;
+    const inst = window.__instant;
+    if (!inst) { this.setState({ status: 'Connecting…' }); return; }
+    try {
+      inst.db.transact(inst.tx.messages[inst.id()].update({
+        name: name.trim(), contact: contact.trim(), message: message.trim(), createdAt: Date.now()
+      }));
+      this.setState({ status: 'Thank you — your note was sent.', name: '', contact: '', message: '' });
+    } catch (err) {
+      this.setState({ status: 'Something went wrong, try again.' });
+    }
+  };
+
+  componentDidMount() { this.watchRailWidth(); }
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      aboutOpen: this.state.aboutOpen,
+      janOpen: this.state.janOpen,
+      toggleAbout: this.toggleAbout,
+      toggleJan: this.toggleJan,
+      aboutArrow: this.state.aboutOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      janArrow: this.state.janOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      name: this.state.name,
+      contact: this.state.contact,
+      message: this.state.message,
+      status: this.state.status,
+      onName: this.onName,
+      onContact: this.onContact,
+      onMessage: this.onMessage,
+      onSubmit: this.onSubmit
+    };
+  }
+}
+</script>
+</body>
+</html>

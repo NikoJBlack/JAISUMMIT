@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#a7ddc9"/>
+    <text x="100" y="110" font-family="Arial, sans-serif" font-weight="900" font-size="34" fill="#ffffff" text-anchor="middle">JAN</text>
+  </svg>
+</template>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  .majaii-navscroll { scrollbar-width:none; -ms-overflow-style:none; }
+  .majaii-navscroll::-webkit-scrollbar { display:none; }
+  body { margin: 0; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+  @keyframes orbitSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes orbitEllipse {
+    0%    { transform: translate(var(--rx), 0); }
+    12.5% { transform: translate(calc(var(--rx) * 0.707), calc(var(--ry) * 0.707)); }
+    25%   { transform: translate(0, var(--ry)); }
+    37.5% { transform: translate(calc(var(--rx) * -0.707), calc(var(--ry) * 0.707)); }
+    50%   { transform: translate(calc(var(--rx) * -1), 0); }
+    62.5% { transform: translate(calc(var(--rx) * -0.707), calc(var(--ry) * -0.707)); }
+    75%   { transform: translate(0, calc(var(--ry) * -1)); }
+    87.5% { transform: translate(calc(var(--rx) * 0.707), calc(var(--ry) * -0.707)); }
+    100%  { transform: translate(var(--rx), 0); }
+  }
+</style>
+<script type="module">
+  import { init, tx, id } from 'https://esm.sh/@instantdb/core@0.17.31';
+  const APP_ID = '1610ad39-5a25-423e-913a-483b67bfed79';
+  window.__instant = { db: init({ appId: APP_ID }), tx, id, appId: APP_ID };
+</script>
+</helmet>
+<div style="background:#ffffff; width:100%; min-height:100vh; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; padding:clamp(64px,14vh,160px) clamp(20px,6vw,80px) 60px;">
+<nav style="position:sticky; top:0; z-index:60; align-self:stretch; width:auto; margin:0 0 clamp(18px,3vh,28px); background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); padding:10px 0;" style-before="content:''; position:absolute; left:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to right, #ffffff, rgba(255,255,255,0));" style-after="content:''; position:absolute; right:0; top:0; bottom:0; width:38px; pointer-events:none; z-index:2; background:linear-gradient(to left, #ffffff, rgba(255,255,255,0));">
+  <div class="majaii-navscroll" ref="{{ navScrollRef }}" style="display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; scroll-behavior:smooth; padding:6px 30px;">
+    <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="10">
+      <a href="{{ item.href }}" data-nav-index="{{ item.index }}" onClick="{{ item.onClick }}" style="flex:none; scroll-snap-align:center; display:inline-flex; align-items:center; min-height:34px; padding:0 16px; border-radius:999px; text-decoration:none; white-space:nowrap; font-family:'Arial Black','Helvetica Neue',Helvetica,sans-serif; font-weight:900; font-size:11px; letter-spacing:0.03em; text-transform:uppercase; box-shadow:0 1px 8px rgba(0,0,0,0.10); transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease; background:{{ item.bg }}; color:{{ item.color }}; border:1px solid {{ item.border }};">{{ item.label }}</a>
+    </sc-for>
+  </div>
+</nav>
+
+  <svg viewBox="0 0 140 135" style="max-width:840px; width:100%; margin-bottom:40px;">
+    <text x="50" y="70" text-anchor="middle" font-size="42" font-weight="900" fill="#cccccc" font-family="DM Sans" font-style="italic" letter-spacing="-1">jai</text>
+    <text x="108" y="55" font-size="28" text-anchor="middle">&#127758;</text>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 4s linear infinite;">
+      <circle cx="60" cy="42" r="5" fill="#1d8fe1" opacity="0.8"></circle>
+    </g>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 7s linear infinite reverse;">
+      <circle cx="84" cy="60" r="6" fill="#7b2d8b" opacity="0.8"></circle>
+    </g>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 10s linear infinite;">
+      <circle cx="60" cy="88" r="6" fill="#3ab54a" opacity="0.8"></circle>
+    </g>
+    <g style="transform-origin: 60px 60px; animation: orbitSpin 13s linear infinite reverse;">
+      <circle cx="26" cy="60" r="7" fill="#f26522" opacity="0.8"></circle>
+    </g>
+  </svg>
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em;">
+    <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8;">You</span>
+    <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">Are</span>
+    <span style="font-size:clamp(38px,9vw,64px); color:#8fd6bd; margin-top:clamp(-12px,-3vw,-20px); opacity:0.7;">Invited!</span>
+  </div>
+  <div data-theme="MINTe" style="position:relative; margin-top:clamp(28px,5vh,40px); width:min(560px,92vw);">
+    <div style="background:oklch(85% 0.09 165 / 0.75); border-radius:52% 48% 46% 54% / 62% 58% 42% 48%; padding:clamp(28px,5vw,36px) clamp(50px,12vw,90px) clamp(48px,8vw,60px) clamp(28px,7vw,55px); box-sizing:border-box;">
+      <div style="text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-style:italic; font-size:clamp(24px,6vw,34px); color:#0f9d76; letter-spacing:0.02em; margin-bottom:16px;">JOIN US</div>
+      <input type="text" value="{{ contactValue }}" onChange="{{ onContactChange }}" placeholder="Text # or email" style="width:100%; box-sizing:border-box; background:rgba(217,217,217,0.7); border:none; border-radius:6px; padding:14px 20px; text-align:center; font-family:Helvetica, Arial, sans-serif; color:#4a4a4a; font-size:clamp(16px,3.5vw,17px); margin-bottom:18px; outline:none;" />
+      <sc-if value="{{ status }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; color:#4a4a4a; font-size:14px; margin-bottom:10px;">{{ status }}</div>
+      </sc-if>
+      <div style="text-align:center; font-family:Georgia, 'Times New Roman', serif; font-style:italic; color:#4a4a4a; font-size:clamp(14px,3.4vw,17px); line-height:1.5;">If and when you decide you can provide additional information. Until then you will be anonymous to us.</div>
+    </div>
+    <div style="position:absolute; left:60px; bottom:-24px; width:0; height:0; border-left:20px solid transparent; border-right:6px solid transparent; border-top:30px solid oklch(85% 0.09 165 / 0.75);"></div>
+    <button onClick="{{ onSubmit }}" style="position:absolute; right:-10px; bottom:8px; border:none; cursor:pointer; background:rgba(244,143,177,0.7); color:#000; font-weight:900; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-size:clamp(13px,3.2vw,16px); padding:clamp(9px,2vw,12px) clamp(18px,4vw,26px); border-radius:24px;">YES !</button>
+  </div>
+  <div style="display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-top:12px; width:min(560px,92vw); position:relative;">
+      <button onClick="{{ onSubmitOpenLetter }}" style="border:none; cursor:pointer; background:rgba(244,143,177,0.7); color:#000; font-weight:900; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-size:clamp(13px,3.2vw,16px); padding:clamp(9px,2vw,12px) clamp(18px,4vw,26px); border-radius:24px;" style-hover="background:rgba(244,143,177,0.92);">YES ! YES!</button>
+      <button onClick="{{ toggleInfo }}" title="About the Open Letter" style="flex:none; margin-left:14px; width:30px; height:30px; border-radius:50%; border:2.5px solid #f4511e; background:#ffffff; color:#f4511e; cursor:pointer; font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-weight:900; font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center;">i</button>
+      <sc-if value="{{ infoOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; right:0; top:calc(100% + 10px); width:min(300px,80vw); background:#ffffff; border:1px solid #e2e2e2; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.12); padding:14px 16px; font-family:Georgia, 'Times New Roman', serif; font-size:15px; line-height:1.5; color:#4a4a4a; z-index:20;">You can sign the <a href="./JAI%20Open%20Letter.dc.html" style="color:#0f9d76; font-weight:700;">Open Letter</a> by submitting your Name and clicking the &ldquo;YES ! YES!&rdquo; button.</div>
+      </sc-if>
+    </div>
+  <div style="max-width:640px; margin-top:clamp(56px,10vh,90px); text-align:center;">
+    <div style="font-family:Georgia, 'Times New Roman', serif; font-size:64px; line-height:1; color:#c7c9c8; margin-bottom:-16px;">&ldquo;</div>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0;">JanuaryAI gives virtuous citizens and thought leaders a way to thread ideas and solutions into a community fabric that can be woven and shared</p>
+    <div style="margin-top:20px; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:15px; letter-spacing:0.04em; text-transform:uppercase; color:#0f9d76;">DL Thomas, Founder</div>
+  </div>
+  <div style="position:relative; display:flex; align-items:center; justify-content:center; margin-top:clamp(56px,10vh,90px); padding:clamp(70px,14vw,130px) 0;">
+    <div style="position:absolute; left:50%; top:50%; width:0; height:0; pointer-events:none;">
+      <span style="--rx:clamp(140px,34vw,320px); --ry:clamp(60px,13vw,120px); position:absolute; left:-15px; top:-15px; width:30px; height:30px; border-radius:50%; background:#1d8fe1; opacity:0.8; animation:orbitEllipse 9s linear infinite;"></span>
+      <span style="--rx:clamp(120px,29vw,270px); --ry:clamp(74px,16vw,146px); position:absolute; left:-18px; top:-18px; width:36px; height:36px; border-radius:50%; background:#7b2d8b; opacity:0.8; animation:orbitEllipse 14s linear infinite reverse; animation-delay:-3s;"></span>
+      <span style="--rx:clamp(155px,37vw,350px); --ry:clamp(52px,11vw,102px); position:absolute; left:-18px; top:-18px; width:36px; height:36px; border-radius:50%; background:#3ab54a; opacity:0.8; animation:orbitEllipse 20s linear infinite; animation-delay:-8s;"></span>
+      <span style="--rx:clamp(132px,32vw,296px); --ry:clamp(66px,14vw,132px); position:absolute; left:-21px; top:-21px; width:42px; height:42px; border-radius:50%; background:#f26522; opacity:0.8; animation:orbitEllipse 26s linear infinite reverse; animation-delay:-14s;"></span>
+    </div>
+    <a href="./JAI%20Summit%202027.dc.html" style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; text-decoration:none; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em; transition:opacity 0.2s ease;" style-hover="opacity:0.72;">
+      <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8;">JanuaryAI</span>
+      <span style="font-size:clamp(38px,9vw,64px); color:#8fd6bd; margin-top:clamp(-8px,-2vw,-14px);">Summit</span>
+      <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">2027</span>
+      <span style="margin-top:16px; font-size:11px; letter-spacing:0.14em; color:#0f9d76;">You&rsquo;re invited &rarr;</span>
+      <svg viewBox="0 0 24 24" width="45" height="45" fill="none" stroke="#0f9d76" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="margin-top:7px; margin-left:26px; transform:rotate(-16deg);">
+        <path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"></path>
+        <path d="M12 11V9.5a1.5 1.5 0 0 1 3 0V11"></path>
+        <path d="M15 11.5v-1a1.5 1.5 0 0 1 3 0V15a5 5 0 0 1-5 5h-1.6a4 4 0 0 1-3.1-1.5L6 15.2a1.6 1.6 0 0 1 2.4-2.1L9 13.7V11"></path>
+      </svg>
+    </a>
+  </div>
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em; margin-top:clamp(56px,10vh,90px);">
+    <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8;">Meeting</span>
+    <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">of the</span>
+    <span style="font-size:clamp(38px,9vw,64px); color:#8fd6bd; margin-top:clamp(-12px,-3vw,-20px); opacity:0.7;">Minds</span>
+  </div>
+  <div style="max-width:640px; margin-top:clamp(56px,10vh,90px); text-align:left;">
+    <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(22px,4.2vw,28px); line-height:1.3; color:#2f2f2f; margin:0 0 12px; text-align:center;">Virtuous Citizens and Responsible Capitalists will Build America&rsquo;s AI Future.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px; text-align:center;">AI is changing everything. All of humanity will be affected. The World has changed.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px;">With your guidance, the JanuaryAI Project will be part of what comes next.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px;">You&rsquo;re invited to revise our charter and direct the course of actions we as a community define. Bring your ideas, your concerns, your humanity to bear among innovators, virtuous citizens, mentors and thought leaders and collectively address the challenges before us. Demand Freedom, Privacy, positive impact, the creation of wealth and prosperity. Bring your imagination and willingness to blaze a new path for a new world.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px;">Capitalize responsibly what comes next. Together, we can discover solutions, create new opportunities, and act on them to build a new social fabric that thrives and prospers in the spirit of 1776 to enable AI to give us Freedom, &ldquo;Life, Liberty and the Pursuit of Happiness&rdquo;. Unify and deliver abundance and AI for Good for everyone.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px;">Experience inspiration and lead the world with your example&mdash;you&rsquo;re invited.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px;">Initial the Open Letter. Share your voice.<br />Be the Change. Become JanuaryAI.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px;">The future is being built now. Build it with Americans who want a return on their investment in America. Benefit from the abundance AI is positioned to deliver.</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0;">It&rsquo;s time to thrive together.</p>
+  </div>
+  <div style="display:flex; flex-direction:column; align-items:center; text-align:center; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; text-transform:uppercase; line-height:0.92; letter-spacing:-0.01em; margin-top:calc(clamp(56px,10vh,90px) * 3);">
+    <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8;">JanuaryAI</span>
+    <span style="font-size:clamp(38px,9vw,64px); color:#c7c9c8; margin-top:clamp(-8px,-2vw,-14px);">Project</span>
+    <span style="font-size:clamp(38px,9vw,64px); color:#8fd6bd; margin-top:clamp(-12px,-3vw,-20px); opacity:0.7;">Community</span>
+  </div>
+  <div style="max-width:640px; width:100%; margin-top:clamp(56px,10vh,90px); border-top:1px solid #e2e2e2; padding-top:32px;">
+    <button onClick="{{ togglePrinciples }}" style="display:flex; align-items:center; justify-content:flex-start; gap:16px; width:100%; background:none; border:none; cursor:pointer; padding:0; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(24px,5vw,32px); color:#2f2f2f; text-transform:uppercase;">
+      <span style="font-size:28px; color:#a7ddc9; transform:{{ principalsArrowTransform }}; transition:transform 0.2s ease; display:inline-block;">&#9654;</span>
+      <span>The Principles</span>
+    </button>
+    <sc-if value="{{ principalsOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:24px; text-align:left;">
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px; text-align:center;">The Charter of January AI</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Every enduring institution requires more than a mission statement.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">A mission explains what an organization seeks to accomplish.<br />Principles explain how it chooses to behave while accomplishing it. Over time, strategies change. Technologies change. Leaders change. Circumstances change.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Principles endure.<br />The founding principles of January AI are therefore not intended to be a list of aspirations. They are intended to be a compass. They define the decisions the institution will make when the answers are difficult, when interests compete, and when the future is uncertain.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle One: AI Must Expand Human Potential</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Artificial intelligence should not be measured only by what machines can accomplish.<br />It should be measured by what people become capable of accomplishing because of AI.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The purpose of January AI is not to accelerate technology for its own sake.<br />It is to increase human opportunity.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">AI should help people: learn faster, create more freely, solve more complex problems, discover new opportunities, participate more fully in society.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The measure of progress is not machine capability alone.<br />It is human capability multiplied.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Two: Those Affected by AI Should Help Shape AI</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The future of artificial intelligence cannot be designed only by those who build it.<br />Technologists are essential.<br />But so are educators, workers, entrepreneurs, policymakers, community leaders, researchers, and citizens.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The people experiencing the effects of AI must have meaningful opportunities to influence its direction.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI exists to create those opportunities.<br />Participation is not symbolic.<br />It is foundational.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Three: Intelligence Should Be Distributed, Not Concentrated</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Throughout history, transformative technologies have created both opportunity and concentration of power.<br />Artificial intelligence presents the same possibility.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI believes the greatest benefit comes when intelligence becomes more accessible.<br />Knowledge should be shared.<br />Capabilities should expand.<br />Communities should be empowered.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The institution exists not to centralize intelligence, but to distribute it.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Four: Evidence Before Ideology</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The challenges surrounding AI are complex.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">They cannot be solved through enthusiasm alone.<br />They cannot be solved through fear alone.<br />They require curiosity, experimentation, and evidence.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI commits to asking:<br />What do we know?<br />What do we not know?<br />What can we test?<br />What did we learn?<br />What should change?</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The institution values optimism without naivety and caution without paralysis.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Five: Innovation Requires Experimentation</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">A society that fears failure will fail to innovate.<br />Responsible experimentation is essential.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI recognizes that not every promising idea will succeed. However, every responsible experiment can produce knowledge. Failure becomes valuable when it improves future decisions.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The goal is not perfection.<br />The goal is continuous learning.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Six: Capital Is a Responsibility</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Resources are entrusted, not owned.<br />Every dollar, every hour, every contribution of expertise represents confidence from someone who believes the mission matters.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI treats capital as stewardship.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The question is not merely:<br />&ldquo;How much can we raise?&rdquo;<br />The question is:<br />&ldquo;How much meaningful progress can we create with what we are entrusted?&rdquo;</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Seven: Transparency Creates Trust</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Trust cannot be requested.<br />It must be earned.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI commits to transparency in: decision-making, funding, partnerships, governance, outcomes, and lessons learned.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Transparency is not a burden.<br />It is the foundation of credibility.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Eight: Commercial Success and Public Benefit Can Coexist</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Innovation requires entrepreneurship.<br />Society requires institutions dedicated to public benefit.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">These goals are not inherently opposed. January AI recognizes that commercial innovation can be a powerful force for societal improvement when relationships are transparent and governed responsibly. Entrepreneurship creates possibilities. Stewardship ensures those possibilities serve a broader purpose.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Nine: Communities Are Smarter Than Individuals Alone</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The world&rsquo;s greatest challenges exceed the capability of any single person or organization.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The future requires collective intelligence.<br />January AI exists because collaboration creates possibilities that competition alone cannot.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Different perspectives are not obstacles.<br />They are assets.<br />The community becomes stronger when many forms of intelligence contribute.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Principle Ten: Build for Generations, Not Moments</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Artificial intelligence is a defining technology of this era.<br />The institutions created around it will influence generations.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI therefore rejects short-term thinking.<br />Decisions should be evaluated not only by immediate results, but by whether they strengthen the future.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The question is:<br />&ldquo;Will this help those who come after us build an even better institution?&rdquo;</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">The Founder&rsquo;s Commitment</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Every founding document contains an implicit promise.<br />The promise is not that every decision will be correct.<br />The promise is that decisions will be made with integrity.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI begins with a vision:<br />That artificial intelligence can become one of humanity&rsquo;s greatest tools for expanding opportunity.<br />That communities can participate meaningfully in shaping its future.<br />That innovation and responsibility can advance together.<br />That wealth and expertise can be aligned with public benefit.<br />That technology can strengthen rather than diminish human potential.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">The January AI Declaration</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">We believe artificial intelligence represents not only a technological transformation, but a societal one.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">We believe the future of AI should not be determined exclusively by those with the greatest resources, technical expertise, or institutional power.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">We believe every community should have the opportunity to participate in shaping how AI affects their lives.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">We believe responsible innovation requires curiosity, courage, transparency, and humility.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">We believe abundance created through technology carries an obligation to expand opportunity.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">We believe humanity&rsquo;s greatest intelligence emerges when people work together.<br />Therefore, we commit to building an institution where knowledge is shared, ideas are tested, resources are aligned, and solutions are developed for the benefit of society.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">This is the purpose of January AI.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Conclusion: Building the Civic Institution for the Age of Artificial Intelligence</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Every generation inherits challenges created by the choices of those who came before.<br />Every generation also inherits opportunities.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Artificial intelligence may become one of the most powerful tools humanity has ever created.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The question before us is not simply:<br />&ldquo;What can AI do?&rdquo;</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">The deeper question is:<br />&ldquo;What will we choose to do with AI?&rdquo;</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">January AI exists to help answer that question.<br />It brings together communities and technology.<br />Ideas and resources.<br />Innovation and responsibility.<br />Ambition and stewardship.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0;">Its purpose is not to predict the future.<br />Its purpose is to help humanity participate in creating it.</p>
+        <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:24px; margin-bottom:8px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+        <button onClick="{{ togglePrinciples }}" style="display:flex; align-items:center; justify-content:center; width:100%; background:none; border:none; cursor:pointer; padding:8px 0 0;">
+          <img src="./icons/close-x.svg" alt="Close" style="width:32px; height:32px; display:inline-block;" />
+        </button>
+      </div>
+    </sc-if>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:32px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+  <div style="max-width:640px; margin-top:clamp(56px,10vh,90px); text-align:left;">
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:italic; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0 0 24px; text-align:center;">&ldquo;The future of AI will not be determined solely by the intelligence we create, but by the wisdom with which we choose to govern, finance, and apply it.&rdquo;</p>
+    <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(22px,4.2vw,28px); line-height:1.3; color:#2f2f2f; margin:0 0 24px; text-align:center;">A Charter for an Institution That Orchestrates AI for the Public Good</p>
+    <p style="font-family:Georgia, 'Times New Roman', serif; font-style:normal; font-size:clamp(18px,3.6vw,24px); line-height:1.5; color:#4a4a4a; margin:0;">JanuaryAI seeks to gather like minded ai thought leaders to define, align and implement a system and a process that protects those who need a safety net of basic human care of health and shelter. For those who are more self reliant, JanuaryAI will enable the vast majority of Americas the ability to better provide for their family and to advance education and prosperity during times of transition. In exchange for public service and productive effort, individuals would receive financial incentives, significant income and investment in their chosen efforts to create abundance that accelerates success among a thriving populace of workers, thinkers, builders and innovators in America and everywhere in the world as ai becomes capable of distributing positive impact.</p>
+  </div>
+  <div style="max-width:640px; width:100%; margin-top:clamp(56px,10vh,90px); border-top:1px solid #e2e2e2; padding-top:32px;">
+    <button sc-camel-on-click="{{ toggleEveryday }}" style="display:flex; align-items:center; justify-content:flex-start; gap:16px; width:100%; background:none; border:none; cursor:pointer; padding:0; text-align:left; font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,26px); line-height:1.2; color:#2f2f2f; text-transform:uppercase; letter-spacing:0.01em;">
+      <span style="font-size:28px; color:#a7ddc9; transform:{{ everydayArrowTransform }}; transition:transform 0.2s ease; display:inline-block;">&#9654;</span>
+      <span>AI for Everyday Americans</span>
+    </button>
+    <sc-if value="{{ everydayOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:24px; text-align:left;">
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Artificial intelligence is changing how we work, learn, and live — fast. Most of the big decisions about it are being made by a handful of companies and agencies. JanuaryAI exists so ordinary people have a real seat at that table.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">What It Is</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">JanuaryAI is a civic institution: part community, part research commons, part funding engine. It gathers everyday people, experts, and investors in one place, turns their conversations into workable plans, and then pays to build and test those plans in real communities.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Why It Matters to You</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">When a factory automates, when a school adopts new tools, when a clinic uses AI to read a scan — someone decided how that would work. JanuaryAI’s answer is simple: the people affected should help shape it, and the evidence should decide what continues.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">How It Works — Three Steps</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;"><strong>The Commons.</strong> An open forum where anyone can raise a problem, share experience, or offer an idea. No credentials required.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;"><strong>Meeting of the Minds.</strong> Promising ideas get a working group — people with lived experience alongside technical experts — that turns them into a concrete proposal with a budget and a way to measure results.</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;"><strong>The Summit.</strong> Each January the community meets, reviews the proposals, and votes on which ones get funded. Then the work begins, results are measured in public, and what we learn goes back into the Commons.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Where the Money Comes From</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Three kinds of capital keep it running: operating funds for the institution itself, innovation funds for early experiments, and implementation funds to scale what proves out. Investors and philanthropists participate — but the community, not the checkbook, decides what gets authorized.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">How We Keep It Honest</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Decisions, budgets, and outcomes are published. An AI assistant called JAN keeps the institutional memory — every conversation, decision, and result — so nothing quietly disappears and no one has to take our word for it. Commercial success and public benefit are treated as compatible, and the difference is proven with numbers, not slogans.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">What Success Looks Like</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Not headlines. Real measures: how many people take part and are heard, how many ideas make it from talk to working programs, whether funded work actually improves lives, and whether trust in the institution grows over time.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">The Next Five Years</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Year one builds the foundation and the community. Year two runs the first full cycle — Commons to working groups to the first Summit. Years three through five prove the impact, grow the capital ecosystem, and replicate the model in more places, so it can outlast the people who started it.</p>
+        <p style="font-family:'Arial Black', 'Helvetica Neue', Helvetica, sans-serif; font-weight:900; font-size:clamp(20px,4vw,24px); color:#2f2f2f; margin:0 0 18px;">Your Part</p>
+        <p style="font-family:Georgia, 'Times New Roman', serif; font-size:clamp(17px,3.2vw,20px); line-height:1.6; color:#4a4a4a; margin:0 0 22px;">Show up. Bring what you know. Vote on what gets built. That is the whole invitation.</p>
+        <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:24px; margin-bottom:8px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+        <button sc-camel-on-click="{{ toggleEveryday }}" style="display:flex; align-items:center; justify-content:center; width:100%; background:none; border:none; cursor:pointer; padding:8px 0 0;">
+          <img src="./icons/close-x.svg" alt="Close" style="width:32px; height:32px; display:inline-block;" />
+        </button>
+      </div>
+    </sc-if>
+  </div>
+  <div style="text-align:center; font-family:Helvetica, Arial, sans-serif; font-size:12px; color:#a8a8a8; margin-top:56px;">&copy; 2026 DL Thomas. All Rights Reserved.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  railHover = -1;
+  railDefs = [
+    { label: 'Majaii', href: './Majaii%20Lander.dc.html', always: true },
+    { label: 'Invitation', href: '#', always: true },
+    { label: 'JanuaryAI Summit 2027', href: './JAI%20Summit%202027.dc.html', always: true },
+    { label: 'Partners, Donors, Sponsors', href: './JAI%20Sponsors.dc.html', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Open Letter', href: './JAI%20Open%20Letter.dc.html' },
+    { label: 'Meeting of the Minds', href: './JAI%20Meeting%20of%20the%20Minds.dc.html' },
+    { label: 'Issues, Topics, Posts', href: './JAI%20Issues%20Topics%20Posts.dc.html' },
+    { label: 'Global AI Community', href: './JAI%20Global%20Community.dc.html' },
+    { label: '', href: '', inert: true },
+    { label: 'JAI-Charter', href: './JanuaryAI%20Charter%20Overview.dc.html#plan', always: true },
+    { label: '', href: '', inert: true },
+    { label: 'Contact', href: './JAI%20Contact.dc.html' }
+  ];
+
+  railWide = typeof window !== 'undefined' ? window.innerWidth >= 700 : true;
+
+  railOpen = false;
+  railLockedByTouch = false;
+  setRailOpen = (v) => {
+    if (this.railLockedByTouch) return;
+    if (this.railOpen !== v) { this.railOpen = v; this.forceUpdate(); }
+  };
+  toggleRailOpen = () => {
+    this.railOpen = !this.railOpen;
+    this.railLockedByTouch = this.railOpen;
+    this.railTouchedAt = Date.now();
+    this.forceUpdate();
+  };
+  railTap = (e) => {
+    if (e && e.target && e.target.closest && e.target.closest('[href]')) return;
+    if (this.railTouchedAt && Date.now() - this.railTouchedAt < 700) return;
+    this.toggleRailOpen();
+  };
+
+  setRailHover = (i) => { this.railHover = i; this.forceUpdate(); };
+
+  watchRailWidth() {
+    this.onRailResize = () => {
+      const wide = window.innerWidth >= 700;
+      if (wide !== this.railWide) { this.railWide = wide; this.forceUpdate(); }
+    };
+    window.addEventListener('resize', this.onRailResize);
+    this.onRailResize();
+  }
+
+  buildRailItems() {
+    return this.railDefs.map((d, i) => ({
+      label: d.label,
+      href: d.href,
+      dotBg: this.railHover === i ? '#0f9d76' : '#a7ddc9',
+      dotScale: this.railHover === i ? 'scale(1.45)' : 'scale(1)',
+      labelOpacity: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 1 : 0,
+      labelPointer: (d.label && (this.railWide || this.railOpen || this.railHover === i)) ? 'auto' : 'none',
+      onClick: (e) => {
+        e.preventDefault();
+        if (d.inert) return;
+        const h = d.href;
+        if (h.charAt(0) === '#') {
+          const t = document.getElementById(h.slice(1));
+          if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 24, behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const u = new URL(h, window.location.href);
+        const hash = u.hash;
+        u.hash = '';
+        u.search = window.location.search;
+        window.location.href = u.toString() + hash;
+      },
+      onEnter: () => this.setRailHover(i),
+      onLeave: () => this.setRailHover(-1)
+    }));
+  }
+
+  railShown = false;
+
+  componentDidMount() {
+    this.watchRailWidth();
+    this.onScroll = () => {
+      const shown = window.pageYOffset > 1300;
+      if (shown !== this.railShown) { this.railShown = shown; this.forceUpdate(); }
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+
+  toggleEveryday = () => this.setState(s => ({ everydayOpen: !s.everydayOpen }));
+
+  state = { contactValue: '', status: '', whyOpen: false, opportunityOpen: false };
+
+  toggleWhy = () => this.setState(s => ({ whyOpen: !s.whyOpen }));
+  toggleOpportunity = () => this.setState(s => ({ opportunityOpen: !s.opportunityOpen }));
+  toggleEcosystem = () => this.setState(s => ({ ecosystemOpen: !s.ecosystemOpen }));
+  toggleCycle = () => this.setState(s => ({ cycleOpen: !s.cycleOpen }));
+  toggleCitizen = () => this.setState(s => ({ citizenOpen: !s.citizenOpen }));
+  toggleGovernance = () => this.setState(s => ({ governanceOpen: !s.governanceOpen }));
+  toggleFunding = () => this.setState(s => ({ fundingOpen: !s.fundingOpen }));
+  toggleWitness = () => this.setState(s => ({ witnessOpen: !s.witnessOpen }));
+  togglePipeline = () => this.setState(s => ({ pipelineOpen: !s.pipelineOpen }));
+  toggleSummit = () => this.setState(s => ({ summitOpen: !s.summitOpen }));
+  toggleMetrics = () => this.setState(s => ({ metricsOpen: !s.metricsOpen }));
+  togglePlan = () => this.setState(s => ({ planOpen: !s.planOpen }));
+  togglePrinciples = () => this.setState(s => ({ principalsOpen: !s.principalsOpen }));
+
+  onContactChange = (e) => this.setState({ contactValue: e.target.value });
+
+  toggleInfo = () => {
+    if (this.infoTimer) { clearTimeout(this.infoTimer); this.infoTimer = null; }
+    if (this.state.infoOpen) { this.setState({ infoOpen: false }); return; }
+    this.setState({ infoOpen: true });
+    this.infoTimer = setTimeout(() => { this.infoTimer = null; this.setState({ infoOpen: false }); }, 9000);
+  };
+  showInfo = () => {
+    if (this.infoTimer) return;
+    this.setState({ infoOpen: true });
+  };
+  hideInfo = () => {
+    if (this.infoTimer) return;
+    this.setState({ infoOpen: false });
+  };
+
+  onSubmitOpenLetter = () => {
+    const value = this.state.contactValue.trim();
+    if (!value) { this.setState({ status: 'Add your name first, then sign.' }); return; }
+    const inst = window.__instant;
+    if (!inst) { this.setState({ status: 'Connecting…' }); return; }
+    try {
+      inst.db.transact(inst.tx.openLetter[inst.id()].update({ signer: value, signedAt: Date.now() }));
+      this.setState({ status: 'Signed — thank you for adding your name to the Open Letter.', contactValue: '' });
+    } catch (err) {
+      this.setState({ status: 'Something went wrong, try again.' });
+    }
+  };
+
+  onSubmit = () => {
+    const value = this.state.contactValue.trim();
+    if (!value) return;
+    const inst = window.__instant;
+    if (!inst) { this.setState({ status: 'Connecting…' }); return; }
+    try {
+      inst.db.transact(inst.tx.signups[inst.id()].update({ contact: value, createdAt: Date.now() }));
+      this.setState({ status: "Thanks — you're on the list!", contactValue: '' });
+    } catch (err) {
+      this.setState({ status: 'Something went wrong, try again.' });
+    }
+  };
+
+  navScrollRef = React.createRef();
+  navActive = -1;
+
+  centerNavItem(i) {
+    const box = this.navScrollRef.current;
+    if (!box) return;
+    const el = box.querySelector('[data-nav-index="' + i + '"]');
+    if (!el) return;
+    box.scrollTo({ left: Math.max(0, el.offsetLeft - (box.clientWidth - el.offsetWidth) / 2), behavior: 'smooth' });
+  }
+
+  buildNavItems() {
+    const defs = this.railDefs.filter(d => d.label && !d.inert);
+    return defs.map((d, i) => {
+      const on = this.navActive === i;
+      return {
+        index: String(i),
+        label: d.label,
+        href: d.href || '#',
+        bg: on ? '#0f9d76' : '#ffffff',
+        color: on ? '#ffffff' : '#0f9d76',
+        border: on ? '#0f9d76' : 'rgba(15,157,118,0.28)',
+        onClick: (e) => {
+          e.preventDefault();
+          this.navActive = i;
+          this.forceUpdate();
+          this.centerNavItem(i);
+          const href = d.href || '';
+          setTimeout(() => {
+            if (!href || href.charAt(0) === '#') {
+              const t = href.length > 1 ? document.querySelector(href) : null;
+              if (t) { window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' }); }
+              else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+              return;
+            }
+            const u = new URL(href, window.location.href);
+            const hash = u.hash; u.hash = ''; u.search = window.location.search;
+            window.location.href = u.toString() + hash;
+          }, 260);
+        }
+      };
+    });
+  }
+
+  renderVals() {
+    return {
+      navItems: this.buildNavItems(),
+      navScrollRef: this.navScrollRef,
+      railEnter: () => this.setRailOpen(true),
+      railLeave: () => this.setRailOpen(false),
+      railToggle: this.toggleRailOpen, railTap: this.railTap,
+      railOpacity: 1,
+      railPointer: 'auto',
+      everydayOpen: this.state.everydayOpen,
+      toggleEveryday: this.toggleEveryday,
+      everydayArrowTransform: this.state.everydayOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      contactValue: this.state.contactValue,
+      onContactChange: this.onContactChange,
+      onSubmit: this.onSubmit,
+      onSubmitOpenLetter: this.onSubmitOpenLetter,
+      infoOpen: this.state.infoOpen,
+      toggleInfo: this.toggleInfo,
+      showInfo: this.showInfo,
+      hideInfo: this.hideInfo,
+      status: this.state.status,
+      whyOpen: this.state.whyOpen,
+      toggleWhy: this.toggleWhy,
+      whyArrowTransform: this.state.whyOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      opportunityOpen: this.state.opportunityOpen,
+      toggleOpportunity: this.toggleOpportunity,
+      opportunityArrowTransform: this.state.opportunityOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      ecosystemOpen: this.state.ecosystemOpen,
+      toggleEcosystem: this.toggleEcosystem,
+      ecosystemArrowTransform: this.state.ecosystemOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      cycleOpen: this.state.cycleOpen,
+      toggleCycle: this.toggleCycle,
+      cycleArrowTransform: this.state.cycleOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      citizenOpen: this.state.citizenOpen,
+      toggleCitizen: this.toggleCitizen,
+      citizenArrowTransform: this.state.citizenOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      governanceOpen: this.state.governanceOpen,
+      toggleGovernance: this.toggleGovernance,
+      governanceArrowTransform: this.state.governanceOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      fundingOpen: this.state.fundingOpen,
+      toggleFunding: this.toggleFunding,
+      fundingArrowTransform: this.state.fundingOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      witnessOpen: this.state.witnessOpen,
+      toggleWitness: this.toggleWitness,
+      witnessArrowTransform: this.state.witnessOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      pipelineOpen: this.state.pipelineOpen,
+      togglePipeline: this.togglePipeline,
+      pipelineArrowTransform: this.state.pipelineOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      summitOpen: this.state.summitOpen,
+      toggleSummit: this.toggleSummit,
+      summitArrowTransform: this.state.summitOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      metricsOpen: this.state.metricsOpen,
+      toggleMetrics: this.toggleMetrics,
+      metricsArrowTransform: this.state.metricsOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      planOpen: this.state.planOpen,
+      togglePlan: this.togglePlan,
+      planArrowTransform: this.state.planOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+      principalsOpen: this.state.principalsOpen,
+      togglePrinciples: this.togglePrinciples,
+      principalsArrowTransform: this.state.principalsOpen ? 'rotate(90deg)' : 'rotate(0deg)'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,43 +1,53 @@
-# JanuaryAI Foundation — Summit 2027 site
+# The JanuaryAI Project — majaii.com
 
-Static site. No build step, no dependencies. Every page is plain HTML that runs
-directly from the filesystem or any static host.
+Static site. No build step, no dependencies. Every page is a single self-contained
+HTML file that runs from any static host.
 
-## Deploy
+## Deploy to Cloudflare Pages
 
-GitHub Pages: Settings → Pages → Deploy from branch → `main` / `/ (root)`.
-Or drop this folder into Cloudflare Pages / Netlify / S3 as-is.
+Dashboard -> Workers & Pages -> Create -> Pages -> Upload assets.
+Drag this whole folder in (or connect the repo and set build output = /).
+No build command. No framework preset. Custom domain: www.majaii.com.
 
 ## Pages
 
 | File | Page |
 | --- | --- |
 | index.html | Home — Majaii Lander (signup capture) |
-| invitation.html | Invitation (full MAJAI lander) |
-| home.html | JAI project home |
 | summit.html | JanuaryAI Summit 2027 |
-| global-ai-community.html | Global AI Community bubble field |
-| charter.html | JanuaryAI Charter — all 13 sections |
-| meeting-of-the-minds.html | Meeting of the Minds — impact groups |
 | issues-topics-posts.html | The Commons — issues, topics, posts |
-| open-letter.html | Open Letter + signing form |
-| sponsors.html | Sponsorship tiers + RSVP |
+| invitation.html | Invitation (full lander) |
+| open-letter.html | Library + Community Letters |
+| sponsors.html | Donors, Sponsors, Partners |
+| meeting-of-the-minds.html | Meeting of the Minds — impact groups |
+| global-ai-community.html | Global AI Community |
+| charter.html | JanuaryAI Charter — all 13 sections |
+| contact.html | Contact, About JAI, JAN |
+| privacy.html | Privacy Policy |
+| home.html | JAI project home |
 | patron-account.html | Patron Account — monthly giving |
 | sponsor-handout.html | Two-sided printable handout + agreement |
-| contact.html | Contact, about, JAN |
 
 ## Assets
 
-- `support.js` — page runtime, required by every page
-- `image-slot.js` — image placeholder component
+- `og-image.png` — 1200x630 link-preview card. Must stay at the site root
+  (https://www.majaii.com/og-image.png) for iMessage/social previews to work.
 - `icons/`, `uploads/`, `LOGO majai*` — artwork
+- `support.js`, `image-slot.js` — kept for reference; the bundled pages inline them
+
+Every page carries its own title, description, Open Graph and Twitter card tags.
+Re-bundling a page resets its title to "Bundled Page" — re-apply the tags after.
 
 ## Data
 
-Signup and Open Letter forms write to InstantDB app `1610ad39-5a25-423e-913a-483b67bfed79`
-(collections `signups`, `openLetter`) and mirror to localStorage first, so nothing is
-lost if the network fails. Append `?admin=1` on the home page for the capture panel
-and CSV download.
+Signup, Community Letter, and Commons forms write to InstantDB app
+`1610ad39-5a25-423e-913a-483b67bfed79` (collections `signups`, `openLetter`,
+`commonsPosts`) and mirror to localStorage first, so nothing is lost if the
+network fails. Append `?admin=1` on the home page for the capture panel and CSV.
 
-© 2026 DL Thomas. All Rights Reserved.
+## Contact
+
+cooper@tiino.ai · (303) 720-6633 · www.majaii.com
+
+(c) 2026 DL Thomas. All Rights Reserved.
 Produced by BODEN Summit LLC, 800 Beauprez Avenue, Lafayette, Colorado 80026.

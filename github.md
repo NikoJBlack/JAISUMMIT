@@ -3,15 +3,21 @@ branch: main
 path: publish
 
 ## Last sync
-- date: 2026-09-15T19:26:02.262Z
-- commit: dde3c24
+- date: 2026-09-16T16:06:46.831Z
+- commit: 5b0dc62
 - notes:
-  - Shipped majaiiV.03
-  - Summit mint band headline now "January 18-20, 2027"
-  - Nav reordered: LIBRARY+LETTERS leftmost, SUMMIT 2027 centred, desktop hover enlargement
-  - Community Letters retitle, Commons now reads from InstantDB across devices, new lander card row
+  - Shipped majaiiV.04
+  - Added privacy.html (14th page)
+  - Added robots.txt, sitemap.xml, og-image.png for SEO
+  - Added Cloudflare _headers (security headers) and _redirects (clean short URLs: /summit, /privacy, /contact, /charter, /letters, /commons)
 
 ## Sync history
+### 2026-09-15T19:26:02.262Z (dde3c24)
+- Shipped majaiiV.03
+- Summit mint band headline now "January 18-20, 2027"
+- Nav reordered: LIBRARY+LETTERS leftmost, SUMMIT 2027 centred, desktop hover enlargement
+- Community Letters retitle, Commons now reads from InstantDB across devices, new lander card row
+
 ### 2026-09-14T02:48:23.289Z (01afc9f)
 - Replaced publish/ with the compiled export from the design canvas (magaiiSEPT/publish)
 - Open Letter updates, Commons MY IDEA composer, home lander animation change

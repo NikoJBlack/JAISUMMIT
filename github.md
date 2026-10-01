@@ -3,15 +3,21 @@ branch: main
 path: publish
 
 ## Last sync
-- date: 2026-09-16T16:06:46.831Z
-- commit: 5b0dc62
+- date: 2026-10-01T14:13:25.275Z
+- commit: d4a1916
 - notes:
-  - Shipped majaiiV.04
-  - Added privacy.html (14th page)
-  - Added robots.txt, sitemap.xml, og-image.png for SEO
-  - Added Cloudflare _headers (security headers) and _redirects (clean short URLs: /summit, /privacy, /contact, /charter, /letters, /commons)
+  - Shipped majaiiV.07 (catching up from V.04 — V.05/V.06 were never deployed through jaipub)
+  - HOME is now The Commons (index.html); old lander moved to majaii.html
+  - Coin-Up pledge popup, full login/membership flow, member monthly donations (pending-charge only)
+  - Commons voting, pinned Open Letter w/ comments, fixed a live become-a-patron.html routing bug
 
 ## Sync history
+### 2026-09-16T16:06:46.831Z (5b0dc62)
+- Shipped majaiiV.04
+- Added privacy.html (14th page)
+- Added robots.txt, sitemap.xml, og-image.png for SEO
+- Added Cloudflare _headers (security headers) and _redirects (clean short URLs: /summit, /privacy, /contact, /charter, /letters, /commons)
+
 ### 2026-09-15T19:26:02.262Z (dde3c24)
 - Shipped majaiiV.03
 - Summit mint band headline now "January 18-20, 2027"

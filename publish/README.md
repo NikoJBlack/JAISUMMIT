@@ -13,7 +13,8 @@ No build command. No framework preset. Custom domain: www.majaii.com.
 
 | File | Page |
 | --- | --- |
-| index.html | Home — Majaii Lander (signup capture) |
+| index.html | Home — Issues, Topics, Posts (The Commons) |
+| majaii.html | Majaii Lander (signup capture) |
 | summit.html | JanuaryAI Summit 2027 |
 | issues-topics-posts.html | The Commons — issues, topics, posts |
 | invitation.html | Invitation (full lander) |
@@ -41,8 +42,8 @@ Re-bundling a page resets its title to "Bundled Page" — re-apply the tags afte
 ## Data
 
 Signup, Community Letter, and Commons forms write to InstantDB app
-`1610ad39-5a25-423e-913a-483b67bfed79` (collections `signups`, `openLetter`,
-`commonsPosts`) and mirror to localStorage first, so nothing is lost if the
+`1610ad39-5a25-423e-913a-483b67bfed79` (collections `signups`, `openLetter`, `commonsPosts`, `Guestlist`,
+`pollVotes`, `pollVoteLog`, `adminNotes`, `members`, `memberLog`, `pledges`, `letterComments`) and mirror to localStorage first, so nothing is lost if the
 network fails. Append `?admin=1` on the home page for the capture panel and CSV.
 
 ## Contact

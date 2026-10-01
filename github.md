@@ -37,7 +37,8 @@ path: publish
 | JAI Contact.dc.html | contact.html |
 | JAI Global Community.dc.html | global-ai-community.html |
 | JAI Project website.dc.html | home.html |
-| Majaii Lander.dc.html | index.html |
+| TBD | index.html |
+| TBD | majaii.html |
 | MAJAI Lander.dc.html | invitation.html |
 | JAI Issues Topics Posts.dc.html | issues-topics-posts.html |
 | JAI Meeting of the Minds.dc.html | meeting-of-the-minds.html |

@@ -51,6 +51,7 @@ path: publish
 | JAI Open Letter.dc.html | open-letter.html |
 | JAI Patron Account.dc.html | patron-account.html |
 | TBD | become-a-patron.html |
+| TBD | freedom-of-speech.html |
 | TBD | privacy.html |
 | JAI Sponsor Handout.dc.html | sponsor-handout.html |
 | JAI Sponsors.dc.html | sponsors.html |

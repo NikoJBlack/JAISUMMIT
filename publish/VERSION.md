@@ -1,3 +1,8 @@
+## 2026-10-01 rebuild
+- New Freedom of Speech page (freedom-of-speech.html) + blue Freedom nav button on every page
+- Commons: video-link thumbnails, member image/audio/camera media, member delete with admin log, right-click edit menu, owner Replace image / Edit text, claim legacy posts
+- JAI-Charter button opens the Charter at the top
+
 # majaiiV.07 — 2026-10-01
 
 - Coin-Up ? rebuilt: no longer pops over on arrival; button beside ??? alternates Coin-Up ? / LogIn every 9s

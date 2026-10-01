@@ -3,15 +3,21 @@ branch: main
 path: publish
 
 ## Last sync
-- date: 2026-10-01T14:13:25.275Z
-- commit: d4a1916
+- date: 2026-10-01T18:18:47.820Z
+- commit: 9b0cd24
 - notes:
-  - Shipped majaiiV.07 (catching up from V.04 — V.05/V.06 were never deployed through jaipub)
-  - HOME is now The Commons (index.html); old lander moved to majaii.html
-  - Coin-Up pledge popup, full login/membership flow, member monthly donations (pending-charge only)
-  - Commons voting, pinned Open Letter w/ comments, fixed a live become-a-patron.html routing bug
+  - Shipped 2026-10-01 rebuild (majaiiOCT1.4)
+  - New freedom-of-speech.html page + nav button
+  - Commons media upgrades: video-link thumbnails, member image/audio/camera uploads, edit/delete w/ admin log, right-click menu, claim legacy posts
+  - Charter nav button now opens at top
 
 ## Sync history
+### 2026-10-01T14:13:25.275Z (d4a1916)
+- Shipped majaiiV.07 (catching up from V.04 — V.05/V.06 were never deployed through jaipub)
+- HOME is now The Commons (index.html); old lander moved to majaii.html
+- Coin-Up pledge popup, full login/membership flow, member monthly donations (pending-charge only)
+- Commons voting, pinned Open Letter w/ comments, fixed a live become-a-patron.html routing bug
+
 ### 2026-09-16T16:06:46.831Z (5b0dc62)
 - Shipped majaiiV.04
 - Added privacy.html (14th page)
